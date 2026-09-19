@@ -14,28 +14,30 @@ tags:
 
 # AI 200 Course Guide
 
-## Panoramica
+## Overview
 
-Questo corso introduce Azure Container Registry (ACR) come base per la gestione sicura e scalabile di immagini container per applicazioni AI e servizi backend su Azure.
+This course introduces Azure Container Registry (ACR) as the foundation for securely and scalably storing container images for AI applications and backend services on Azure.
 
-## Obiettivi di apprendimento
+## Learning objectives
 
-- Comprendere la struttura di ACR
-- Organizzare registry, repository e artifact
-- Gestire tag, manifest e digest
-- Eseguire operazioni di push/pull con Azure CLI e Docker
-- Applicare best practice di governance e distribuzione
+- Understand the structure of ACR
+- Organize registries, repositories, and artifacts
+- Build and run images with ACR Tasks
+- Tag and version container images consistently
+- Complete a practical exercise using ACR Tasks
+- Assess knowledge and review key takeaways
 
-## Moduli
+## Units
 
-- [[01-Introduzione]]
-- [[02-Registries-Repositories-Artifacts]]
-- [[03-Tags-Layers-Manifests]]
-- [[04-ACR-CLI-e-Tutorial]]
-- [[05-Best-Practices]]
-- [[06-Resources]]
+- [[01-Introduction]]
+- [[02-Registries-Repositories-and-Artifacts]]
+- [[03-Build-and-Run-Images-with-ACR-Tasks]]
+- [[04-Tag-and-Version-Images]]
+- [[05-Exercise-Build-and-Manage-a-Container-Image-with-ACR-Tasks]]
+- [[06-Module-Assessment]]
+- [[07-Summary]]
 
-## Mappa concettuale
+## Concept map
 
 ```mermaid
 flowchart TD
@@ -52,13 +54,13 @@ flowchart TD
     K --> L[Deployments]
 ```
 
-## Riassunto
+## Summary
 
-ACR è il punto centrale per archiviare, versionare e distribuire immagini container in ambienti cloud. Per AI workloads, la capacità di gestire versioni immutabili, tag chiari e distribuzione sicura è fondamentale per ottenere deployment affidabili e verificabili.
+ACR is the central storage and distribution layer for container images in Azure. For AI workloads, the ability to manage immutable versions, consistent tags, and reliable deployments is essential for operational success.
 
-## Note correlate
+## Related notes
 
-- [[01-Introduzione]]
-- [[02-Registries-Repositories-Artifacts]]
-- [[03-Tags-Layers-Manifests]]
-- [[04-ACR-CLI-e-Tutorial]]
+- [[01-Introduction]]
+- [[02-Registries-Repositories-and-Artifacts]]
+- [[03-Build-and-Run-Images-with-ACR-Tasks]]
+- [[04-Tag-and-Version-Images]]
