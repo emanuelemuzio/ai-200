@@ -1,5 +1,5 @@
 ---
-title: "Unit 04 - Tag and Version Images"
+title: "Tag and Version Images"
 aliases:
   - Tagging strategy
   - Image versioning
@@ -9,9 +9,7 @@ tags:
   - acr
   - docker
   - versioning
----
-
-# Unit 04 - Tag and version images
+--- 
 
 ## Why tagging matters
 
@@ -77,5 +75,5 @@ Use tags for readability and digest references for final deployment certainty.
 
 ## Related notes
 
-- [[../03-build-and-run-images-with-acr-tasks/index]]
-- [[../05-exercise-build-and-manage-a-container-image-with-acr-tasks/index]]
+- [[Build and run images with ACR Tasks]]
+- [[Exercise - Build and manage a container image with ACR Tasks]]

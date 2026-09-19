@@ -61,6 +61,6 @@ If you can describe the relationship between registry, repository, tag, and dige
 ## Related notes
 
 - [Course overview](../../course.md)
-- [[../03-build-and-run-images-with-acr-tasks/index]]
-- [[../04-tag-and-version-images/index]]
-- [[../07-summary/index]]
+- [[Build and run images with ACR Tasks]]
+- [[Tag and version images]]
+- [[Summary]]

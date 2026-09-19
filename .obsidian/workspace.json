@@ -1,0 +1,217 @@
+{
+  "main": {
+    "id": "8d96438a77f4d16b",
+    "type": "split",
+    "children": [
+      {
+        "id": "c9cd02763fecfb06",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "43633109ca09d209",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Additional Resources/Azure Container Registry service tiers.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Azure Container Registry service tiers"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cf0466603c6e4ba6",
+    "type": "split",
+    "children": [
+      {
+        "id": "44290d23001f03a2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "740b260ad9cbef80",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora file"
+            }
+          },
+          {
+            "id": "5df835095ef1adb0",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Ricerca"
+            }
+          },
+          {
+            "id": "ca6513277a387ab0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Segnalibri"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 395.5
+  },
+  "right": {
+    "id": "66db241c1d6523d6",
+    "type": "split",
+    "children": [
+      {
+        "id": "f802c3e5f1ad71c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c76067831ccebd7d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Additional Resources/Azure Container Registry service tiers.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "e725bad64cb2b033",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Additional Resources/Azure Container Registry service tiers.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "081b995f08cc1d4c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "78355c4e7e042838",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "51f0dc822270388f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Additional Resources/Azure Container Registry service tiers.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
+    }
+  },
+  "active": "43633109ca09d209",
+  "lastOpenFiles": [
+    "Unit 2 - Registries, repositories, and artifacts/Registries, repositories, and artifacts.md",
+    "Unit 4 - Tag and version images/Tag and version images.md",
+    "Unit 3 - Build and run images with ACR Tasks/Build and run images with ACR Tasks.md",
+    "Unit 1 - Introduction/Introduction.md",
+    "Registries, repositories and artifacts.md",
+    "assets/container-image-layers.png",
+    "assets/registry-elements.png",
+    "assets/registry-overview-quotas.png",
+    "Additional Resources/Azure Container Registry service tiers.md",
+    "Additional Resources/Best practices for Azure Container Registry.md",
+    "assets/Non confermato 291922.crdownload",
+    "Additional Resources/About registries, repositories, and artifacts.md",
+    "Build.md",
+    "Additional Resources/Geo-Replication in Azure Container Registry.md",
+    "Additional Resources",
+    "Unit 5 - Exercise - Build and manage a container image with ACR Tasks/Exercise - Build and manage a container image with ACR Tasks.md",
+    "assets/Non confermato 237066.crdownload",
+    "assets/Non confermato 502761.crdownload",
+    "assets",
+    "Nuova cartella",
+    "[../02-registries-repositories-and-artifacts/index].md",
+    "[../02-registries-repositories-and-artifacts",
+    "[.."
+  ]
+}

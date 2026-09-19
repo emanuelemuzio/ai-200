@@ -39,9 +39,9 @@ Azure Container Registry is not just a storage location; it is a core part of th
 ## Related notes
 
 - [Course overview](../../course.md)
-- [[../01-introduction/index]]
-- [[../02-registries-repositories-and-artifacts/index]]
-- [[../03-build-and-run-images-with-acr-tasks/index]]
-- [[../04-tag-and-version-images/index]]
-- [[../05-exercise-build-and-manage-a-container-image-with-acr-tasks/index]]
-- [[../06-module-assessment/index]]
+- [[Introduction]]
+- [[Registries, repositories, and artifacts]]
+- [[Build and run images with ACR Tasks]]
+- [[Tag and version images]]
+- [[Exercise - Build and manage a container image with ACR Tasks]]
+- [[Module assessment]]

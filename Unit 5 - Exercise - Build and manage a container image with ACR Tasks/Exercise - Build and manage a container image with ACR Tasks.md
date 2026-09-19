@@ -1,17 +1,14 @@
 ---
-title: "Exercise - Build and Manage a Container Image with ACR Tasks"
+title: Exercise: Build and Manage a Container Image with ACR Tasks"
 aliases:
-  - Lab
-  - Practice exercise
-  - ACR lab
+  - ACR exercise
+  - Build and manage image
 tags:
+  - ai-200
   - exercise
   - acr
   - docker
-  - azure
----
-
-# Exercise - Build and manage a container image with ACR Tasks
+--- 
 
 ## Goal
 
@@ -60,6 +57,6 @@ This exercise demonstrates the main ACR workflow: build, tag, push, and reuse. I
 
 ## Related notes
 
-- [[03-Build-and-Run-Images-with-ACR-Tasks]]
-- [[04-Tag-and-Version-Images]]
-- [[06-Module-Assessment]]
+- [[Build and run images with ACR Tasks]]
+- [[Tag and version images]]
+- [[Module assessment]]
