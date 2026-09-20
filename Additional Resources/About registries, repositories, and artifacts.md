@@ -164,11 +164,11 @@ Example of pulling by manifest digest:
 
 ## Concepts
 
-- **Lifecycle of an image**: the image is built, pushed to the registry, pulled for deployment, and then versioned over time.
-- **Immutability of deployments**: a digest or exact reference helps avoid ambiguity when a tag is reused.
+- **Lifecycle of an image**: the image is built, pushed to the registry, pulled for deployment, and then versioned over time. See [Azure Container Registry service tiers.md](Azure%20Container%20Registry%20service%20tiers.md).
+- **Immutability of deployments**: a digest or exact reference helps avoid ambiguity when a tag is reused. See [Image Tag Best Practices.md](Image%20Tag%20Best%20Practices.md).
 - **Layer reuse**: common base layers reduce duplication and make image distribution more efficient.
-- **Registry governance**: naming, access control, and retention policies are essential in production environments.
-- **Multi-region distribution**: storing or replicating content closer to users or workloads improves latency and resilience.
+- **Registry governance**: naming, access control, and retention policies are essential in production environments. See [Best practices for Azure Container Registry.md](Best%20practices%20for%20Azure%20Container%20Registry.md).
+- **Multi-region distribution**: storing or replicating content closer to users or workloads improves latency and resilience. See [Azure Container Registry service tiers.md](Azure%20Container%20Registry%20service%20tiers.md).
 - **Secure connectivity**: private access patterns allow registry usage without exposing endpoints publicly.
-- **Artifact hygiene**: old, untagged, or redundant artifacts can accumulate and increase storage cost.
-- **Versioned delivery**: tags and digests support controlled rollout, rollback, and reproducible deployment practices.
+- **Artifact hygiene**: old, untagged, or redundant artifacts can accumulate and increase storage cost. See [Automatically purge images from an Azure container registry.md](Automatically%20purge%20images%20from%20an%20Azure%20container%20registry.md).
+- **Versioned delivery**: tags and digests support controlled rollout, rollback, and reproducible deployment practices. See [Unit 4 - Tag and version images/Tag and version images.md](../Unit%204%20-%20Tag%20and%20version%20images/Tag%20and%20version%20images.md).

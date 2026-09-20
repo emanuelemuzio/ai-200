@@ -198,8 +198,8 @@ Update-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerR
 
 ## Concepts
 
-- **Tier selection**: the Basic, Standard, and Premium plans balance cost, storage, and advanced capabilities to match different workload requirements.
-- **Scalability and performance**: higher tiers support more throughput, concurrency, and larger operational scale for busy registry workloads.
-- **Regional resilience**: geo-replication and private networking improve latency, availability, and control over access.
+- **Tier selection**: the Basic, Standard, and Premium plans balance cost, storage, and advanced capabilities to match different workload requirements. See [Best practices for Azure Container Registry.md](Best%20practices%20for%20Azure%20Container%20Registry.md).
+- **Scalability and performance**: higher tiers support more throughput, concurrency, and larger operational scale for busy registry workloads. See [ACR Tasks overview.md](ACR%20Tasks%20overview.md).
+- **Regional resilience**: geo-replication and private networking improve latency, availability, and control over access. See [About registries, repositories, and artifacts.md](About%20registries,%20repositories,%20and%20artifacts.md).
 - **Operational governance**: monitoring usage, managing limits, and choosing a tier deliberately helps avoid throttling and unnecessary cost.
-- **Lifecycle planning**: registry health depends on matching the SKU to real usage patterns, then adjusting it as demand changes.
+- **Lifecycle planning**: registry health depends on matching the SKU to real usage patterns, then adjusting it as demand changes. See [Automatically purge images from an Azure container registry.md](Automatically%20purge%20images%20from%20an%20Azure%20container%20registry.md).

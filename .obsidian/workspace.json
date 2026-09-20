@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "c9cd02763fecfb06",
+        "id": "11132e2bd4482842",
         "type": "tabs",
         "children": [
           {
-            "id": "43633109ca09d209",
+            "id": "042c2e9ff706985e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Additional Resources/Azure Container Registry service tiers.md",
-                "mode": "preview",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "Azure Container Registry service tiers"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Vista grafo"
             }
           }
         ]
@@ -188,24 +184,36 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "43633109ca09d209",
+  "active": "042c2e9ff706985e",
   "lastOpenFiles": [
-    "Unit 2 - Registries, repositories, and artifacts/Registries, repositories, and artifacts.md",
+    "Unit 6 - Module assessment/Module assessment.md",
+    "Unit 7 - Summary/Summary.md",
+    "Unit 5 - Exercise - Build and manage a container image with ACR Tasks/Exercise - Build and manage a container image with ACR Tasks.md",
     "Unit 4 - Tag and version images/Tag and version images.md",
     "Unit 3 - Build and run images with ACR Tasks/Build and run images with ACR Tasks.md",
+    "Unit 2 - Registries, repositories, and artifacts/Registries, repositories, and artifacts.md",
     "Unit 1 - Introduction/Introduction.md",
+    "Additional Resources/Build and deploy container images with ACR Tasks.md",
+    "Additional Resources/Lock a Container Image in Azure Registry.md",
+    "Additional Resources/Automatically purge images from an Azure container registry.md",
+    "Additional Resources/Azure Container Registry service tiers.md",
+    "Additional Resources/Image Tag Best Practices.md",
+    "Additional Resources/Run multi-step build, test, and patch tasks.md",
+    "Additional Resources/ACR Tasks overview.md",
+    "Additional Resources/Best practices for Azure Container Registry.md",
+    "Additional Resources/About registries, repositories, and artifacts.md",
+    "assets/quick-build-02-browser.png",
+    "assets/Non confermato 637482.crdownload",
+    "assets/quick-build-01-fork.png",
+    "assets/Non confermato 482968.crdownload",
     "Registries, repositories and artifacts.md",
     "assets/container-image-layers.png",
     "assets/registry-elements.png",
     "assets/registry-overview-quotas.png",
-    "Additional Resources/Azure Container Registry service tiers.md",
-    "Additional Resources/Best practices for Azure Container Registry.md",
     "assets/Non confermato 291922.crdownload",
-    "Additional Resources/About registries, repositories, and artifacts.md",
     "Build.md",
     "Additional Resources/Geo-Replication in Azure Container Registry.md",
     "Additional Resources",
-    "Unit 5 - Exercise - Build and manage a container image with ACR Tasks/Exercise - Build and manage a container image with ACR Tasks.md",
     "assets/Non confermato 237066.crdownload",
     "assets/Non confermato 502761.crdownload",
     "assets",

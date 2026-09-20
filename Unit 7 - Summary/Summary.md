@@ -11,37 +11,10 @@ tags:
   - acr
 ---
 
-# Unit 07 - Summary
+In this module, you learned how Azure Container Registry (ACR) organizes container images using a hierarchy of registries, repositories, and artifacts. You explored how manifests, layers, and digests enable efficient storage and precise image identification. Tags provide human-readable references, while digests offer immutable identifiers for guaranteed reproducibility. You also learned to use ACR Tasks to build container images in the cloud without requiring a local Docker installation. Quick tasks enable on-demand builds from local files or Git repositories, while automatic triggers respond to source code commits and base image updates. Multi-step tasks support complex build-test-push workflows entirely within ACR. Additionally, you implemented tagging and versioning strategies that support reliable production deployments. Semantic versioning communicates the nature of changes, unique tags guarantee deployment consistency, and image locking prevents accidental deletion of production images. Finally, you applied these concepts in a hands-on exercise that demonstrated building, tagging, and running container images using the Azure CLI.
 
-This module introduced the core concepts behind Azure Container Registry and how it supports modern AI workloads.
-
-## Key takeaways
-
-- ACR provides a secure, managed registry for storing container images and related artifacts
-- The registry is organized into registries, repositories, and artifacts
-- Tags make images readable, while digests make deployments immutable and reproducible
-- ACR Tasks allow you to build images in Azure instead of depending only on local environments
-- Consistent versioning and tagging are essential for safe deployment and rollback
-
-## Recommended practice
-
-For production workloads, prefer:
-
-- clear repository naming
-- consistent tagging standards
-- digest-based deployment for critical environments
-- automated builds through ACR Tasks
-
-## Final reflection
-
-Azure Container Registry is not just a storage location; it is a core part of the delivery pipeline for containerized AI services. When used correctly, it improves reliability, governance, and deployment repeatability across teams and environments.
-
-## Related notes
-
-- [Course overview](../../course.md)
-- [[Introduction]]
-- [[Registries, repositories, and artifacts]]
-- [[Build and run images with ACR Tasks]]
-- [[Tag and version images]]
-- [[Exercise - Build and manage a container image with ACR Tasks]]
-- [[Module assessment]]
+## Related notes 
+ 
+- [[Build and deploy container images with ACR Tasks]]
+- [[Best practices for Azure Container Registry]]
+- [[Image Tag Best Practices]]

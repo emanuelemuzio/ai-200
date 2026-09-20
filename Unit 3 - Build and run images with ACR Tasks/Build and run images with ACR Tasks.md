@@ -1,5 +1,5 @@
 ---
-title: "Unit 03 - Build and Run Images with ACR Tasks"
+title: Unit 3 - Build and Run Images with ACR Tasks
 aliases:
   - ACR Tasks
   - Container build
@@ -180,10 +180,8 @@ Follow these practices to get the most from ACR Tasks:
 
 ## Additional resources
 
-- [ACR Tasks overview](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview)
-- [Build and deploy container images with ACR Tasks](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-quick-task)
-- [Run multi-step build, test, and patch tasks](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-multi-step)
-
----
+- [[ACR Tasks overview]]
+- [[Build and deploy container images with ACR Tasks]]
+- [[Run multi-step build, test, and patch tasks]] 
 
 ## [Next >](Tag%20and%20version%20images.md)

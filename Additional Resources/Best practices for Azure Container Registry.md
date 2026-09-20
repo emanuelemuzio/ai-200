@@ -96,8 +96,8 @@ For details on deleting image data from your registry, including untagged or orp
 
 ## Concepts
 
-- **Latency and locality**: placing the registry close to the workloads reduces latency and transfer costs, especially when nodes need to pull large images.
-- **Multi-region replication**: geo-replication simplifies global deployment and improves resilience for distributed environments.
-- **Image efficiency**: smaller images and a controlled number of layers improve pull time and caching efficiency on execution nodes.
-- **Access governance**: namespaces, groups, and repository permissions help teams share the same registry securely.
-- **Registry lifecycle management**: monitoring usage, removing unused images, and choosing the right tier prevents waste and performance issues.
+- **Latency and locality**: placing the registry close to the workloads reduces latency and transfer costs, especially when nodes need to pull large images. See [Azure Container Registry service tiers.md](Azure%20Container%20Registry%20service%20tiers.md).
+- **Multi-region replication**: geo-replication simplifies global deployment and improves resilience for distributed environments. See [About registries, repositories, and artifacts.md](About%20registries,%20repositories,%20and%20artifacts.md).
+- **Image efficiency**: smaller images and a controlled number of layers improve pull time and caching efficiency on execution nodes. See [Image Tag Best Practices.md](Image%20Tag%20Best%20Practices.md).
+- **Access governance**: namespaces, groups, and repository permissions help teams share the same registry securely. See [Lock a Container Image in Azure Registry.md](Lock%20a%20Container%20Image%20in%20Azure%20Registry.md).
+- **Registry lifecycle management**: monitoring usage, removing unused images, and choosing the right tier prevents waste and performance issues. See [Automatically purge images from an Azure container registry.md](Automatically%20purge%20images%20from%20an%20Azure%20container%20registry.md).

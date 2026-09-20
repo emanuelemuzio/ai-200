@@ -1,15 +1,15 @@
 ---
 name: concept-normalizer
-description: "Use when: a Markdown document contains concept links that should be rewritten as plain explanatory text and finished with a short 'Concetti' section listing the main concepts and their brief meaning."
+description: "Use when: a Markdown document contains external Learn references or related concept links that should be normalized into a final 'Concepts' section, with brief online mentions and direct local links to project files when available."
 ---
 
 # Concept normalizer for Microsoft Learn Azure content
 
 ## Goal
 
-Keep the original Markdown content intact and preserve examples, code blocks, commands, and technical details. The only change should be a final section named `Concetti` that adds broader, useful context concepts not explicitly repeated in the body of the page.
+Keep the original Markdown content intact and preserve examples, code blocks, commands, and technical details. The only change should be a final section named `Concepts` that gathers related references and useful background context without rewriting the article itself.
 
-This is especially useful for Microsoft Learn content, Azure service concepts, and certification-oriented study notes, where the main body should remain faithful to the source and the final summary acts as a conceptual bridge rather than a duplicate summary.
+This is especially useful for Microsoft Learn content, Azure service concepts, and certification-oriented study notes, where the main body should remain faithful to the source and the final section acts as a lightweight conceptual bridge rather than a duplicate summary.
 
 ## When to use this skill
 
@@ -23,23 +23,27 @@ Use this when:
 ## Workflow
 
 1. Read the target Markdown file.
-2. Identify the concept references that are scattered throughout the page, but do not treat the main terms as the only items to include.
-3. Add a final `## Concetti` section containing concepts that are useful for understanding the topic more broadly, even if they are not restated in the body in the same wording.
-   - Prefer adjacent concepts that help contextualize the topic.
-   - Do not simply repeat the exact terms already explained in the page.
-   - Keep the list short and selective.
+2. Identify references to external online resources and adjacent concepts scattered through the page.
+3. Add a final `## Concepts` section containing only short, direct concept entries.
+   - Each bullet should be a concept label followed by a brief explanatory phrase, not a generic list of unrelated references.
+   - For any external online reference, keep it to a micro mention inside the same bullet: short and contextual, never a full explanation or a second article.
+   - If there is a matching local note in the project, include the link directly in the same bullet as part of the concept entry, in the form `Concept: [local note](...)`.
+   - Do not create a separate “Related notes” list or a separate “Local project note” block.
+   - Prefer adjacent concepts that help contextualize the topic without repeating the exact headings already in the page.
 4. Do not rewrite the core content. Preserve the original text, code examples, commands, and technical sections as they are.
-5. Only add a final recap section at the end of the file.
-6. In that section, list useful background ideas such as lifecycle, immutability, reuse, governance, or distribution, depending on the topic.
+5. Only add a final concept section at the end of the file.
+6. In that section, list useful background ideas such as lifecycle, immutability, reuse, governance, dependency tracking, or distribution, depending on the topic.
 7. Keep each bullet brief and conceptual.
-8. Check that the final page still reads like the original material, with one added recap section at the end.
+8. Check that the final page still reads like the original material, with one added section at the end and no deep synthesis.
 
 ## Quality checks
 
 Before finishing, verify that:
 - the body of the file is still intact and unchanged
 - code blocks, examples, and commands were preserved
-- the added `Concetti` section does not duplicate the exact main headings of the file
+- the added `Concepts` section does not duplicate the exact main headings of the file
+- external online references are only lightly mentioned, not expanded into a second article
+- local project files are linked directly when available, instead of being described in prose
 - the concepts are complementary to the article and improve understanding
 - no deep synthesis or large rewrite was introduced
 
@@ -50,19 +54,18 @@ Before finishing, verify that:
 
 ...existing content remains unchanged...
 
-## Concetti
+## Concepts
 
-- Immutability: a digest or exact version reference prevents ambiguity during deployment.
-- Lifecycle management: images move from build to push to pull to deployment.
-- Reuse optimization: common layers reduce duplication and improve efficiency.
+- Dependency tracking: a registry can react to base image updates and trigger rebuilds of downstream artifacts.
+- Image lifecycle: images move from build to push to pull to deployment, and the same pattern is often represented across registry workflows. See [Additional Resources/About registries, repositories, and artifacts.md](../../Additional%20Resources/About%20registries,%20repositories,%20and%20artifacts.md).
 - Governance: access control and naming discipline are essential in real registries.
 ```
 
 ## Example prompts
 
-- "Mantieni il contenuto originale e aggiungi solo una sezione Concetti finale con i concetti principali del file."
-- "Non riscrivere il documento: lascia esempi e comandi invariati e aggiungi alla fine una mini sintesi dei concetti."
-- "Trasforma i riferimenti sparsi in una sezione Concetti senza toccare il resto del markdown."
+- "Mantieni il contenuto originale e aggiungi solo una sezione final Concepts con micro-rimandi ai riferimenti esterni e link locali quando disponibili."
+- "Non riscrivere il documento: lascia esempi e comandi invariati e aggiungi in fondo una sezione Concepts con riferimenti leggeri e link locali."
+- "Trasforma i riferimenti sparsi in una sezione Concepts senza toccare il resto del markdown, usando solo accenni brevi per risorse online e link diretti per file locali."
 
 ## Azure-specific notes
 

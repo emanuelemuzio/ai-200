@@ -1,66 +1,70 @@
 ---
-title: "Unit 06 - Module Assessment"
+title: "Module assessment"
 aliases:
-  - Quiz
-  - Knowledge check
-  - Assessment
+  - ACR module assessment
+  - Azure Container Registry assessment
 tags:
   - ai-200
   - assessment
   - acr
-  - azure
+  - docker
 ---
-
-# Unit 06 - Module assessment
 
 ## Self-check questions
 
-### 1. What is Azure Container Registry primarily used for?
+### 1. Controlled image builds
 
-A. Hosting a SQL database  
-B. Storing and managing container images  
-C. Running Python scripts  
-D. Managing virtual machines
+Your team builds container images on developer workstations, leading to inconsistent results. You need to ensure all images are built in a controlled environment. Which Azure Container Registry feature addresses this requirement?
 
-### 2. Which ACR element groups multiple image versions under the same logical name?
+A. ACR Tasks quick build  
+B. Geo-replication  
+C. Repository namespaces
 
-A. Tag  
-B. Manifest  
-C. Repository  
-D. Layer
+> [!answer]- Reveal answer
+> A. ACR Tasks quick build
 
-### 3. What is the main advantage of using digests in production?
+### 2. Exact image version in production
 
-A. Tags are easier to read  
-B. Digests are immutable and reproducible  
-C. Digests reduce network latency  
-D. Digests require less storage
+You need to deploy a container image to production and ensure every node in your Kubernetes cluster runs the exact same image version, even if someone pushes a new image with the same tag. How should you reference the image?
 
-### 4. Which command builds an image in Azure using ACR Tasks?
+A. By manifest digest  
+B. By the latest tag  
+C. By semantic version tag
 
-```bash
-az acr build --registry myregistry --image inference-api:v1.0.0 .
-```
+> [!answer]- Reveal answer
+> A. By manifest digest
 
-### 5. Why is tagging important?
+### 3. Automatic rebuild when base image updates
 
-Because it helps teams identify and manage image versions consistently across builds, deployments, and rollbacks.
+Your AI application depends on a base image containing PyTorch. When the PyTorch team releases security patches to the base image, you want your application image to rebuild automatically. Which ACR Tasks trigger type provides this capability?
 
-## Answer key
+A. Base image update trigger  
+B. Source code commit trigger  
+C. Scheduled trigger
 
-1. B  
-2. C  
-3. B  
-4. Correct command shown above  
-5. Open-ended answer: tagging supports traceability and deployment management
+> [!answer]- Reveal answer
+> A. Base image update trigger
 
-## Reflection
+### 4. Traceable and rollback-friendly production tags
 
-If you can describe the relationship between registry, repository, tag, and digest, you have a strong foundation for working with ACR in Azure-based AI solutions.
+You are implementing a tagging strategy for production deployments. Your requirements include traceability to the source code commit and the ability to roll back to any previous version. Which tagging pattern best meets these requirements?
 
-## Related notes
+A. Unique tags with Git commit SHA  
+B. Stable tags like v1 and v2  
+C. Using only the latest tag
 
-- [Course overview](../../course.md)
-- [[Build and run images with ACR Tasks]]
-- [[Tag and version images]]
-- [[Summary]]
+> [!answer]- Reveal answer
+> A. Unique tags with Git commit SHA
+
+### 5. Prevent accidental deletion of a critical image
+
+You deployed a critical AI inference API to production and need to prevent the container image from being accidentally deleted. Which ACR feature should you use?
+
+A. Image locking with write-enabled false  
+B. Repository namespaces  
+C. Geo-replication
+
+> [!answer]- Reveal answer
+> A. Image locking with write-enabled false
+
+## [Next >](../Unit%207%20-%20Summary/Summary.md)

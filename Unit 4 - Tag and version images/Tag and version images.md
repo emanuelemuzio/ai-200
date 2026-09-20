@@ -1,5 +1,5 @@
 ---
-title: "Tag and Version Images"
+title: Unit 4 - Tag and Version Images
 aliases:
   - Tagging strategy
   - Image versioning
@@ -11,69 +11,208 @@ tags:
   - versioning
 --- 
 
-## Why tagging matters
+The tagging strategy you choose affects deployment reliability, rollback capabilities, and image maintenance. This unit covers tagging approaches, versioning schemes, and lifecycle management practices that support production AI deployments.
 
-Tags give a human-readable name to a specific image version. In production, consistent versioning helps teams identify exactly what is running and makes rollout and rollback easier.
+## Understand tagging strategies
 
-## Tag format
+Tags provide human-readable references to container images. The choice between stable and unique tags determines how deployments behave when images update and whether you can reliably roll back to previous versions.
+
+### Stable tags
+
+Stable tags like `v1`, `v1.2`, or `latest` are reused across multiple image pushes. When you push a new image with an existing tag, the tag moves to point to the new image. The previous image remains in the registry but loses that tag reference.
+
+Stable tags work well in specific scenarios:
+
+- **Base images receiving security updates:** When you patch a base image and want dependent builds to pick up changes automatically
+- **Development environments:** When you want the latest changes without updating deployment configurations
+- **Continuous delivery:** When consumers should always receive the most current version
+
+The tradeoff with stable tags is predictability. Different nodes might pull the same tag at different times and receive different images. For AI applications serving inference requests, this inconsistency can cause unexpected behavior when nodes run different model versions.
+
+### Unique tags
+
+Unique tags like `v1.2.0-build456` or `20260102-abc123` are never reused. Each image push creates a new tag, preserving all previous versions in the registry.
+
+Unique tags work well for:
+
+- **Production deployments:** Every node in your cluster pulls the exact same image
+- **Audit trails:** You can trace exactly which image was deployed at any point in time
+- **Rollback scenarios:** Reference any previous build to restore a known-good state
+- **Compliance requirements:** Demonstrate which specific image version was running during an incident
+
+The tradeoff is that unique tags require updating deployment configurations when you release new versions. This explicit update process is considered a benefit for production environments where changes should be intentional.
+
+## Implement semantic versioning
+
+Semantic versioning uses the `MAJOR.MINOR.PATCH` format to communicate the nature of changes to image consumers. This convention provides a clear contract about compatibility.
+
+- **MAJOR:** Increment for breaking changes that require consumer updates, such as API changes or removed features
+- **MINOR:** Increment for new features that are backward compatible
+- **PATCH:** Increment for bug fixes and security patches that don't change the API
+
+For an AI inference API, version tags might follow this progression:
 
 ```text
-registry/repository:tag
+inference-api:1.0.0    # Initial release
+inference-api:1.0.1    # Bug fix in preprocessing
+inference-api:1.1.0    # Added new model endpoint
+inference-api:2.0.0    # Breaking API change
 ```
 
-Examples:
+Combine semantic versions with stable tags for flexibility. The following approach lets consumers choose their update strategy: 
 
 ```text
-myregistry.azurecr.io/inference-api:v1.2.0
-myregistry.azurecr.io/inference-api:stable
+inference-api:1        # Points to latest 1.x.x (stable tag)
+inference-api:1.1      # Points to latest 1.1.x (stable tag)
+inference-api:1.1.0    # Specific patch version (unique tag)
 ```
 
-## Tagging best practices
+Consumers who reference `inference-api:1` receive automatic updates within the major version. Those referencing `inference-api:1.1.0` receive only the specific patch version they specify.
 
-- Use semantic versioning when possible: `v1.2.0`
-- Keep `latest` only for development or quick testing
-- Use environment-specific tags such as `prod`, `staging`, or `dev`
-- Prefer immutable versions for production deployments
+## Generate unique tags for deployments
 
-## Mutable vs immutable references
+Production deployments benefit from unique tags that guarantee consistency. Several patterns provide traceability to your build and source code.
 
-Tags are mutable because the same tag can be reassigned to a different image later. Digests are immutable and are safer for production rollout guarantees.
+### Build ID tags
 
-## Example workflow
+Build IDs from your CI/CD system create a direct link between container images and the pipeline runs that produced them. When you need to investigate an issue or audit a deployment, the build ID points you to the exact pipeline execution with its logs, test results, and artifacts. Use your CI/CD system's build identifier to link images to specific pipeline runs.
+
+```text
+inference-api:build-4567
+```
+
+### Git commit SHA tags
+
+Git commit hashes provide the most direct connection between a container image and its source code. Unlike build IDs that require access to your CI/CD system, anyone with repository access can look up the exact code state that produced the image. Tag with the short or full Git commit hash to link the image directly to source code. 
+
+```text
+inference-api:abc123f
+```
+
+### Timestamp tags
+
+Timestamps provide immediate visual context about image age without requiring lookups in external systems. When reviewing a list of images, you can quickly identify the build sequence and spot outdated versions. Include the build date and time for chronological ordering. 
+
+```text
+inference-api:20260102-143022
+```
+
+### Combined approach
+
+For production systems where traceability is critical, combining multiple identifiers in a single tag provides comprehensive information at a glance. This approach is valuable during incident response when you need to quickly determine the semantic version, locate the build pipeline, and find the source code. Combine multiple identifiers for maximum traceability. 
+
+```text
+inference-api:v1.2.0-build4567-abc123f
+```
+
+When using ACR Tasks, the `{{.Run.ID}}` variable automatically generates unique identifiers for each build: 
 
 ```bash
-# Build a local image
-docker build -t inference-api:latest .
-
-# Tag it for ACR
-docker tag inference-api:latest myregistry.azurecr.io/inference-api:v1.2.0
-
-# Push to ACR
-docker push myregistry.azurecr.io/inference-api:v1.2.0
-
-# Pull by tag
-docker pull myregistry.azurecr.io/inference-api:v1.2.0
+az acr build --registry myregistry \
+  --image inference-api:v1.2.0-{{.Run.ID}} .
 ```
 
-## Digests and reproducibility
+## Manage the latest tag
 
-A digest looks like this:
+The `latest` tag has special behavior in Docker. When you push or pull without specifying a tag, Docker uses `latest` by default. This convenience can cause problems in production environments.
 
-```text
-sha256:0a2e01852872580b2c2fea9380ff8d7b637d3928783c55beb3f21a6e58d5d108
+Consider these issues with `latest`:
+
+- **Inconsistent deployments:** Different nodes might pull `latest` at different times and receive different images
+- **Unpredictable updates:** Deployments change when someone pushes a new image, even without intentional deployment
+- **Difficult troubleshooting:** When investigating issues, you don't know which version is running
+
+For production deployments, specify explicit tags in Kubernetes manifests and deployment configurations: 
+
+```yaml
+# Avoid this in production
+image: myregistry.azurecr.io/inference-api:latest
+
+# Use explicit versions instead
+image: myregistry.azurecr.io/inference-api:v1.2.0
 ```
 
-Using the digest ensures:
+If your workflow requires `latest`, consider using it only in development environments where the convenience outweighs the consistency concerns.
 
-- the exact image is reused
-- no accidental tag rewrite occurs
-- production deployments remain consistent
+## Lock deployed images
 
-## Recommendation
+ACR allows you to lock images to prevent accidental deletion or modification. Locking is a best practice for production images actively serving traffic.
 
-Use tags for readability and digest references for final deployment certainty.
+The following command locks an image by disabling write operations: 
 
-## Related notes
+```bash
+az acr repository update \
+  --name myregistry \
+  --image inference-api:v1.2.0 \
+  --write-enabled false
+```
 
-- [[Build and run images with ACR Tasks]]
-- [[Exercise - Build and manage a container image with ACR Tasks]]
+Locked images have these characteristics:
+
+- **Cannot be deleted:** Even administrators can't accidentally remove them
+- **Cannot be overwritten:** Pushing a new image with the same tag fails
+- **Survive retention policies:** Automatic cleanup rules don't remove locked images
+- **Provide deployment assurance:** Production workloads remain stable because the image stays available
+
+Unlock an image when you're ready to retire it: 
+
+```bash
+az acr repository update \
+  --name myregistry \
+  --image inference-api:v1.2.0 \
+  --write-enabled true
+```
+
+## Clean up untagged images
+
+When you push a new image with an existing stable tag, the previous image becomes untagged. These "orphan" images consume storage, and no tag references them. Over time, untagged images accumulate and increase storage costs.
+
+### Auto-purge untagged images
+
+The `acr purge` command runs as a container within ACR Tasks, allowing you to clean up images on demand or as part of automated workflows. You specify filters to target specific repositories and age thresholds to protect recent images. Use the `acr purge` command to delete untagged manifests older than a specified duration: 
+
+```bash
+az acr run --registry myregistry \
+  --cmd "acr purge --filter 'inference-api:.*' --untagged --ago 30d" \
+  /dev/null
+```
+
+This command removes untagged images in the `inference-api` repository that are older than 30 days. The filter uses a regular expression to match repository names.
+
+### Schedule automatic cleanup
+
+Automating cleanup through scheduled tasks ensures consistent registry maintenance without manual intervention. By running purge operations on a regular schedule, you prevent storage accumulation and keep costs predictable. Create a scheduled ACR Task to run cleanup automatically: 
+
+```bash
+az acr task create \
+  --registry myregistry \
+  --name cleanup-untagged \
+  --cmd "acr purge --filter '.*:.*' --untagged --ago 7d" \
+  --schedule "0 0 * * 0" \
+  --context /dev/null
+```
+
+This task runs weekly and removes untagged images older than seven days across all repositories.
+
+### Retention policies
+
+Retention policies offer a simpler alternative to scheduled purge tasks for Premium tier registries. Instead of managing task schedules and filters, you configure a single policy that applies registry-wide. For Premium tier registries, you can set retention policies at the registry level. These policies automatically remove untagged manifests after a specified number of days without requiring scheduled tasks.
+
+## Best practices for tagging and versioning
+
+Follow these practices to maintain a reliable container image strategy:
+
+- **Use unique tags for production:** Guarantee consistency across all nodes in your deployment. Unique tags prevent surprises when images update.
+- **Reserve stable tags for base images:** Allow security updates to flow automatically to dependent images through base image triggers.
+- **Lock production images:** Prevent accidental deletion of images actively serving traffic. Unlock only when retiring versions.
+- **Implement retention policies:** Clean up orphaned images to control storage costs. Schedule regular purge tasks.
+- **Include build metadata:** Add traceability information to tags for debugging and auditing. Link images to builds and source commits.
+- **Document your tagging scheme:** Ensure your team follows consistent conventions. Document which tags are stable versus unique and when to use each.
+
+## Additional resources
+
+- [[Image Tag Best Practices]]
+- [[Lock a Container Image in Azure Registry]]
+- [[Automatically purge images from an Azure container registry]]
+
+## [Next >](Exercise%20-%20Build%20and%20manage%20a%20container%20image%20with%20ACR%20Tasks.md)

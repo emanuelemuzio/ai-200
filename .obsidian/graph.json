@@ -5,18 +5,75 @@
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": false,
-  "colorGroups": [],
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "path:\"Unit 1 - Introduction\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    },
+    {
+      "query": "path:\"Unit 2 - Registries, repositories, and artifacts\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 14725458
+      }
+    },
+    {
+      "query": "path:\"Unit 3 - Build and run images with ACR Tasks\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 11657298
+      }
+    },
+    {
+      "query": "path:\"Unit 4 - Tag and version images\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
+    },
+    {
+      "query": "path:\"Unit 5 - Exercise - Build and manage a container image with ACR Tasks\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 5431473
+      }
+    },
+    {
+      "query": "path:\"Unit 6 - Module assessment\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 5419488
+      }
+    },
+    {
+      "query": "path:\"Unit 7 - Summary\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 5395168
+      }
+    },
+    {
+      "query": "path:\"Additional Resources\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 11621088
+      }
+    }
+  ],
   "collapse-display": false,
-  "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "showArrow": true,
+  "textFadeMultiplier": -1.4,
+  "nodeSizeMultiplier": 1.11441951219512,
+  "lineSizeMultiplier": 0.930848780487805,
   "collapse-forces": false,
-  "centerStrength": 0.17580487804878,
-  "repelStrength": 12.425262728293,
-  "linkStrength": 1,
-  "linkDistance": 142,
-  "scale": 0.7132754626224419,
+  "centerStrength": 0.0384390243902439,
+  "repelStrength": 11.6416692174268,
+  "linkStrength": 0.775219512195122,
+  "linkDistance": 171,
+  "scale": 0.7132754626224391,
   "close": false
 }
