@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "11132e2bd4482842",
+        "id": "b0713d0c11074660",
         "type": "tabs",
         "children": [
           {
-            "id": "042c2e9ff706985e",
+            "id": "629b1889c933a907",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Vista grafo"
+              "type": "markdown",
+              "state": {
+                "file": "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 3 - Configure main and sidecar containers.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Unit 3 - Configure main and sidecar containers"
             }
           }
         ]
@@ -38,7 +42,7 @@
               "state": {
                 "sortOrder": "alphabetical",
                 "autoReveal": true,
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
@@ -95,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Additional Resources/Azure Container Registry service tiers.md",
+                "file": "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 2 - Registries, repositories, and artifacts.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -157,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Additional Resources/Azure Container Registry service tiers.md",
+                "file": "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 3 - Configure main and sidecar containers.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -166,12 +170,12 @@
               "title": "Struttura"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -184,42 +188,48 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "042c2e9ff706985e",
+  "active": "629b1889c933a907",
   "lastOpenFiles": [
-    "Unit 6 - Module assessment/Module assessment.md",
-    "Unit 7 - Summary/Summary.md",
-    "Unit 5 - Exercise - Build and manage a container image with ACR Tasks/Exercise - Build and manage a container image with ACR Tasks.md",
-    "Unit 4 - Tag and version images/Tag and version images.md",
-    "Unit 3 - Build and run images with ACR Tasks/Build and run images with ACR Tasks.md",
-    "Unit 2 - Registries, repositories, and artifacts/Registries, repositories, and artifacts.md",
-    "Unit 1 - Introduction/Introduction.md",
-    "Additional Resources/Build and deploy container images with ACR Tasks.md",
-    "Additional Resources/Lock a Container Image in Azure Registry.md",
-    "Additional Resources/Automatically purge images from an Azure container registry.md",
-    "Additional Resources/Azure Container Registry service tiers.md",
-    "Additional Resources/Image Tag Best Practices.md",
-    "Additional Resources/Run multi-step build, test, and patch tasks.md",
-    "Additional Resources/ACR Tasks overview.md",
-    "Additional Resources/Best practices for Azure Container Registry.md",
-    "Additional Resources/About registries, repositories, and artifacts.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 2 - Choose the App Service sidecar pattern.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 3 - Configure main and sidecar containers.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 4 - Connect containers and share files.md",
+    "quiz.html",
+    "quiz_server.py",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 1 - Introduction.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 7 - Summary.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 3 - Configure container runtime behavior.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 2 - Deploy containers to Azure App Service.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 4 - Configure Application Settings.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 5 - Observe and troubleshoot containerized apps.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 6 - Module Assessment.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 1 - Introduction.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 1 - Introduction.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 2 - Registries, repositories, and artifacts.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 6 - Summary.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 5 - Module assessment.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 4 - Tag and version images.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 3 - Build and run images with ACR Tasks.md",
+    "Senza nome.base",
+    "Index.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 7 - Summary.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 6 - Module Assessment.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 3 - Build serverless AI backends with Azure Functions/Unit 7 - Module Assessment.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 5 - Design reliable workflow steps.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 4 - Coordinate human approval with external events.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 3 - Process independent work with fan-out fan-in.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 2 - Separate orchestration logic from activity work.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 1 - Introduction.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 3 - Build serverless AI backends with Azure Functions",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 2 - Develop event-driven AI workflows with Azure Event Grid",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 1 - Queue and process AI operations with Azure Service Bus/Senza nome",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 1 - Queue and process AI operations with Azure Service Bus",
+    "Learning Path 7 - Integrate backend services for AI solutions",
+    "Learning Path 6 - Enhance AI solutions with Azure Managed Redis/Module 3 - Implement vector storage in Azure Managed Redis",
     "assets/quick-build-02-browser.png",
-    "assets/Non confermato 637482.crdownload",
     "assets/quick-build-01-fork.png",
-    "assets/Non confermato 482968.crdownload",
-    "Registries, repositories and artifacts.md",
     "assets/container-image-layers.png",
     "assets/registry-elements.png",
-    "assets/registry-overview-quotas.png",
-    "assets/Non confermato 291922.crdownload",
-    "Build.md",
-    "Additional Resources/Geo-Replication in Azure Container Registry.md",
-    "Additional Resources",
-    "assets/Non confermato 237066.crdownload",
-    "assets/Non confermato 502761.crdownload",
-    "assets",
-    "Nuova cartella",
-    "[../02-registries-repositories-and-artifacts/index].md",
-    "[../02-registries-repositories-and-artifacts",
-    "[.."
+    "assets/registry-overview-quotas.png"
   ]
 }

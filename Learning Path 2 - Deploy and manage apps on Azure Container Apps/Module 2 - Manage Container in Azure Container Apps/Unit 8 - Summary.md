@@ -1,0 +1,5 @@
+In this module, you learned how to manage Azure Container Apps across the day-two lifecycle for an AI solution. You explored how image updates and revisions work together so you can deploy changes safely and preserve rollback options. You also learned how to use lifecycle actions like start, stop, and restart to support incident response and cost control.
+
+Additionally, you practiced troubleshooting with logs and learned how probe configuration affects rollout safety and availability. Finally, you reviewed how CPU and memory sizing interacts with scaling so you can balance performance goals with cost.
+
+## [[Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 3 - Scale containers in Azure Container Apps/Unit 1 - Introduction| Next Module > Scale containers in Azure Container Apps]]

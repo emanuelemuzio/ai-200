@@ -1,1 +1,7 @@
-{}
+{
+  "cssTheme": "Minimal",
+  "baseFontSizeAction": true,
+  "textFontFamily": "Roboto",
+  "interfaceFontFamily": "Roboto",
+  "monospaceFontFamily": "Roboto"
+}
