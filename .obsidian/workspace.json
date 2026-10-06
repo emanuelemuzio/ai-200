@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b0713d0c11074660",
+        "id": "c1754fbb5b71785b",
         "type": "tabs",
         "children": [
           {
-            "id": "629b1889c933a907",
+            "id": "fcd47ecdd5005b20",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 3 - Configure main and sidecar containers.md",
-                "mode": "preview",
-                "source": false
+                "file": "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 6 - Module Assessment.md",
+                "mode": "source",
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "Unit 3 - Configure main and sidecar containers"
+              "title": "Unit 6 - Module Assessment"
             }
           }
         ]
@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "secretKeyRef",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 3 - Configure main and sidecar containers.md",
+                "file": "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 6 - Module Assessment.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -188,37 +188,39 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "629b1889c933a907",
+  "active": "fcd47ecdd5005b20",
   "lastOpenFiles": [
-    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 2 - Choose the App Service sidecar pattern.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 3 - Configure main and sidecar containers.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 4 - Connect containers and share files.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 3 - Build serverless AI backends with Azure Functions/Unit 7 - Module Assessment.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 2 - Develop event-driven AI workflows with Azure Event Grid/Unit 6 - Module Assessment.md",
+    "Learning Path 7 - Integrate backend services for AI solutions/Module 1 - Queue and process AI operations with Azure Service Bus/Unit 6 - Module Assessment.md",
+    "Learning Path 6 - Enhance AI solutions with Azure Managed Redis/Module 3 - Implement vector storage in Azure Managed Redis/Unit 5 - Module Assessment.md",
+    "Learning Path 6 - Enhance AI solutions with Azure Managed Redis/Module 2 - Implement event messaging with Azure Managed Redis/Unit 5 - Module Assessment.md",
+    "Learning Path 6 - Enhance AI solutions with Azure Managed Redis/Module 1 - Implement data operations in Azure Managed Redis/Unit 5 - Module Assessment.md",
+    "Learning Path 5 - Develop AI solutions with Azure Database for PostgreSQL/Module 3 - Optimize vector search in Azure Database for PostgreSQL/Unit 7 - Module Assessment.md",
+    "Learning Path 5 - Develop AI solutions with Azure Database for PostgreSQL/Module 2 - Implement vector search with Azure Database for PostgreSQL/Unit 7 - Module Assessment.md",
+    "Learning Path 5 - Develop AI solutions with Azure Database for PostgreSQL/Module 1 - Build and query with Azure Database for PostgreSQL/Unit 7 - Module Assessment.md",
+    "Learning Path 4 - Develop AI solutions with Azure Cosmos DB for NoSQL/Module 3 - Optimize query performance for Azure Cosmos DB for NoSQL/Unit 7 - Module Assessment.md",
+    "Learning Path 4 - Develop AI solutions with Azure Cosmos DB for NoSQL/Module 2 - Implement vector search on Azure Cosmos DB for NoSQL/Unit 6 - Module Assessment.md",
+    "Learning Path 4 - Develop AI solutions with Azure Cosmos DB for NoSQL/Module 1 - Build queries for Azure Cosmos DB for NoSQL/Unit 5 - Module Assessment.md",
+    "Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 3 - Monitor and troubleshoot applications on Azure Kubernetes Service/Unit 5 - Module Assessment.md",
+    "Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 2 - Configure applications on Azure Kubernetes Service/Unit 4 - Module Assessment.md",
+    "Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 1 - Deploy applications to Azure Kubernetes Service/Unit 5 - Module Assessment.md",
+    "Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 4 - Run AI-generated code securely in Azure Container Apps dynamic sessions/Unit 6 - Module Assessment.md",
+    "Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 3 - Scale containers in Azure Container Apps/Unit 7 - Module Assessment.md",
+    "Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 2 - Manage Container in Azure Container Apps/Unit 7 - Module Assessment.md",
+    "Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 1 - Deploy containers to Azure Container Apps/Unit 7 - Module Assessment.md",
+    "Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 1 - Deploy containers to Azure Container Apps/Unit 1 - Introduction.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 6 - Module Assessment.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 6 - Module Assessment.md",
+    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 5 - Module assessment.md",
+    "Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 3 - Monitor and troubleshoot applications on Azure Kubernetes Service/Unit 6 - Summary.md",
+    "Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 3 - Monitor and troubleshoot applications on Azure Kubernetes Service/Unit 4 - Verify service connectivity and endpoints.md",
+    "Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 3 - Monitor and troubleshoot applications on Azure Kubernetes Service/Unit 3 - Troubleshoot pods and services.md",
+    "Senza nome.canvas",
+    "Senza nome 1.canvas",
     "quiz.html",
     "quiz_server.py",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 1 - Introduction.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 7 - Summary.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 3 - Configure container runtime behavior.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 2 - Deploy containers to Azure App Service.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 4 - Configure Application Settings.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 5 - Observe and troubleshoot containerized apps.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 6 - Module Assessment.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 1 - Introduction.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 1 - Introduction.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 2 - Registries, repositories, and artifacts.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 6 - Summary.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 5 - Module assessment.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 4 - Tag and version images.md",
-    "Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 3 - Build and run images with ACR Tasks.md",
     "Senza nome.base",
-    "Index.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 7 - Summary.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 6 - Module Assessment.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 3 - Build serverless AI backends with Azure Functions/Unit 7 - Module Assessment.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 5 - Design reliable workflow steps.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 4 - Coordinate human approval with external events.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 3 - Process independent work with fan-out fan-in.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 2 - Separate orchestration logic from activity work.md",
-    "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions/Unit 1 - Introduction.md",
     "Learning Path 7 - Integrate backend services for AI solutions/Module 4 - Orchestrate durable AI workflows with Azure Durable Functions",
     "Learning Path 7 - Integrate backend services for AI solutions/Module 3 - Build serverless AI backends with Azure Functions",
     "Learning Path 7 - Integrate backend services for AI solutions/Module 2 - Develop event-driven AI workflows with Azure Event Grid",

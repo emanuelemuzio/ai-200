@@ -9,7 +9,7 @@ B. A Container Apps revision
 C. A replica
 
 > [!answer]- Reveal answer
->  A.
+>  A: A Container Apps environment is the shared boundary that groups container apps for networking and observability integration, which helps you manage shared settings for a solution.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Use `az containerapp update --set-env-vars` for all changes without maintaini
 C. Rely on image tags and redeploy with `az containerapp update --image` to apply environment-specific configuration
 
 > [!answer]- Reveal answer
-> A.  
+> A: Using YAML definitions lets you store configuration in source control and apply it consistently across environments using CLI commands.  
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Add the API key as plain text in the YAML file under `env:`
 C. Bake the API key into the container image
 
 > [!answer]- Reveal answer
-> A.
+> A: This pattern keeps secret values out of source control while still making them available to the running container through a referenced environment variable.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Run `az containerapp registry list`
 C. Run `az containerapp secret list`
 
 > [!answer]- Reveal answer
-> A.
+> A: Container Apps uses revisions to version configuration changes. Listing revisions helps you verify which revision is active after an update.
 
 ### 5.  
 
@@ -53,4 +53,4 @@ B. Run `az containerapp revision list`
 C. Run `az containerapp replica list`
 
 > [!answer]- Reveal answer
-> A.  
+> A: Container logs provide immediate signals such as startup errors, missing environment variables, or authentication failures.

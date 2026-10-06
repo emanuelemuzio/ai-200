@@ -8,9 +8,7 @@ In the conversational AI application, the main API calls the model server at `ht
 
 The following Python fragment creates a bounded HTTP client for the local model endpoint. The timeout prevents a stalled model server from holding an API request indefinitely.
 
-Python
-
-```
+```Python
 import asyncio
 
 import httpx
@@ -58,9 +56,7 @@ The built-in mount is available unless the app sets `WEBSITES_ENABLE_APP_SERVICE
 
 For the conversational AI application, the model server's `MANIFEST_PATH` and the main API's `MODEL_INFO_PATH` can both resolve to `/home/models/manifest.json`. The model server can write a completed artifact to that shared path:
 
-Python
-
-```
+```Python
 from pathlib import Path
 
 SHARED_DIRECTORY = Path("/home/models")

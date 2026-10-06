@@ -43,9 +43,7 @@ A typical flow is:
 
 Commands might look like this:
 
-Bash
-
-```
+```Bash
 kubectl get pods -n ai-workloads
 kubectl describe pod <pod-name> -n ai-workloads
 ```
@@ -59,9 +57,6 @@ In the describe output, you pay attention to:
 
 These details tell you whether the pod is configured as you expect.
 
-Note
-
-When you adapt these examples, confirm that you use the correct namespace and resource names. You also need sufficient permissions in your AKS cluster to describe pods and Services.
 
 ## Debug from inside the container
 
@@ -81,9 +76,7 @@ This approach is useful when you don't have kubectl configured locally or when y
 
 You can also open a shell using kubectl:
 
-Bash
-
-```
+```Bash
 kubectl exec -it <pod-name> -n ai-workloads -- /bin/sh
 ```
 
@@ -113,9 +106,7 @@ The portal shows Service endpoints and can help you quickly identify when a Serv
 
 You can use kubectl commands to examine Services in detail:
 
-Bash
-
-```
+```Bash
 kubectl get service -n ai-workloads
 kubectl describe service <service-name> -n ai-workloads
 kubectl get endpointslices -l kubernetes.io/service-name=<service-name> -n ai-workloads

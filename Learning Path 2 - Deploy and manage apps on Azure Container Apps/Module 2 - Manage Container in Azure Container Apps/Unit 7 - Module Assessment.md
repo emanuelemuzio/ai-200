@@ -9,7 +9,7 @@ B. Reference the image by the `latest` tag to ensure the platform always pulls t
 C. Rebuild the image locally on each environment to ensure the image matches the environment.
 
 > [!answer]- Reveal answer
->  A.
+>  A: Digests identify an immutable image, so the deployment always uses the exact artifact you validated and approved.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Run `az containerapp revision delete` for the revision.
 C. Run `az containerapp stop` for the container app.
 
 > [!answer]- Reveal answer
-> A.  
+> A: Deactivating a revision stops it from receiving traffic while keeping it available for inspection and later cleanup.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. The container image is too small to include all required libraries.
 C. The container app environment can't route traffic to the public internet.
 
 > [!answer]- Reveal answer
-> A.
+> A: Probe misconfiguration is a frequent cause of immediate readiness failure, especially during image updates that change ports or routes.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Delete older revisions to reduce noise in troubleshooting output.
 C. Increase CPU and memory allocations before investigating.
 
 > [!answer]- Reveal answer
-> A.
+> A: Logs provide direct evidence of runtime exceptions and help you tie errors to a specific revision and time window.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. Deactivate the newest revision to reduce load on the system.
 C. Switch the image reference from digest to tag.
 
 > [!answer]- Reveal answer
-> A.  
+> A: CPU throttling indicates the replica doesn't have enough CPU for its workload. Increasing CPU per replica is a direct fix, and you can then tune scaling for cost and throughput.
 
 ## [[Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 2 - Manage Container in Azure Container Apps/Unit 8 - Summary| Next Unit > Summary]]

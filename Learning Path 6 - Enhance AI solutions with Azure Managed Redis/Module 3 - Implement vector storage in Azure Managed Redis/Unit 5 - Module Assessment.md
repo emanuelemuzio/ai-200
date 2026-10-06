@@ -9,7 +9,7 @@ B. L2 (Euclidean)
 C. IP (Inner Product)
 
 > [!answer]- Reveal answer
->  A.
+>  A: COSINE distance measures the angle between vectors and is the standard metric for text embeddings regardless of the model source.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. When you need perfect 100% accuracy for all queries
 C. When you have fewer than 1,000 vectors to index
 
 > [!answer]- Reveal answer
-> A.  
+> A: HNSW provides approximate nearest neighbor search that's faster than FLAT on large datasets, with only a small accuracy tradeoff.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. FLOAT64
 C. INT32
 
 > [!answer]- Reveal answer
-> A.
+> A: FLOAT32 balances precision with memory efficiency and works with all major embedding models, making it the standard choice.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. When your data has nested structures or multiple vectors per document
 C. When you need JSON query capabilities
 
 > [!answer]- Reveal answer
-> A. 
+> A: Hash stores vectors as binary blobs with minimal overhead, providing the best performance and memory usage for simple, flat data.
 
 ### 5.
 
@@ -53,4 +53,4 @@ B. The maximum number of results returned by the query
 C. The distance metric used for similarity calculations
 
 > [!answer]- Reveal answer
-> A. 
+> A: Higher EF_RUNTIME values improve accuracy by exploring more of the graph, but slow down queries. Lower values are faster but less accurate.

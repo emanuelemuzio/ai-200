@@ -33,9 +33,7 @@ You can use kubectl to confirm that Services route traffic to the correct pods. 
 
 You might run:
 
-Bash
-
-```
+```Bash
 kubectl get service -n ai-workloads
 kubectl describe service inference-api -n ai-workloads
 kubectl get endpointslices -l kubernetes.io/service-name=inference-api -n ai-workloads
@@ -49,9 +47,6 @@ In the Service output, you verify that:
 
 If EndpointSlices are empty, you update pod labels or Service selectors so they align. After you apply the change, you confirm that EndpointSlices appear and that requests reach the pods.
 
-Note
-
-Replace service names, namespaces, and ports with values from your own AI workloads. The commands in this unit are patterns for verifying connectivity.
 
 ## Test AI endpoints with `kubectl port-forward`
 
@@ -59,17 +54,13 @@ Port-forwarding lets you send traffic from your development machine to a Service
 
 You might run a command like:
 
-Bash
-
-```
+```Bash
 kubectl port-forward service/inference-api 8080:80 -n ai-workloads
 ```
 
 Then, in another terminal, you issue a request:
 
-Bash
-
-```
+```Bash
 curl http://localhost:8080/api/inference
 ```
 
@@ -91,9 +82,7 @@ The portal provides a quick way to find external endpoints without running comma
 
 You can also retrieve external addresses from the command line:
 
-Bash
-
-```
+```Bash
 kubectl get service inference-api -n ai-workloads
 kubectl get ingress -n ai-workloads
 ```

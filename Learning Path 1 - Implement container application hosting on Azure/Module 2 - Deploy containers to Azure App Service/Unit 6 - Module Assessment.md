@@ -9,7 +9,7 @@ B. Modify the Dockerfile to use EXPOSE 80.
 C. Enable the HTTP/2 protocol in the platform settings.
 
 > [!answer]- Reveal answer
->  A. Set the `WEBSITES_PORT` app setting to 8000.
+>  A: For custom containers, App Service can automatically route traffic when the container listens on port 80 or 8080. If the container listens on a different port, WEBSITES_PORT tells App Service which port to forward HTTP requests to inside the container.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Configure a larger container image with more disk space.
 C. Enable always-on to prevent container restarts.
 
 > [!answer]- Reveal answer
-> A. Set `WEBSITES_ENABLE_APP_SERVICE_STORAGE` to true and write files to the `/home` directory.
+> A: This setting enables persistent storage for the /home directory. Files written to /home persist across container restarts and are shared across scaled instances.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Store the API endpoint in the container image for each environment.
 C. Use connection strings instead of app settings for the API endpoint.
 
 > [!answer]- Reveal answer
-> A. Configure the API_ENDPOINT setting as a slot setting.
+> A: Slot settings remain with their slot during swap operations. Marking API_ENDPOINT as a slot setting ensures each slot maintains its own endpoint configuration.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Health checks require HTTPS, but the container only serves HTTP.
 C. The container needs more memory to handle health check requests.
 
 > [!answer]- Reveal answer
-> A. The health check path in App Service is configured differently than the application's health endpoint path.
+> A: The health check path configured in App Service must match the exact path where your application responds to health requests. A mismatch like /health versus /healthz causes check failures.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. The log stream in the Azure portal.
 C. The App Service metrics dashboard.
 
 > [!answer]- Reveal answer
-> A. The Kudu diagnostic console Environment page. 
+> A: The SCM (Kudu) Environment view (or the /Env endpoint) shows the environment variables that App Service applies to the app, including app settings and system-provided variables.
 
 ## [[Learning Path 1 - Implement container application hosting on Azure/Module 2 - Deploy containers to Azure App Service/Unit 7 - Summary|Next Unit > Summary]]

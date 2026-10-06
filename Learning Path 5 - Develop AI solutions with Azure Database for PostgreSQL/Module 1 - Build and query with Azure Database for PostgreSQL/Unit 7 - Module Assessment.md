@@ -9,7 +9,7 @@ B. JSONB
 C. VARCHAR(MAX)
 
 > [!answer]- Reveal answer
->  B.
+>  B: `JSONB` is designed to store semi-structured data with varying fields while remaining queryable and indexable.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. OUTPUT
 C. SELECT LAST_INSERT_ID()
 
 > [!answer]- Reveal answer
-> A.  
+> A: `RETURNING` returns the generated ID immediately as part of the `INSERT`, avoiding a separate query.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. INSERT INTO table ON CONFLICT DO UPDATE
 C. INSERT INTO table IF NOT EXISTS
 
 > [!answer]- Reveal answer
-> B.
+> B: `ON CONFLICT DO UPDATE` implements PostgreSQL's upsert behavior, updating the existing record when a conflict occurs.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Use a ConnectionPool to maintain reusable connections that the application ca
 C. Keep a single global connection open for the entire application lifetime
 
 > [!answer]- Reveal answer
-> B.
+> B: A `ConnectionPool` reuses existing database connections, avoiding the overhead of repeatedly creating and closing connections.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. CHECK (status IN ('pending', 'in_progress', 'completed', 'failed'))
 C. NOT NULL DEFAULT 'pending'
 
 > [!answer]- Reveal answer
-> B.  
+> B: A `CHECK` constraint explicitly restricts `status` to the four allowed values at the database level.
 
 ## [[Learning Path 5 - Develop AI solutions with Azure Database for PostgreSQL/Module 1 - Build and query with Azure Database for PostgreSQL/Unit 8 - Summary|Next Unit > Summary]]

@@ -39,9 +39,7 @@ Example: Your AI inference API is accessible at `40.89.123.45` (a public IP assi
 
 A Service manifest specifies the service type, port mapping, and selector (which Pods to route to):
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on LoadBalancer Service manifest
 apiVersion: v1
 kind: Service
@@ -66,9 +64,7 @@ The Service exposes one port and forwards traffic to your application's port:
 - **port**: The external port clients connect to (usually 80 for HTTP, 443 for HTTPS)
 - **targetPort**: The port your application listens on inside the container (typically 8080, 5000, 3000, etc.)
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on port mapping
 ports:
 - protocol: TCP
@@ -88,9 +84,7 @@ How you access the service depends on its type:
 
 **LoadBalancer**: Use the public IP assigned by Azure. Get the IP using `kubectl get svc`—the EXTERNAL-IP column shows the public address. Example: `http://40.89.123.45`
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on checking Service status
 kubectl get svc inference-api-service
 
@@ -105,9 +99,7 @@ The EXTERNAL-IP field shows the public IP clients use (for LoadBalancer) or node
 
 The magic that connects Services to Pods is the selector. When you create a Service with `selector: app: inference-api`, Kubernetes finds all Pods with the label `app: inference-api` and routes traffic to them automatically.
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on selector matching
 # In your Deployment:
 template:

@@ -6,9 +6,7 @@ Log streaming is useful when you can reproduce an issue quickly, such as a reque
 
 The following command streams logs for a container app.
 
-Azure CLI
-
-```
+```bash
 az containerapp logs show \
   --name <app-name> \
   --resource-group <resource-group> \

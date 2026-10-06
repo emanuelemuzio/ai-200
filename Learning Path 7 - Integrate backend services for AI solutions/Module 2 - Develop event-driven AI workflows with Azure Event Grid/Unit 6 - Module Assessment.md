@@ -9,7 +9,7 @@ B. A system topic
 C. An Event Hubs topic
 
 > [!answer]- Reveal answer
->  A.
+>  A: A custom topic is used to publish application-defined events from your AI inference service.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. The `type` attribute
 C. The `source` attribute
 
 > [!answer]- Reveal answer
-> A.  
+> A: The `subject` attribute supports subject-based filtering, including prefix and suffix matching.  
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Configure a dead-letter destination to capture timed-out events
 C. Set the event time-to-live to 30 seconds to match the timeout
 
 > [!answer]- Reveal answer
-> A.
+> A: Event Grid's automatic retry mechanism with exponential backoff allows delivery attempts to continue while the handler warms up.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Event type filtering with `--included-event-types`
 C. Subject filtering with `--subject-begins-with`
 
 > [!answer]- Reveal answer
-> A. 
+> A: Advanced filtering with the `StringIn` operator on `data.status` lets you route events based on the payload value.
 
 ### 5.
 
@@ -53,4 +53,4 @@ B. Access key authentication using the `aeg-sas-key` header
 C. Store the access key in the function app's application settings
 
 > [!answer]- Reveal answer
-> A. 
+> A: Microsoft Entra ID with a managed identity assigned to the Function App is the recommended production approach because it avoids managing static access keys.

@@ -9,7 +9,7 @@ B. Run the model in an App Service sidecar beside the main API container.
 C. Add the model process to the main API container image.
 
 > [!answer]- Reveal answer
->  B.
+>  B: Running the model as an App Service sidecar keeps it alongside the API, so it can start, stop, and scale with the API while allowing low-latency local communication.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Set `isMain: true` on both containers and assign different target ports.
 C. Set `isMain: false` on both containers and configure `WEBSITES_PORT` for the API.
 
 > [!answer]- Reveal answer
-> A.  
+> A: `isMain: true` identifies the container receiving external traffic; the sidecar uses `isMain: false` and is accessed locally by the API.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Make the repositories public and omit authentication from each site container
 C. Assign a managed identity to the app, grant it `AcrPull`, and reference the identity in each private site container definition.
 
 > [!answer]- Reveal answer
-> C.  
+> C: A managed identity with the `AcrPull` role provides secure access to private ACR images without storing registry credentials.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Use Azure Blob Storage or Azure Files as the durable storage boundary.
 C. Write the artifacts to each container's writable image layer.
 
 > [!answer]- Reveal answer
-> B.  
+> B: Azure Blob Storage or Azure Files provides durable storage independent of the web app lifecycle and accessible to other applications. 
 
 ### 5.  
 
@@ -53,7 +53,7 @@ B. Scale the App Service plan before inspecting the container configuration.
 C. Change the API endpoint from `localhost` to the sidecar container name.
 
 > [!answer]- Reveal answer
-> A.  
+> A: Check that the configured sidecar target port matches the port on which the model process is actually listening; a mismatch directly causes `connection refused`. 
 
 ## [[Learning Path 1 - Implement container application hosting on Azure/Module 3 - Run sidecar-enabled AI applications on Azure App Service/Unit 7 - Summary|Unit 7 - Summary | Next Unit > Summary]]
  

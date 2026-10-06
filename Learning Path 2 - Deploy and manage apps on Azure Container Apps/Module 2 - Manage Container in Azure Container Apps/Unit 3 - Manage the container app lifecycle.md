@@ -10,17 +10,13 @@ Restart sits between those two actions. Restart is useful when configuration cha
 
 Starting and stopping are app-level actions. They affect the container app as a whole and therefore can be too broad if the problem is limited to one revision. When you're isolating a single bad release, revision deactivation is often the safer first step.
 
-Azure CLI
-
-```
+```bash
 az containerapp stop \
   --name <app-name> \
   --resource-group <resource-group>
 ```
 
-Azure CLI
-
-```
+```bash
 az containerapp start \
   --name <app-name> \
   --resource-group <resource-group>
@@ -30,9 +26,7 @@ az containerapp start \
 
 Restarting forces replicas to restart and can clear transient failure states. Restart isn't a substitute for understanding the root cause. You should pair restart with log inspection so you can determine whether the restart fixed the issue or delayed the next failure.
 
-Azure CLI
-
-```
+```bash
 az containerapp restart \
   --name <app-name> \
   --resource-group <resource-group>

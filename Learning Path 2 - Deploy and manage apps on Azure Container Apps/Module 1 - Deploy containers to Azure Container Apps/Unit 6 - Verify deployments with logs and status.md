@@ -6,9 +6,7 @@ Before you dive into logs, confirm the app configuration and ingress settings. T
 
 You can inspect the container app with `az containerapp show`.
 
-Azure CLI
-
-```
+```bash
 az containerapp show -n ai-api -g rg-aca-demo
 ```
 
@@ -18,26 +16,20 @@ Container logs are usually the fastest way to understand why a revision fails. T
 
 You can view recent console logs using `az containerapp logs show`. By default, this command returns a limited number of lines.
 
-Azure CLI
-
-```
+```bash
 az containerapp logs show -n ai-api -g rg-aca-demo
 ```
 
 If you need to tail logs while traffic is flowing, you can follow logs in real time and increase the tail count.
 
-Azure CLI
-
-```
+```bash
 az containerapp logs show -n ai-api -g rg-aca-demo \
     --follow --tail 30
 ```
 
 If you suspect a platform-level issue, you can also request system logs.
 
-Azure CLI
-
-```
+```bash
 az containerapp logs show -n ai-api -g rg-aca-demo \
     --type system
 ```
@@ -48,17 +40,13 @@ Revisions represent versioned changes to your container app configuration. This 
 
 You can list revisions with the following command.
 
-Azure CLI
-
-```
+```bash
 az containerapp revision list -n ai-api -g rg-aca-demo
 ```
 
 If you need to include inactive revisions for deeper debugging, you can include the `--all` flag.
 
-Azure CLI
-
-```
+```bash
 az containerapp revision list -n ai-api -g rg-aca-demo --all
 ```
 
@@ -68,15 +56,11 @@ Replicas are the running instances of a revision. For request-driven AI workload
 
 You can list replicas for the latest revision, or you can provide a revision name.
 
-Azure CLI
-
-```
+```bash
 az containerapp replica list -n ai-api -g rg-aca-demo
 ```
 
-Azure CLI
-
-```
+```bash
 az containerapp replica list -n ai-api -g rg-aca-demo \
     --revision MyRevision
 ```
@@ -90,4 +74,4 @@ Verification is most effective when it's consistent and repeatable. You can use 
 - **Inspect replicas during incidents:** Check replicas to detect scale-to-zero, crash loops, or missing traffic.
 - **Prefer automation-friendly outputs:** Use `--query` to extract fields you commonly validate, such as ingress FQDN or revision status.
 
-## [[Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 2 - Manage Container in Azure Container Apps/Unit 7 - Module Assessment| Next Unit > Module Assessment]]
+## [[Learning Path 2 - Deploy and manage apps on Azure Container Apps/Module 1 - Deploy containers to Azure Container Apps/Unit 7 - Module Assessment|Next Unit > Module Assessment]]

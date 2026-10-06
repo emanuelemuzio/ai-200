@@ -6,9 +6,7 @@ Before you deploy, you need an authenticated and up-to-date CLI. This reduces th
 
 The following commands match the setup flow used in the Container Apps quickstart.
 
-Azure CLI
-
-```
+```bash
 az login
 az upgrade
 az extension add --name containerapp --upgrade
@@ -23,9 +21,7 @@ The `az containerapp up` command is the fastest way to deploy an initial version
 
 The following example deploys a public container image and returns the fully qualified domain name (FQDN) for the app.
 
-Azure CLI
-
-```
+```bash
 az containerapp up \
     --name my-container-app \
     --resource-group rg-aca-demo \
@@ -45,9 +41,7 @@ When you want a more explicit deployment, you can create the environment first a
 
 The following example shows a simple create flow. In later units, you add environment variables, secrets, and registry authentication.
 
-Azure CLI
-
-```
+```bash
 az containerapp create \
     --name ai-api \
     --resource-group rg-aca-demo \
@@ -63,9 +57,7 @@ Container Apps uses revisions to version configuration changes. When you update 
 
 The following example updates only the image. In practice, you often combine image updates with configuration updates.
 
-Azure CLI
-
-```
+```bash
 az containerapp update \
     --name ai-api \
     --resource-group rg-aca-demo \
@@ -78,9 +70,7 @@ YAML-based configuration helps you make deployments repeatable and reviewable. Y
 
 Azure CLI supports creating and updating a container app using YAML. When you use `--yaml`, other flags are ignored, so the YAML becomes the source of truth.
 
-Azure CLI
-
-```
+```bash
 az containerapp create \
     --name ai-api \
     --resource-group rg-aca-demo \
@@ -88,9 +78,7 @@ az containerapp create \
     --yaml ./containerapp.yml
 ```
 
-Azure CLI
-
-```
+```bash
 az containerapp update \
     --name ai-api \
     --resource-group rg-aca-demo \

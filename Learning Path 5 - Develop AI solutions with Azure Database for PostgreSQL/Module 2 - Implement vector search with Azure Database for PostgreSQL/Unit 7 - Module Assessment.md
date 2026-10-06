@@ -9,7 +9,7 @@ B. `<->` (L2 distance)
 C. `<#>` (negative inner product)
 
 > [!answer]- Reveal answer
->  A.
+>  A: `<=>` is the cosine distance operator, which is appropriate for normalized unit-length embeddings when measuring semantic similarity.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. HNSW with high ef_construction value
 C. No index, relying on exact sequential scan
 
 > [!answer]- Reveal answer
-> A.  
+> A: IVFFlat is well suited for large datasets with occasional batch updates, providing fast approximate searches with a configurable accuracy/performance trade-off.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. The number of candidate neighbors considered during index construction
 C. The number of lists to partition vectors into
 
 > [!answer]- Reveal answer
-> A.
+> A: The `m` parameter controls the maximum number of connections each node can have in the HNSW graph.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Update all 50,000 rows in a single transaction
 C. Drop the existing vector index before updating
 
 > [!answer]- Reveal answer
-> A.
+> A: Batching updates into smaller transactions reduces lock duration and resource contention, minimizing the impact on concurrent searches.
 
 ### 5.  
 
@@ -53,4 +53,4 @@ B. Multiplying the vector distance by the text relevance score
 C. Always returning vector search results first
 
 > [!answer]- Reveal answer
-> A.   
+> A: Reciprocal Rank Fusion (RRF) combines the rankings from vector and full-text search, balancing their contributions without requiring directly comparable score scales.

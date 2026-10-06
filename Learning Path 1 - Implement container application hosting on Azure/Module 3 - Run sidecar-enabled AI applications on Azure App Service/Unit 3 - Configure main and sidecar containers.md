@@ -18,7 +18,7 @@ If you have an eligible Linux custom-container app, you can convert its configur
 
 The following command enables the site container model for an existing app:
 
-```Azure CLI
+```bash
 az webapp sitecontainers convert \
   --mode sitecontainers \
   --name <app-name> \
@@ -112,7 +112,7 @@ The following specification shows both containers in one JSON array. The resourc
 
 You can apply the specification with the following command. The command ignores other site container input arguments when you provide `--sitecontainers-spec-file`.
 
-```Azure CLI
+```bash
 az webapp sitecontainers create \
   --name <app-name> \
   --resource-group <resource-group> \

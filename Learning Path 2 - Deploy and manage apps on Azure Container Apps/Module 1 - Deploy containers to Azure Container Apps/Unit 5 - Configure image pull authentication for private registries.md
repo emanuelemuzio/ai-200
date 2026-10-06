@@ -12,9 +12,7 @@ You can configure registry settings on an existing app using `az containerapp re
 
 The following example configures a registry server and credentials.
 
-Azure CLI
-
-```
+```bash
 az containerapp registry set -n ai-api -g rg-aca-demo \
     --server myregistry.azurecr.io \
     --username MyRegistryUsername \
@@ -29,9 +27,7 @@ Managed identity is a good fit for production because it avoids username and pas
 
 The following example configures the app to authenticate to the registry using a managed identity reference. Before you use this pattern, assign the identity and grant it pull permissions.
 
-Azure CLI
-
-```
+```bash
 az containerapp registry set -n ai-api -g rg-aca-demo \
     --server myregistry.azurecr.io \
     --identity system
@@ -43,15 +39,11 @@ When debugging image pull failures, it helps to confirm which registries are con
 
 You can list and inspect registry configuration using the following commands.
 
-Azure CLI
-
-```
+```bash
 az containerapp registry list -n ai-api -g rg-aca-demo
 ```
 
-Azure CLI
-
-```
+```bash
 az containerapp registry show -n ai-api -g rg-aca-demo \
     --server myregistry.azurecr.io
 ```

@@ -10,9 +10,7 @@ For AI APIs, you should measure latency under concurrency and watch for CPU thro
 
 The following example updates CPU and memory for an app. After you apply a change, validate whether latency improves and whether the revision becomes stable under load.
 
-Azure CLI
-
-```
+```bash
 az containerapp update \
   --name <app-name> \
   --resource-group <resource-group> \

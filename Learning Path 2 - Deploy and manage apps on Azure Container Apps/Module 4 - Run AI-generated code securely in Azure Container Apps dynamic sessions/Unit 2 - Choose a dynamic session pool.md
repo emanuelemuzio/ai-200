@@ -5,9 +5,7 @@ A session pool contains prewarmed environments that Azure Container Apps can all
 
 The following flow shows how the backend retains control of access while the session pool manages isolated compute:
 
-text
-
-```
+```text
 User request
     |
     v
@@ -33,9 +31,7 @@ Choose a built-in interpreter when the supported runtime can complete the task w
 
 The built-in API exposes operations for the common workflow:
 
-HTTP
-
-```
+```http
 POST <POOL_MANAGEMENT_ENDPOINT>/executions?api-version=<API_VERSION>&identifier=<SESSION_ID>
 POST <POOL_MANAGEMENT_ENDPOINT>/files?api-version=<API_VERSION>&identifier=<SESSION_ID>
 GET <POOL_MANAGEMENT_ENDPOINT>/files/<FILE_NAME>/content?api-version=<API_VERSION>&identifier=<SESSION_ID>

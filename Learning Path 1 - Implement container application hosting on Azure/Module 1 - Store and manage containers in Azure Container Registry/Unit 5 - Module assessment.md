@@ -9,7 +9,7 @@ B. Geo-replication
 C. Repository namespaces
 
 > [!answer]- Reveal answer
-> A. 
+> A: ACR Tasks quick build offloads image building to Azure, providing a consistent cloud environment that eliminates 'works on my machine' problems. Quick tasks use the az acr build command to build images in a controlled Azure environment.
 
 ### 2.  
 
@@ -20,7 +20,7 @@ B. By the latest tag
 C. By semantic version tag
 
 > [!answer]- Reveal answer
-> A. 
+> A: Manifest digests are immutable SHA-256 hashes that uniquely identify an image regardless of tags. Pulling by digest guarantees you get the exact image, even if someone pushes a new image with the same tag.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Source code commit trigger
 C. Scheduled trigger
 
 > [!answer]- Reveal answer
-> A. 
+> A: Base image update triggers detect changes to parent images and automatically rebuild dependent images. This capability keeps your application images current with security patches in base images.
 
 ### 4.  
 
@@ -42,7 +42,7 @@ B. Stable tags like v1 and v2
 C. Using only the latest tag
 
 > [!answer]- Reveal answer
-> A.  
+> A: Unique tags with Git commit SHA provide direct traceability to source code and guarantee each build is distinct for rollback. The immutable nature of unique tags ensures you can reference any specific build.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. Repository namespaces
 C. Geo-replication
 
 > [!answer]- Reveal answer
-> A. 
+> A: Setting write-enabled to false locks the image to prevent deletion or modification. Locked images remain available even when retention policies run, ensuring production deployments are protected.
 
 ## [[Learning Path 1 - Implement container application hosting on Azure/Module 1 - Store and manage containers in Azure Container Registry/Unit 6 - Summary| Unit 6 - Next Unit >Summary]]

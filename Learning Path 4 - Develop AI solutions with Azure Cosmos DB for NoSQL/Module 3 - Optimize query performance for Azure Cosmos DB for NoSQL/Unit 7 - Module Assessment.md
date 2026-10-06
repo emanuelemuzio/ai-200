@@ -9,7 +9,7 @@ B. Create separate range indexes on documentType and uploadDate
 C. Create a composite index with uploadDate (descending) followed by documentType (ascending)
 
 > [!answer]- Reveal answer
->  A.
+>  A: A composite index with `documentType` ascending followed by `uploadDate` descending efficiently supports filtering by type and sorting by date.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. diskANN
 C. quantizedFlat
 
 > [!answer]- Reveal answer
-> B.  
+> B: `diskANN` is designed for large-scale vector datasets and provides fast approximate similarity search with a good accuracy/performance trade-off.  
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Change the embedding data type from float32 to float16 in the range index
 C. Exclude the embedding path from includedPaths and add a vector index for the embedding property
 
 > [!answer]- Reveal answer
-> C.
+> C: Excluding the embedding path from regular indexing while adding a vector index avoids unnecessary indexing overhead and reduces storage consumption.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Use session consistency and pass session tokens from write operations to subs
 C. Increase the container's provisioned throughput to speed up replication
 
 > [!answer]- Reveal answer
-> B.
+> B: Session consistency with session tokens ensures that a client can immediately read its own writes without requiring strong consistency globally.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. The container has too many indexes. Remove indexes to reduce query overhead a
 C. The query is returning too many results. Add a TOP clause to limit results and improve the retrieved-to-output ratio.
 
 > [!answer]- Reveal answer
-> A.  
+> A: Low index utilization and a high retrieved-to-output ratio indicate inefficient index usage. The query and its indexing requirements should be analyzed and appropriate indexes added.
 
 ## [[Learning Path 4 - Develop AI solutions with Azure Cosmos DB for NoSQL/Module 3 - Optimize query performance for Azure Cosmos DB for NoSQL/Unit 8 - Summary|Next Unit > Summary]]

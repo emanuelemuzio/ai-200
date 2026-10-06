@@ -9,7 +9,7 @@ B. Decrease `random_page_cost` to encourage more index scans
 C. Increase `ivfflat.probes` to search more index partitions
 
 > [!answer]- Reveal answer
->  A.
+>  A: Increasing `shared_buffers` can keep more frequently accessed data in PostgreSQL memory, which is particularly useful with a low cache hit ratio like 85%.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. HNSW with m=16 and ef_construction=64
 C. HNSW with m=8 and ef_construction=32
 
 > [!answer]- Reveal answer
-> A.  
+> A: IVFFlat with `lists = sqrt(rows)` provides faster index building and is more suitable for frequent large batch updates than HNSW. 
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Verify that the vector index uses the same operator class as the query
 C. Increase `hnsw.ef_search` to expand the search space
 
 > [!answer]- Reveal answer
-> A.
+> A: A B-tree index on `category_id` can efficiently handle the metadata filter before the vector similarity ordering.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Create a new database connection for each query request
 C. Enable PgBouncer in session mode to maintain persistent connections
 
 > [!answer]- Reveal answer
-> A.
+> A: PgBouncer in transaction mode efficiently reuses connections across short-lived queries and prevents exhausting the PostgreSQL connection limit.
 
 ### 5.  
 
@@ -53,4 +53,4 @@ B. Add read replicas to distribute query load
 C. Implement application-level caching with Azure Cache for Redis
 
 > [!answer]- Reveal answer
-> A.   
+> A: Application-level caching with Azure Cache for Redis can reduce database vector queries and latency significantly, making it the best first step for achieving sub-50 ms response times.   

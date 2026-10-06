@@ -18,9 +18,7 @@ Kafka authentication typically uses SASL mechanisms. You configure credentials a
 
 The following YAML configuration demonstrates Kafka scaling for an order processing application. The scaler monitors the `orders` topic and scales when consumer lag exceeds 100 messages per partition:
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on Kafka scaler configuration
 scale:
   minReplicas: 1
@@ -61,9 +59,7 @@ Cron scaling is most effective when combined with other scalers. Configure a cro
 
 The following YAML configuration demonstrates cron scaling combined with HTTP scaling. The cron scaler maintains five replicas during business hours (8 AM to 6 PM, Monday through Friday, Eastern time), while HTTP scaling handles variations in request volume:
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on cron scaler configuration
 scale:
   minReplicas: 0

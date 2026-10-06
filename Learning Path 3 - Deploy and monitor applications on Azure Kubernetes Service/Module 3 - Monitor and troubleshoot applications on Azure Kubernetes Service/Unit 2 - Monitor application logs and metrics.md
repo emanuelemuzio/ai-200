@@ -44,9 +44,7 @@ A typical flow is:
 
 You might run the following commands:
 
-Bash
-
-```
+```Bash
 kubectl get pods -n ai-workloads
 kubectl logs <pod-name> -n ai-workloads
 kubectl logs -f <pod-name> -n ai-workloads
@@ -60,17 +58,11 @@ Namespaces complement Kubernetes labels. Namespaces help you separate environmen
 
 If a pod has multiple containers, such as a sidecar for logging or metrics, you specify the container name:
 
-Bash
-
-```
+```Bash
 kubectl logs <pod-name> -c inference-api -n ai-workloads
 ```
 
 You can use these logs to find patterns such as repeated timeouts when calling an upstream model endpoint or failures when retrieving features from a cache.
-
-Note
-
-Code fragments and commands in this unit are patterns you can adapt. Replace namespace, pod, and container names with values from your own AKS environment.
 
 ## View resource metrics using the Azure portal
 
@@ -99,9 +91,7 @@ Resource metrics help you understand whether your AI workload uses CPU and memor
 
 If your cluster has the metrics server installed, you can run:
 
-Bash
-
-```
+```Bash
 kubectl top nodes
 kubectl top pods -n ai-workloads
 ```

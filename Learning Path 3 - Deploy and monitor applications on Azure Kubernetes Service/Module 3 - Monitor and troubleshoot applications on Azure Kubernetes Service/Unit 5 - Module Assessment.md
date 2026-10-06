@@ -9,7 +9,7 @@ B. Open Azure Monitor and review only node CPU metrics for the last week.
 C. Run `kubectl describe node` on all nodes to look for scheduling events.
 
 > [!answer]- Reveal answer
->  C.
+>  A: Streaming logs from the specific pod while you reproduce the issue lets you see real-time error messages and stack traces that explain the HTTP 500 errors and latency.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Immediately delete the pod so Kubernetes recreates it.
 C. Scale the Deployment to zero replicas and then scale it back up.
 
 > [!answer]- Reveal answer
-> A.  
+> A: `kubectl describe pod` shows recent events and container status, which usually reveal the exit reason, failed probes, or configuration problems causing CrashLoopBackOff.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. kubectl top nodes
 C. kubectl logs <pod-name> -n <namespace>
 
 > [!answer]- Reveal answer
-> A.
+> A: `kubectl describe service` shows the selector labels and current endpoints, so you can verify whether the Service matches the pods.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. kubectl get endpoints <service-name> -n <namespace>
 C. `kubectl describe node` on the node that hosts the pod
 
 > [!answer]- Reveal answer
-> A.
+> A: `kubectl port-forward` from your workstation to the Service lets you send HTTP requests directly to the endpoint inside the cluster.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. Ignore the metrics because the pod is still running.
 C. Delete the Service and recreate it with the same configuration.
 
 > [!answer]- Reveal answer
-> A.  
+> A: When a pod consistently hits its CPU limit and latency increases, you typically need to raise CPU resources or add replicas so the workload has more capacity.
 
 ## [[Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 3 - Monitor and troubleshoot applications on Azure Kubernetes Service/Unit 6 - Summary| Next Unit > Summary]]

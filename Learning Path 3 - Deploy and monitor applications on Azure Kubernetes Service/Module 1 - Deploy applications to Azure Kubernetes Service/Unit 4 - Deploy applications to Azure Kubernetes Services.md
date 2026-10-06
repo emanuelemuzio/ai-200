@@ -6,9 +6,7 @@ Imagine writing your Deployment and Service manifests and saving them as `deploy
 
 The `kubectl apply` command is your primary tool for deploying to AKS. It reads your YAML manifests and tells the cluster to create or update resources:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on kubectl apply commands
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
@@ -33,9 +31,7 @@ The deployment is asynchronous—`kubectl apply` returns immediately, but Pods m
 
 After deploying, verify everything is running:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on verifying deployment status
 # Check Pod status
 kubectl get pods
@@ -57,9 +53,7 @@ kubectl get deployment
 
 **STATUS**: Pod state. "Running" is what you want. "Pending" means the Pod is still starting (pulling image, waiting for resources). "CrashLoopBackOff" means your app is crashing—read logs to diagnose.
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on checking logs
 # View logs from a specific Pod
 kubectl logs inference-api-7d8b4f9c6-abc12
@@ -73,9 +67,7 @@ kubectl logs -l app=inference-api
 
 Check Service status:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on verifying services
 kubectl get svc
 
@@ -92,9 +84,7 @@ Verify your application is actually responding to requests:
 
 **For ClusterIP services (internal only)**: Run a test Pod and call the service DNS name:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on testing internal services
 # Run a test Pod
 kubectl run -it --rm debug --image=alpine:latest --restart=Never -- sh
@@ -105,9 +95,7 @@ wget http://inference-api-service:80
 
 **For LoadBalancer services (external)**: Use the public IP to test from your machine:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on testing external services
 # Get the external IP
 kubectl get svc inference-api-service
@@ -133,9 +121,7 @@ When deployments don't work, diagnose systematically using kubectl commands:
 
 **Diagnosis**:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on diagnosing ImagePullBackOff
 kubectl describe pod inference-api-7d8b4f9c6-abc12
 
@@ -158,9 +144,7 @@ kubectl describe pod inference-api-7d8b4f9c6-abc12
 
 **Diagnosis**:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on diagnosing CrashLoopBackOff
 # View the application's error logs
 kubectl logs inference-api-7d8b4f9c6-abc12
@@ -187,9 +171,7 @@ kubectl describe pod inference-api-7d8b4f9c6-abc12
 
 **Diagnosis**:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on diagnosing pending pods
 kubectl describe pod inference-api-7d8b4f9c6-abc12
 
@@ -216,9 +198,7 @@ kubectl describe node <node-name>
 
 **Diagnosis**:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on diagnosing endpoint issues
 kubectl get pods -L app
 

@@ -26,9 +26,7 @@ Multiple revision mode allows multiple revisions to be active simultaneously. Ea
 
 You enable multiple revision mode using the `--revision-mode multiple` parameter when creating or updating a container app:
 
-Azure CLI
-
-```
+```bash
 az containerapp update \
   --name order-api \
   --resource-group rg-ecommerce \
@@ -47,9 +45,7 @@ Traffic splitting distributes incoming requests across active revisions based on
 
 The following command configures traffic splitting between two revisions, sending 80 percent of traffic to the first version and 20 percent to the second:
 
-Azure CLI
-
-```
+```bash
 az containerapp ingress traffic set \
   --name order-api \
   --resource-group rg-ecommerce \

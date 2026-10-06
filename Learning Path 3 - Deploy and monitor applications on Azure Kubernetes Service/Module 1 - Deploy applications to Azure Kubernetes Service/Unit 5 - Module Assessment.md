@@ -9,7 +9,7 @@ B. ClusterIP
 C. NodePort
 
 > [!answer]- Reveal answer
->  A.
+>  A: LoadBalancer creates an external Azure Load Balancer with a public IP address, making your application accessible from the internet.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Kubernetes automatically scales the cluster to add more nodes
 C. The Pod starts but with reduced resource allocation
 
 > [!answer]- Reveal answer
-> A.  
+> A: When resource requests can't be satisfied, Kubernetes can't schedule the Pod, so it remains in Pending status until nodes have enough capacity. 
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. The container port in the Deployment must match the Service port
 C. The Deployment name must match the Service name
 
 > [!answer]- Reveal answer
-> A.
+> A: The Service uses its selector to find Pods with matching labels. If labels don't match, the Service has no endpoints and traffic can't route.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. kubectl logs <pod-name>
 C. kubectl describe pod <pod-name>
 
 > [!answer]- Reveal answer
-> A.
+> A: The `--previous` flag shows logs from the previous container instance before it crashed, which is essential for diagnosing CrashLoopBackOff issues.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. The number of containers in each Pod
 C. The number of Services that can connect to the Deployment
 
 > [!answer]- Reveal answer
-> A.  
+> A: The `replicas` field determines how many identical Pods Kubernetes maintains. This provides high availability and load distribution.
 
 ## [[Learning Path 3 - Deploy and monitor applications on Azure Kubernetes Service/Module 1 - Deploy applications to Azure Kubernetes Service/Unit 6 - Summary| Next Unit > Summary]]

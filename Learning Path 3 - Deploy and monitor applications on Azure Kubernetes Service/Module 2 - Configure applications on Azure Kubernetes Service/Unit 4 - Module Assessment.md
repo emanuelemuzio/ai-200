@@ -9,7 +9,7 @@ B. Secret, because it stores sensitive values and keeps credentials out of sourc
 C. PersistentVolumeClaim, because it provides storage for application data
 
 > [!answer]- Reveal answer
->  B.
+>  B: Secrets are the correct choice for storing sensitive values like connection strings with passwords. They keep credentials out of source control and can be protected with RBAC policies.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Store the values in a Secret and mount it as a volume
 C. Hardcode the values in the Deployment manifest and update the manifest when settings change
 
 > [!answer]- Reveal answer
-> A.  
+> A: ConfigMaps are designed for nonsensitive configuration. Using configMapKeyRef lets you inject values as environment variables and update them without rebuilding images.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. AKS uses the specified StorageClass to automatically provision Azure storage 
 C. The PVC remains unbound until you create a matching PersistentVolume manifest
 
 > [!answer]- Reveal answer
-> C.
+> C: AKS includes preconfigured StorageClasses that dynamically provision Azure Disk or Azure Files resources when you create a PVC. No manual storage creation is required.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Volumes with secret type
 C. configMapKeyRef pointing to the Secret name
 
 > [!answer]- Reveal answer
-> A.
+> A: The valueFrom field with secretKeyRef is the correct way to inject Secret values as environment variables. This resolves the Secret key at Pod start time.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. Mount the ConfigMap as files using a volume so the JSON file appears on disk 
 C. Store the JSON content in a Secret and use secretKeyRef to inject it as an environment variable
 
 > [!answer]- Reveal answer
-> B.  
+> B: When an application expects configuration files on disk, mount the ConfigMap as a volume. Each key becomes a file in the mount directory.
 
 ## [[Unit 5 - Summary | Next Unit > Summary]]

@@ -5,9 +5,7 @@ Every management API request requires a Microsoft Entra bearer token. The callin
 
 You can assign the role at the session pool scope so the identity can't execute code in unrelated pools. The following command assumes that you already know the backend identity's principal ID and the session pool resource ID.
 
-Azure CLI
-
-```
+```bash
 az role assignment create \
     --role "Azure ContainerApps Session Executor" \
     --assignee <BACKEND_PRINCIPAL_ID> \
@@ -16,9 +14,7 @@ az role assignment create \
 
 Application code can use `DefaultAzureCredential` in both local development and Azure-hosted environments. The credential selects an available developer credential locally and a managed identity in Azure without storing an application secret in source code.
 
-Python
-
-```
+```bash
 from azure.identity import DefaultAzureCredential
 
 credential = DefaultAzureCredential()
@@ -35,9 +31,7 @@ A session identifier routes a request to an existing session or causes the pool 
 
 Generate an unpredictable identifier on the server for each authenticated user or agent conversation. Keep the association in server-side application state, and don't accept an arbitrary identifier from the client. A random UUID is suitable because its hyphenated representation meets the dynamic session identifier format.
 
-Python
-
-```
+```Python
 from uuid import uuid4
 
 
@@ -53,14 +47,11 @@ The code interpreter `executions` endpoint accepts inline code and returns the e
 
 The following helper creates authenticated headers and common query parameters. It asks `DefaultAzureCredential` for a valid token for each operation and keeps the session identifier under application control.
 
-Python
-
-```
+```Python
 from azure.identity import DefaultAzureCredential
 
 API_VERSION = "2025-10-02-preview"
 TOKEN_SCOPE = "https://dynamicsessions.io/.default"
-
 
 class DynamicSessionClient:
     def __init__(
@@ -85,9 +76,7 @@ class DynamicSessionClient:
 
 The next method submits synchronous Python code. `raise_for_status()` keeps authentication, validation, capacity, and service failures from looking like successful executions. The caller must still inspect the returned execution data for an error raised by the Python code.
 
-Python
-
-```
+```Python
 import requests
 
 
@@ -123,9 +112,7 @@ File operations let code process user uploads and produce artifacts such as char
 
 The following method uploads a file by using a multipart request. The context manager closes the local file even when the request fails, and the explicit timeout prevents the backend from waiting indefinitely.
 
-Python
-
-```
+```Python
 from pathlib import Path
 
 import requests
@@ -156,9 +143,7 @@ def upload_file(
 
 After code creates an output file, the backend can list session files and download the selected artifact. Encode the service-side file name as one URL path segment because supported file names can contain reserved URL characters. Never construct a local destination from an untrusted file name without validating it because path traversal could overwrite an unintended file.
 
-Python
-
-```
+```Python
 from urllib.parse import quote
 
 
@@ -197,9 +182,7 @@ Related calls reuse the same environment when they include the same identifier b
 
 The following sequence uses one client instance and therefore one identifier. The supplied code payload represents validated output from an AI orchestration layer.
 
-Python
-
-```
+```Python
 from pathlib import Path
 
 session_id = create_session_identifier()
@@ -219,9 +202,7 @@ Direct REST access is appropriate when the backend needs explicit control over s
 
 The following fragment creates the tool from a pool management endpoint and makes it available to an agent. The tool generates a random session identifier when the application creates the instance. Calls through that instance reuse the same session until the session expires.
 
-Python
-
-```
+```Python
 # Code fragment - focus on creating the LangChain tool
 from langchain_azure_dynamic_sessions import SessionsPythonREPLTool
 

@@ -21,9 +21,7 @@ Common causes include:
 
 Probe configuration lives alongside your container definition. The following YAML fragment shows the intent of the configuration. You should adapt the values to match how your AI service starts, and you should confirm that the endpoint returns success only after the service is truly ready.
 
-YAML
-
-```
+```yaml
 # Code fragment - focus on readiness and liveness probes
 properties:
   template:

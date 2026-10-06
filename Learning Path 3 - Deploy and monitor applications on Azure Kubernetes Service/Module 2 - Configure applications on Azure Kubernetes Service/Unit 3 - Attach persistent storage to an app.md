@@ -23,9 +23,9 @@ AKS provides built-in StorageClasses for CSI drivers with different performance 
 
 Azure Disk storage classes use `ReadWriteOnce` mode because the disk attaches to a single node. Only Pods on that node can access the volume. Azure Files storage classes use `ReadWriteMany` mode because the SMB file share mounts across multiple nodes simultaneously. Multiple Pods across different nodes can read and write to the same volume. Choose disk-based storage for single-Pod stateful applications like databases. Choose file-based storage when multiple Pods need concurrent access to shared data. PVC manifests are typically stored in a file named _pvc.yaml_.
 
-YAML
 
-```
+
+```YAML
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -43,9 +43,7 @@ spec:
 
 After you create a PVC, you mount it in your Deployment. Add a volume entry in the Pod spec that references the claim by name. Then add a `volumeMount` entry in the container spec. The `mountPath` specifies where the volume appears in the container filesystem. Your application reads and writes files under that path. Data written to the mount path persists even when the Pod restarts. Before you deploy, confirm that your container has the correct permissions to read and write to the mount path. Check the ownership and permissions settings if you encounter access errors at runtime.
 
-YAML
-
-```
+```YAML
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -76,9 +74,7 @@ spec:
 
 Apply your PVC and Deployment manifests. Use `kubectl describe pvc` to check that the claim is bound to a volume. Use `kubectl get pods` to confirm your Pods are running. To test persistence, write a file to the mount path inside a Pod. Delete the Pod and wait for Kubernetes to create a replacement. Check that the file still exists in the new Pod to confirm that data survives Pod restarts. Before you move to production, run small load tests to verify that I/O performance meets your expectations. These manifests are typically stored in files named _pvc.yaml_ (PVC) and _deployment.yaml_ (Deployment).
 
-Bash
-
-```
+```Bash
 kubectl apply -f pvc.yaml
 kubectl apply -f deployment.yaml
 kubectl describe pvc data-pvc

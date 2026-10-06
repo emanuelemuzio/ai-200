@@ -12,9 +12,7 @@ When you update the image for a container app, Container Apps creates a new revi
 
 The following example updates the image reference. If you're using Azure Container Registry, your image name typically looks like `myregistry.azurecr.io/myapp@sha256:<digest>`.
 
-Azure CLI
-
-```
+```bash
 az containerapp update \
   --name <app-name> \
   --resource-group <resource-group> \
@@ -23,9 +21,7 @@ az containerapp update \
 
 After the update, inspect the container template to confirm the platform recorded the image you expect.
 
-Azure CLI
-
-```
+```bash
 az containerapp show \
   --name <app-name> \
   --resource-group <resource-group> \
@@ -42,9 +38,7 @@ Revision mode determines how many revisions can be active at the same time. Sing
 
 Revisions are the unit you inspect during rollouts. Listing revisions helps you confirm which revision is active, and showing a specific revision helps you compare configuration between a working revision and a failing one.
 
-Azure CLI
-
-```
+```bash
 az containerapp revision list \
   --name <app-name> \
   --resource-group <resource-group> \
@@ -53,9 +47,7 @@ az containerapp revision list \
 
 When you identify the revision you need to investigate, retrieve the details.
 
-Azure CLI
-
-```
+```bash
 az containerapp revision show \
   --name <app-name> \
   --resource-group <resource-group> \
@@ -64,9 +56,7 @@ az containerapp revision show \
 
 If a revision is unhealthy or you want to pause it during investigation, deactivate it. Deactivation is a safer first step than deletion because it preserves evidence and keeps rollback options available.
 
-Azure CLI
-
-```
+```bash
 az containerapp revision deactivate \
   --name <app-name> \
   --resource-group <resource-group> \

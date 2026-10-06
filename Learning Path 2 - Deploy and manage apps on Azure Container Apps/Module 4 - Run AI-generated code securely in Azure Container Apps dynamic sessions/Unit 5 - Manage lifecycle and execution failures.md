@@ -7,9 +7,7 @@ A later request can use the same identifier, but the pool might allocate a new e
 
 The backend can query a session when it needs creation, last-access, or expiration information. This operation is useful for diagnostics and proactive user messaging, but the application should still handle the session disappearing between the status request and the next operation.
 
-HTTP
-
-```
+```HTTP
 GET <POOL_MANAGEMENT_ENDPOINT>/session?identifier=<SESSION_ID>&api-version=2025-02-02-preview
 Authorization: Bearer <ACCESS_TOKEN>
 ```
@@ -29,9 +27,7 @@ Use distinct result categories so monitoring and callers can respond correctly:
 
 The following result model prevents the backend from representing a failed operation as an empty success response. The backend records the category and a safe message, while diagnostic details remain in protected logs.
 
-Python
-
-```
+```Python
 from dataclasses import dataclass
 from enum import StrEnum
 from typing import Any
@@ -62,9 +58,7 @@ An HTTP client timeout limits how long the backend waits for the response. It do
 
 The following fragment uses explicit connection and response timeouts. Handle `Timeout` separately from HTTP status failures so telemetry shows whether the backend stopped waiting or the service rejected the request. Dynamic sessions return the diagnostic trace ID in the structured error response body, so the backend extracts that field when the body matches the documented contract.
 
-Python
-
-```
+```Python
 # Code fragment - focus on explicit timeout and error categories
 import requests
 
@@ -109,9 +103,7 @@ File metadata reads and session status queries are natural retry candidates. A d
 
 The following decision fragment makes idempotency part of the retry policy rather than basing the decision only on an HTTP status:
 
-Python
-
-```
+```Python
 # Code fragment - focus on retry eligibility
 TRANSIENT_STATUS_CODES = {429, 500, 502, 503, 504}
 
@@ -137,9 +129,7 @@ The cooldown automatically cleans up inactive sessions, but the backend can dele
 
 The code interpreter session API uses an authenticated `DELETE` request. Treat a successful `204 No Content` response as confirmation that the environment no longer exists.
 
-HTTP
-
-```
+```HTTP
 DELETE <POOL_MANAGEMENT_ENDPOINT>/session?api-version=2025-02-02-preview&identifier=<SESSION_ID>
 Authorization: Bearer <ACCESS_TOKEN>
 ```

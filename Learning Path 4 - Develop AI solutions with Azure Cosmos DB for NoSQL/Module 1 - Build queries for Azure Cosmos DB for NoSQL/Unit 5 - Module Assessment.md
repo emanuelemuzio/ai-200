@@ -9,7 +9,7 @@ B. Use a timestamp property as the partition key
 C. Use a boolean isProcessed property as the partition key
 
 > [!answer]- Reveal answer
->  A.
+>  A: Using `userId` as the partition key colocates each user’s logs in the same logical partition, making queries for a specific user efficient.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Use replace_item() to update the item
 C. Use upsert_item() to insert or replace the item
 
 > [!answer]- Reveal answer
-> C.  
+> C: `upsert_item()` inserts the item if it does not exist and replaces it if it already exists.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Use read_item() with the item ID and partition key
 C. Use query_items() with enable_cross_partition_query=True
 
 > [!answer]- Reveal answer
-> B.
+> B: `read_item()` with the known item ID and partition key is the most efficient way to retrieve a specific item directly.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Parameterized queries automatically convert data types
 C. Parameterized queries run faster than queries with literal values
 
 > [!answer]- Reveal answer
-> A.
+> A: Parameterized queries prevent injection attacks and allow Cosmos DB to reuse query plans efficiently.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. Increase the container's provisioned throughput
 C. Add the partition key (categoryId) to the WHERE clause to enable single-partition routing
 
 > [!answer]- Reveal answer
-> C.  
+> C: Including `categoryId` in the `WHERE` clause allows Cosmos DB to route the query to a single partition, significantly reducing RU consumption. 
 
 ## [[Learning Path 4 - Develop AI solutions with Azure Cosmos DB for NoSQL/Module 1 - Build queries for Azure Cosmos DB for NoSQL/Unit 6 - Summary|Next Unit > Summary]]

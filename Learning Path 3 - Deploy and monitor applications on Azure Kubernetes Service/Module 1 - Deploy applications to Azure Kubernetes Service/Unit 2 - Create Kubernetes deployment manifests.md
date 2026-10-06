@@ -6,9 +6,7 @@ Imagine you're deploying a Python FastAPI application that performs AI model inf
 
 A Deployment manifest has a specific YAML structure that Kubernetes recognizes:
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on Deployment manifest structure
 apiVersion: apps/v1
 kind: Deployment
@@ -59,9 +57,7 @@ Your Deployment references a container image that contains your application. The
 
 The full path looks like: `myregistry.azurecr.io/inference-api:v1.0`
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on image specification
 containers:
 - name: api
@@ -78,9 +74,7 @@ Ensure your image is:
 
 The `replicas` field determines how many copies of your application run simultaneously. For AI workloads, typically 2-3 replicas are sufficient to ensure your application keeps running if a Pod crashes.
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on replicas configuration
 spec:
   replicas: 2  # Run 2 Pods
@@ -102,9 +96,7 @@ Kubernetes needs to know how much CPU and memory your application requires. You 
 
 **Limits**: The maximum your app can consume. If your app tries to exceed this value, Kubernetes terminates and restarts it (OOMKill for memory).
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on resource requests and limits
 resources:
   requests:
@@ -128,9 +120,7 @@ Your application likely needs configuration: model names, API endpoints, API key
 
 **Environment Variables** for nonsensitive configuration:
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on environment variables
 env:
 - name: MODEL_NAME
@@ -141,9 +131,7 @@ env:
 
 **Secrets** for sensitive data (API keys, credentials):
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on secret references
 env:
 - name: API_KEY
@@ -155,9 +143,7 @@ env:
 
 Create the Secret separately using kubectl:
 
-Bash
-
-```
+```Bash
 # Code fragment - focus on kubectl secret creation
 kubectl create secret generic api-secrets --from-literal=api-key=your-secret-key
 ```

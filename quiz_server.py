@@ -43,9 +43,19 @@ def parse_assessment(path):
             for line in block[answer_match.end():].splitlines()
             if line.lstrip().startswith(">")
         )
-        correct_match = re.search(r"(?:^|\s)([A-Z])(?:\.|\s|$)", answer_text)
+        explanation_match = re.match(r"^([A-Z])\s*:\s*(.*)$", answer_text)
+        explanation = ""
+        if explanation_match:
+            correct_answer = explanation_match.group(1)
+            explanation = "\n".join(
+                [explanation_match.group(2), *answer_text.splitlines()[1:]]
+            ).strip()
+        else:
+            correct_match = re.search(r"(?:^|\s)([A-Z])(?:\.|\s|$)", answer_text)
+            correct_answer = correct_match.group(1) if correct_match else None
+
         option_keys = {option["key"] for option in options}
-        if not correct_match or correct_match.group(1) not in option_keys:
+        if not correct_answer or correct_answer not in option_keys:
             errors.append(f"{path.relative_to(ROOT)}: risposta non valida per domanda {heading.group(1)}")
             continue
         if len(prompt) == 0 or len(options) < 2:
@@ -59,7 +69,8 @@ def parse_assessment(path):
             "number": int(heading.group(1)),
             "prompt": prompt,
             "options": options,
-            "answer": correct_match.group(1),
+            "answer": correct_answer,
+            "explanation": explanation,
         })
 
     return questions, errors

@@ -18,9 +18,7 @@ The key metadata parameters for Service Bus scaling include `queueName` or `topi
 
 The following command creates a container app that scales based on an Azure Service Bus queue. The application starts with zero replicas and scales up to 30 replicas as messages accumulate:
 
-Azure CLI
-
-```
+```bash
 az containerapp create \
   --name order-processor \
   --resource-group rg-ecommerce \
@@ -57,9 +55,7 @@ Event Hubs partitions affect the maximum effective replica count. Since each par
 
 The following YAML configuration demonstrates Event Hubs scaling with checkpoint-based lag monitoring:
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on Event Hubs scaler configuration
 scale:
   minReplicas: 0
@@ -87,9 +83,7 @@ Managed identity authentication eliminates the need to store connection strings 
 
 The following command creates a container app that uses managed identity to authenticate with Azure Storage Queue. No connection string secrets are required:
 
-Azure CLI
-
-```
+```bash
 az containerapp create \
   --name queue-processor \
   --resource-group rg-ecommerce \

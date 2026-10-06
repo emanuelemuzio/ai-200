@@ -9,9 +9,7 @@ A custom container pool can also maintain ready session instances. Ready instanc
 
 The following configuration fragment keeps two custom environments ready while allowing up to 20 concurrent sessions. Startup and liveness probes help the pool count only healthy environments as ready.
 
-JSON
-
-```
+```JSON
 {
   "properties": {
     "scaleConfiguration": {
@@ -69,9 +67,7 @@ Enable egress only when the workload has a specific external dependency and the 
 
 The following command creates a Python code interpreter pool for a modest interactive workload. The command limits concurrency to 20 sessions, and removes an idle session after 300 seconds. The command also keeps outbound network traffic disabled.
 
-Azure CLI
-
-```
+```bash
 az containerapp sessionpool create \
     --name ai-document-sessions \
     --resource-group <RESOURCE_GROUP> \
@@ -84,9 +80,7 @@ az containerapp sessionpool create \
 
 You can retrieve the management endpoint after Azure creates the pool. Application code uses this endpoint to execute code and work with session files.
 
-Azure CLI
-
-```
+```bash
 az containerapp sessionpool show \
     --name ai-document-sessions \
     --resource-group <RESOURCE_GROUP> \

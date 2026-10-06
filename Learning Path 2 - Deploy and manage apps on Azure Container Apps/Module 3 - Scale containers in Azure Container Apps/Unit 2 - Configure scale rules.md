@@ -20,9 +20,7 @@ HTTP scaling is appropriate for synchronous API workloads and web applications w
 
 The following command creates a container app with an HTTP scale rule that triggers scaling when concurrent requests exceed 50 per replica:
 
-Azure CLI
-
-```
+```bash
 az containerapp create \
   --name order-api \
   --resource-group rg-ecommerce \
@@ -53,9 +51,7 @@ CPU scaling is appropriate for compute-intensive workloads such as image process
 
 The following YAML configuration demonstrates combining HTTP and CPU scale rules. The application scales when either HTTP concurrency exceeds 100 requests or CPU utilization exceeds 70 percent:
 
-YAML
-
-```
+```yaml
 # Code fragment - focus on scale rules configuration
 scale:
   minReplicas: 1

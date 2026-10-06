@@ -9,7 +9,7 @@ B. Use the Consumption plan with increased function timeout settings
 C. Use the Premium plan with pre-warmed workers disabled
 
 > [!answer]- Reveal answer
->  A.
+>  A: Flex Consumption with always-ready instances reduces cold-start latency while still allowing scale-to-zero during idle periods.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. The function app needs to be deployed to Azure before Service Bus triggers ca
 C. Visual Studio Code doesn't support debugging Service Bus-triggered functions
 
 > [!answer]- Reveal answer
-> A.  
+> A: `AzureWebJobsStorage` must be configured with a valid storage connection in `local.settings.json` for the Functions runtime to work correctly locally.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Set batchSize to 1 in the serviceBus section of host.json
 C. Set maxDequeueCount to 1 on the Service Bus queue resource
 
 > [!answer]- Reveal answer
-> A.
+> A:  `maxConcurrentCalls = 1` limits the number of messages processed concurrently by each function instance.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Create a Key Vault reference in the application setting using a versioned sec
 C. Store the API key directly in the application setting with encryption enabled
 
 > [!answer]- Reveal answer
-> A. 
+> A: versionless Key Vault secret URI allows the Function App to automatically use the latest rotated secret without redeployment.
 
 ### 5.
 
@@ -53,4 +53,4 @@ B. Azure Service Bus Data Owner on the Service Bus namespace
 C. Key Vault Secrets User on the Service Bus namespace
 
 > [!answer]- Reveal answer
-> A. 
+> A: The managed identity needs the **Azure Service Bus Data Receiver** role to receive messages from the Service Bus namespace.

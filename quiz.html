@@ -196,6 +196,14 @@
     .score-cell:last-child { border: 0; }
     .score-value { display: block; margin-bottom: 5px; font: 600 25px var(--mono); }
     .score-label { color: var(--muted); font-size: 11px; }
+    .weakness-section { margin: 0 0 34px; }
+    .weakness-intro { margin: 0 0 14px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .weakness-list { display: grid; gap: 9px; }
+    .weakness-item { padding: 16px 18px; border: 1px solid var(--line); border-left: 3px solid var(--coral); background: white; }
+    .weakness-item h3 { margin-bottom: 6px; }
+    .weakness-stats, .weakness-advice { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .weakness-advice { margin-top: 5px; }
+    .weakness-clear { padding: 16px 18px; border: 1px solid var(--line); border-left: 3px solid var(--green); background: white; color: var(--muted); font-size: 13px; line-height: 1.6; }
     .review-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin: 17px 0; }
     .review-filters { display: flex; gap: 6px; }
     .review-filter { min-height: 34px; padding: 0 11px; border: 1px solid var(--line); background: white; color: var(--muted); font-size: 11px; cursor: pointer; }
@@ -208,6 +216,7 @@
     .review-question { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
     .review-answer { color: var(--muted); font-size: 12px; line-height: 1.6; }
     .review-answer strong { color: var(--ink); }
+    .review-explanation { margin-top: 8px; }
     .empty-review { padding: 30px; border: 1px dashed var(--line); color: var(--muted); text-align: center; }
     .error-box { padding: 18px; border: 1px solid var(--coral); background: var(--coral-pale); color: #842e1d; line-height: 1.5; }
     .hidden { display: none !important; }
@@ -320,7 +329,7 @@
             <div class="stat"><strong id="stat-paths">7</strong><span>percorsi</span></div>
           </div>
           <ul class="path-list" id="path-list"></ul>
-          <p class="source-note">Le risposte vengono mostrate solo alla consegna. Domande e opzioni cambiano ordine a ogni nuova sessione.</p>
+          <p class="source-note">Le risposte e le spiegazioni vengono mostrate solo alla consegna. Domande e opzioni cambiano ordine a ogni nuova sessione.</p>
         </aside>
       </div>
     </section>
@@ -372,6 +381,12 @@
         <div class="score-cell"><span class="score-value" id="score-wrong">0</span><span class="score-label">Errate</span></div>
         <div class="score-cell"><span class="score-value" id="score-empty">0</span><span class="score-label">Senza risposta</span></div>
       </div>
+      <section class="weakness-section" aria-labelledby="weakness-title">
+        <p class="eyebrow">Il tuo prossimo passo</p>
+        <h2 id="weakness-title">Aree da migliorare</h2>
+        <p class="weakness-intro">Le aree sono ordinate in base alle risposte errate e non date. Ripassa i moduli indicati e rivedi le spiegazioni delle singole domande qui sotto.</p>
+        <div class="weakness-list" id="weakness-list"></div>
+      </section>
       <div class="review-toolbar">
         <div><p class="eyebrow">Revisione</p><h2>Rivedi le risposte</h2></div>
         <div class="review-filters" id="review-filters" role="group" aria-label="Filtra le risposte">
@@ -559,8 +574,50 @@
       byId("score-correct").textContent = correct;
       byId("score-wrong").textContent = wrong;
       byId("score-empty").textContent = empty;
+      renderWeakAreas();
       document.querySelectorAll(".review-filter").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.filter === "all")));
       renderReview();
+    }
+
+    function renderWeakAreas() {
+      const areas = new Map();
+      state.session.forEach((question) => {
+        const key = `${question.learningPath}/${question.module}`;
+        const area = areas.get(key) || {
+          learningPath: question.learningPath,
+          module: question.module,
+          total: 0,
+          correct: 0,
+          wrong: 0,
+          unanswered: 0,
+        };
+        const picked = state.answers.get(question.id);
+        area.total += 1;
+        if (!picked) area.unanswered += 1;
+        else if (picked === question.answer) area.correct += 1;
+        else area.wrong += 1;
+        areas.set(key, area);
+      });
+
+      const needsReview = [...areas.values()]
+        .filter((area) => area.wrong + area.unanswered > 0)
+        .sort((left, right) => {
+          const leftRate = (left.wrong + left.unanswered) / left.total;
+          const rightRate = (right.wrong + right.unanswered) / right.total;
+          return rightRate - leftRate || (right.wrong + right.unanswered) - (left.wrong + left.unanswered);
+        });
+
+      byId("weakness-list").innerHTML = needsReview.length
+        ? needsReview.map((area) => {
+          const moduleName = cleanLabel(area.module);
+          const learningPath = cleanLabel(area.learningPath);
+          const issues = [
+            area.wrong ? `${area.wrong} ${area.wrong === 1 ? "errata" : "errate"}` : "",
+            area.unanswered ? `${area.unanswered} senza risposta` : "",
+          ].filter(Boolean).join(" · ");
+          return `<article class="weakness-item"><h3>${escapeHtml(moduleName)}</h3><p class="weakness-stats">${escapeHtml(learningPath)} · ${area.correct}/${area.total} corrette · ${issues}</p><p class="weakness-advice"><strong>Cosa migliorare:</strong> ripassa questo modulo e rivedi le domande da consolidare nella revisione qui sotto.</p></article>`;
+        }).join("")
+        : '<p class="weakness-clear">Nessuna area critica individuata: hai risposto correttamente a tutte le domande. Continua a esercitarti per consolidare i risultati.</p>';
     }
 
     function renderReview() {
@@ -584,8 +641,11 @@
         const details = isCorrect
           ? `<strong>Risposta corretta:</strong> ${richText(right.text)}`
           : `<strong>La tua risposta:</strong> ${chosen ? richText(chosen.text) : "Nessuna"}<br><strong>Risposta corretta:</strong> ${richText(right.text)}`;
+        const explanation = question.explanation
+          ? `<div class="review-explanation"><strong>Perché è corretta:</strong> ${richText(question.explanation)}</div>`
+          : "";
         const moduleName = `${cleanLabel(question.learningPath)} / ${cleanLabel(question.module)}`;
-        return `<article class="review-item ${!picked ? "is-empty" : isCorrect ? "is-correct" : "is-wrong"}"><div class="review-topline"><span>Domanda ${state.session.indexOf(question) + 1} · ${escapeHtml(moduleName)}</span><span>${status}</span></div><div class="review-question">${richText(question.prompt)}</div><div class="review-answer">${details}</div></article>`;
+        return `<article class="review-item ${!picked ? "is-empty" : isCorrect ? "is-correct" : "is-wrong"}"><div class="review-topline"><span>Domanda ${state.session.indexOf(question) + 1} · ${escapeHtml(moduleName)}</span><span>${status}</span></div><div class="review-question">${richText(question.prompt)}</div><div class="review-answer">${details}${explanation}</div></article>`;
       }).join("");
     }
 

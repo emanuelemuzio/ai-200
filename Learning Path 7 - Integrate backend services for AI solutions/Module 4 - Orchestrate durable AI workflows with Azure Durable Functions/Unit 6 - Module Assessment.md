@@ -8,7 +8,7 @@ A. Move the model call to an activity function and branch on the recorded activi
 B. Keep the model call in the orchestrator and replace the endpoint with a synchronous deployment
 C. Keep the model call in the orchestrator and use context.current_utc_datetime before each request
 > [!answer]- Reveal answer
->  A.
+>  A: Move the model call to an activity function and branch on the recorded activity result in the orchestrator. This keeps external, non-deterministic calls out of the orchestrator.
 
 ### 2. 
 
@@ -19,7 +19,7 @@ B. Divide the documents into bounded batches and use context.task_all() for each
 C. Schedule every activity at once and rely on the orchestration history to enforce the model rate limit
 
 > [!answer]- Reveal answer
-> B.  
+> B: Divide the documents into bounded batches and use `context.task_all()` for each batch before scheduling the next one. This limits concurrent requests while preserving parallelism within each batch.  
 
 ### 3. 
 
@@ -30,7 +30,7 @@ B. Call an approval activity with a 24-hour client request timeout
 C. Race wait_for_external_event() against a durable timer with context.task_any() and cancel the pending timer when the event wins
 
 > [!answer]- Reveal answer
-> C.
+> C: Race `wait_for_external_event()` against a durable timer with `context.task_any()` and cancel the pending timer when the event wins. This waits without consuming compute resources.
 
 ### 4. 
 
@@ -41,7 +41,7 @@ B. Generate a new UUID inside the activity for each write so every retry has a u
 C. Enable orchestrator replay logging so Durable Functions suppresses the second blob write
 
 > [!answer]- Reveal answer
-> A. 
+> A: Use a stable operation ID as the blob name, create the blob without overwrite, and return the existing result when the blob already exists. This makes the activity effectively idempotent across retries.
 
 ### 5.
 
@@ -52,4 +52,4 @@ B. Schedule an idempotent compensation activity for completed side effects, then
 C. Retry the entire orchestration instance without recording which forward operations completed
 
 > [!answer]- Reveal answer
-> B. 
+> B: Schedule an idempotent compensation activity for completed side effects, then rethrow the original failure. This provides compensation while preserving the failure state.

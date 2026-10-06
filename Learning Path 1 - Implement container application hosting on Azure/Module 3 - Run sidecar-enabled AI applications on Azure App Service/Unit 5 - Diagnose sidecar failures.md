@@ -15,9 +15,7 @@ You can use the following sequence:
 
 The `list` command shows every site container associated with the app. Use the output to catch a missing sidecar, an unexpected image tag, or multiple main roles.
 
-Azure CLI
-
-```
+```bash
 az webapp sitecontainers list \
   --name <app-name> \
   --resource-group <resource-group> \
@@ -26,9 +24,7 @@ az webapp sitecontainers list \
 
 The `show` command returns one complete definition. You can compare its image, target port, identity settings, environment variables, startup command, and explicit mount configuration with the release configuration.
 
-Azure CLI
-
-```
+```bash
 az webapp sitecontainers show \
   --name <app-name> \
   --resource-group <resource-group> \
@@ -37,9 +33,7 @@ az webapp sitecontainers show \
 
 You can then check whether App Service reports the container as running:
 
-Azure CLI
-
-```
+```bash
 az webapp sitecontainers status \
   --name <app-name> \
   --resource-group <resource-group> \
@@ -66,9 +60,7 @@ Role assignments can take time to propagate. If you just granted the applicable 
 
 You can retrieve logs for one site container with the following command. Container-specific output prevents unrelated main-app messages from obscuring an image or startup error.
 
-Azure CLI
-
-```
+```bash
 az webapp sitecontainers log \
   --name <app-name> \
   --resource-group <resource-group> \

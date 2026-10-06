@@ -9,7 +9,7 @@ B. Pub/sub can handle more messages per second than Streams
 C. Streams are only for string data while pub/sub works with any data type
 
 > [!answer]- Reveal answer
->  A.
+>  A: Pub/sub is fire-and-forget with no persistence. Streams store messages durably and allow multiple consumer groups to read at different speeds.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Redis pub/sub for real-time distribution of work items
 C. A simple Redis List with LPUSH and RPOP
 
 > [!answer]- Reveal answer
-> A.  
+> A: Streams provide durability, automatic retry on crash, and built-in consumer group coordination perfect for multi-step processing pipelines.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. LPUSH
 C. PUBLISH
 
 > [!answer]- Reveal answer
-> A.
+> A: XADD adds a new message to a Stream with auto-generated or specified IDs. It's the fundamental command for putting work items into a Stream queue.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Storing messages that arrive when subscribers are offline and delivering them
 C. Implementing a reliable work queue where tasks must be processed exactly once
 
 > [!answer]- Reveal answer
-> A. 
+> A: Pub/sub excels at one-to-many broadcasting to active subscribers. Perfect for notifications, dashboards, and real-time alerts where subscribers are always connected.
 
 ### 5.
 
@@ -53,4 +53,4 @@ B. Use XREAD to have each worker independently read from the Stream without coor
 C. Use pub/sub channels with one channel per worker
 
 > [!answer]- Reveal answer
-> A. 
+> A: Consumer groups in Streams automatically distribute pending tasks among workers. Each task is assigned to one worker until acknowledged, preventing duplicate processing.

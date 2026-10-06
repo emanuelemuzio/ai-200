@@ -9,7 +9,7 @@ B. A queue with three competing consumers
 C. Three separate queues with the sender publishing to each one
 
 > [!answer]- Reveal answer
->  A.
+>  A: A topic with three subscriptions allows each independent service to receive its own copy of every message.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Receive-and-delete mode
 C. Deferred receive mode
 
 > [!answer]- Reveal answer
-> A.  
+> A: Peek-lock keeps the message locked while processing; if the worker fails without completing it, the message becomes available for another worker. 
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Deletes the message permanently from the queue
 C. Returns the message to the back of the queue for continued retry attempts
 
 > [!answer]- Reveal answer
-> A.
+> A: After exceeding `MaxDeliveryCount`, Service Bus moves the message to the dead-letter queue with the reason `MaxDeliveryCountExceeded`.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Splitting the document into five 100-MB messages and reassembling them at the
 C. Encoding the document as base64 and sending it as the message body on the Premium tier
 
 > [!answer]- Reveal answer
-> A. 
+> A: The claim-check pattern stores the large document in Azure Blob Storage and sends only its URI through Service Bus.
 
 ### 5.
 
@@ -53,4 +53,4 @@ B. Enabling duplicate detection so Service Bus discards repeated submissions of 
 C. Routing messages to specific subscriptions based on filter rules
 
 > [!answer]- Reveal answer
-> A. 
+> A: `correlation_id` is primarily used to trace a request end-to-end across different stages and services in the pipeline.

@@ -16,9 +16,7 @@ kubectl create secret generic app-secrets \
 
 After you create a Secret, you reference it in your Deployment manifest. Use the `valueFrom` field with `secretKeyRef` to point to specific keys in the Secret. When a Pod starts, Kubernetes reads the Secret and injects the values as environment variables in the container. The values remain in memory and are not written to disk by default. After deployment, validate that Pods receive the expected values. Check your application logs or use `kubectl exec` to inspect the environment. Also confirm that RBAC policies restrict who can view the Secret. Only service accounts and users with appropriate permissions should have access.
 
-YAML
-
-```
+```YAML
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -53,9 +51,7 @@ spec:
 
 You can list and describe resources to confirm the Secret exists and Pods receive the expected configuration. Use `kubectl get secrets` to list all Secrets in the current namespace. The output shows the Secret name, type, data field count, and age. Use `kubectl describe secret` with the Secret name to see metadata and keys without exposing actual values. The describe command shows which keys exist in the Secret but masks the sensitive data for security. You can also describe the Deployment to verify that the Pod template references the correct Secret and keys. Look for the `secretKeyRef` entries in the environment variable section to confirm the mappings are correct. These manifests are typically stored in files named _deployment.yaml_ (Deployment) and _secret.yaml_ (Secret).
 
-Bash
-
-```
+```Bash
 kubectl get secrets
 kubectl describe secret app-secrets
 kubectl describe deployment web-api

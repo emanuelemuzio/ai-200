@@ -9,7 +9,7 @@ B. Set dataType to int8, dimensions to 1024, and distanceFunction to euclidean
 C. Set dataType to float16, dimensions to 3072, and distanceFunction to dotproduct
 
 > [!answer]- Reveal answer
->  A.
+>  A: `text-embedding-ada-002` produces 1536-dimensional embeddings, typically stored as `float32`, with cosine similarity being the appropriate distance function.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. Remove the ORDER BY clause from the query
 C. Reduce the TOP N clause to return only 10-20 results
 
 > [!answer]- Reveal answer
-> C.  
+> C: Reducing `TOP N` from 100 to around 10–20 reduces the amount of data processed and returned, lowering latency and RU consumption while retaining useful search results. 
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. Include the category filter in the WHERE clause and specify the partition_key
 C. Create a separate container for each product category and execute vector searches against the appropriate container
 
 > [!answer]- Reveal answer
-> B.
+> B: Applying the category filter in the `WHERE` clause and specifying the partition key enables targeted vector search within the relevant partition.
 
 ### 4. 
 
@@ -42,7 +42,7 @@ B. Execute two separate queries and merge results in application code
 C. Add keyword terms to the query vector before executing vector search
 
 > [!answer]- Reveal answer
-> A.
+> A: `RANK RRF` combines the rankings from vector similarity (`VectorDistance`) and keyword relevance (`FullTextScore`) into a hybrid search result.
 
 ### 5.  
 
@@ -53,6 +53,6 @@ B. Store a timestamp with each document and query for recently modified document
 C. Use an Azure Functions Cosmos DB trigger to detect changes and regenerate embeddings
 
 > [!answer]- Reveal answer
-> C.  
+> C: A Cosmos DB trigger in Azure Functions reacts automatically to document changes and can regenerate embeddings without polling.
 
 ## [[Learning Path 4 - Develop AI solutions with Azure Cosmos DB for NoSQL/Module 2 - Implement vector search on Azure Cosmos DB for NoSQL/Unit 7 - Summary| Next Unit > Summary]]

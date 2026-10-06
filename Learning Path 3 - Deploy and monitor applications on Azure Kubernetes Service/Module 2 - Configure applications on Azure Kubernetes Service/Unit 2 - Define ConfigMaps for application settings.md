@@ -4,9 +4,7 @@ AI inference services on Azure often require different settings across environme
 
 A ConfigMap is a Kubernetes resource that stores configuration data as key-value pairs. You declare it using YAML and apply it to your cluster. The `data` field holds your configuration keys and their string values. ConfigMap data is limited to 1 MiB total size per ConfigMap. This limit ensures fast synchronization to nodes and efficient etcd storage. For larger configuration files or binary data, use persistent volumes or external configuration services. Use the `binaryData` field for base64-encoded binary values when necessary. ConfigMap keys must consist of alphanumeric characters, dashes, underscores, or dots.
 
-YAML
-
-```
+```YAML
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -24,9 +22,7 @@ data:
 
 You inject configuration into Pods through environment variables. This approach uses the `valueFrom` field with `configMapKeyRef` to reference specific keys from your ConfigMap. When the Pod starts, Kubernetes reads the ConfigMap and sets the environment variables in the container. You can also use `envFrom` with `configMapRef` to load all keys from a ConfigMap as environment variables in one declaration. This bulk loading approach works well when you have many configuration values and want to avoid repetitive YAML. After you deploy, validate that Pods receive expected values. Use `kubectl describe pod` and check your application logs to confirm the settings are correct.
 
-YAML
-
-```
+```YAML
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -65,9 +61,7 @@ spec:
 
 Some applications expect configuration files on disk rather than environment variables. You can mount a ConfigMap as files in the container filesystem. This approach uses a volume backed by the ConfigMap. You then add a `volumeMount` entry in the container spec to mount that volume at a specific path. Each key in the ConfigMap becomes a file in the mount directory. When you mount ConfigMaps as volumes, Kubernetes automatically updates the files when you modify the ConfigMap. The kubelet checks for updates on each sync period. However, containers using ConfigMaps as environment variables do not receive automatic updates and require Pod restarts. The automatic update behavior does not apply when you use `subPath` mounts. The following snippet shows the volume and mount configuration. Include these sections inside your Pod or Deployment spec.
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on volume mount
 volumes:
 - name: config-volume
@@ -89,9 +83,7 @@ containers:
 
 You can mark a ConfigMap as immutable to protect against accidental changes that could disrupt running applications. Immutable ConfigMaps offer performance benefits in large clusters by allowing Kubernetes to close watches on these resources. This reduces load on the API server when you have many ConfigMaps. Once you set a ConfigMap to immutable, you cannot change its data or revert the immutable setting. You must delete and recreate the ConfigMap to make changes. Existing Pods maintain mount points to the deleted ConfigMap until they restart. Use immutable ConfigMaps for configuration that should not change during application runtime. This pattern works well for configuration tied to specific application versions where changes require redeployment.
 
-YAML
-
-```
+```YAML
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -110,9 +102,7 @@ You can use [Azure App Configuration](https://learn.microsoft.com/en-us/azure/az
 
 You can apply the manifests and inspect resources to confirm the configuration is available to your Pods. These manifests are typically stored in files named _configmap.yaml_ (ConfigMap) and _deployment.yaml_ (Deployment).
 
-Bash
-
-```
+```Bash
 kubectl apply -f configmap.yaml
 kubectl apply -f deployment.yaml
 kubectl describe configmap app-settings

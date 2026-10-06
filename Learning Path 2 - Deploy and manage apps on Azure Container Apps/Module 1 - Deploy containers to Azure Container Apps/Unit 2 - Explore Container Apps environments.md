@@ -12,9 +12,7 @@ You can create an environment explicitly, or you can let `az containerapp up` cr
 
 The following example shows a typical flow where you create a resource group, then create an environment.
 
-Azure CLI
-
-```
+```bash
 az group create --name rg-aca-demo --location centralus
 
 az containerapp env create \
@@ -25,9 +23,7 @@ az containerapp env create \
 
 After the environment exists, you can inspect it. This is useful when you need to confirm which environment an app is using or when you're troubleshooting region and configuration issues.
 
-Azure CLI
-
-```
+```bash
 az containerapp env show \
     --name aca-env-demo \
     --resource-group rg-aca-demo

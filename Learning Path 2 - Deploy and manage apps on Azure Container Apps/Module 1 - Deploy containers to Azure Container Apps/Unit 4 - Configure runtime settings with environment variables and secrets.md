@@ -6,9 +6,7 @@ Environment variables are a good fit for non-sensitive configuration like log le
 
 You can set environment variables during create, or you can add them later. The following example uses `--env-vars` during create.
 
-Azure CLI
-
-```
+```bash
 az containerapp create -n ai-api -g rg-aca-demo \
     --environment aca-env-demo \
     --image myregistry.azurecr.io/ai-api:v1 \
@@ -18,9 +16,7 @@ az containerapp create -n ai-api -g rg-aca-demo \
 
 If you want to add or update variables without removing existing ones, you can use `--set-env-vars` during an update.
 
-Azure CLI
-
-```
+```bash
 az containerapp update -n ai-api -g rg-aca-demo \
     --set-env-vars LOG_LEVEL=debug
 ```
@@ -31,9 +27,7 @@ Secrets let you keep sensitive values out of container images and out of source 
 
 You can create or update secrets using `az containerapp secret set`. Secrets are provided as `key=value` pairs.
 
-Azure CLI
-
-```
+```bash
 az containerapp secret set -n ai-api -g rg-aca-demo \
     --secrets embeddings-api-key="REPLACE_WITH_REAL_VALUE"
 ```
@@ -46,9 +40,7 @@ Most application frameworks read configuration from environment variables. Conta
 
 You reference a secret by setting the environment variable value to `secretref:<secret-name>`. The following example sets `EMBEDDINGS_API_KEY` to the secret value.
 
-Azure CLI
-
-```
+```bash
 az containerapp update -n ai-api -g rg-aca-demo \
     --set-env-vars EMBEDDINGS_API_KEY=secretref:embeddings-api-key
 ```
@@ -59,9 +51,7 @@ YAML-based configuration is useful when you want a single, reviewable source of 
 
 The following example shows a focused YAML fragment that sets one non-sensitive environment variable and one secret reference. You should keep secret values out of YAML files and store only secret names in source control.
 
-YAML
-
-```
+```YAML
 # Code fragment - focus on environment variables and secret references
 properties:
   template:
@@ -76,9 +66,7 @@ properties:
 
 After you update the YAML file, you can apply it with `az containerapp update --yaml`. This command treats the YAML file as the full configuration source.
 
-Azure CLI
-
-```
+```bash
 az containerapp update -n ai-api -g rg-aca-demo \
     --yaml ./containerapp.yml
 ```

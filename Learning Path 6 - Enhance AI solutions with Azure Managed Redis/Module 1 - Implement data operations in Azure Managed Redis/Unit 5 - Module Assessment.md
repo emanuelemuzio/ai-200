@@ -9,7 +9,7 @@ B. 6379
 C. 6380
 
 > [!answer]- Reveal answer
->  A.
+>  A: Azure Managed Redis uses port 10000 as the default connection port for TLS connections.
 
 ### 2. 
 
@@ -20,7 +20,7 @@ B. SCAN
 C. EXISTS
 
 > [!answer]- Reveal answer
-> A.  
+> A: The KEYS command should be avoided in production because it blocks the server while scanning all keys. Use SCAN instead for non-blocking iteration.
 
 ### 3. 
 
@@ -31,7 +31,7 @@ B. expire()
 C. set()
 
 > [!answer]- Reveal answer
-> A.
+> A: The `setex()` method sets a value and expiration time in a single atomic operation, making it efficient and reliable.
 
 ### 4. 
 
@@ -42,4 +42,4 @@ B. Key doesn't exist
 C. Key expired 1 second ago
 
 > [!answer]- Reveal answer
-> A. 
+> A: A TTL value of -1 means the key exists in Redis but has no expiration time set, so it persists indefinitely.
