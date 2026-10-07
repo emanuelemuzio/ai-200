@@ -9,3 +9,5 @@ After completing this module, you'll be able to:
 - Create triggers and bindings that implement common AI integration patterns such as HTTP inference endpoints and queue-based batch processors.
 - Configure secrets management and application settings using Key Vault references and Azure App Configuration.
 - Apply managed identity and function-level authorization to secure access between Functions and other Azure resources.
+
+## [[Unit 2 - Understand Azure Functions hosting and scaling for AI workloads|Next Unit > Understand Azure Functions hosting and scaling for AI workloads]]

@@ -83,3 +83,5 @@ For most AI workflows, you use both system topics and custom topics. System topi
 |**Schema**|Predefined by the Azure service|You define the event type and data schema|
 
 In a content moderation platform, you would use a system topic to receive `Microsoft.Storage.BlobCreated` events when users upload content. Your classification service would then consume these events, process the content, and publish a custom event like `com.contoso.ai.ContentClassified` to a custom topic. Downstream services such as the notification service and the analytics dashboard would subscribe to that custom topic independently.
+
+## [[Unit 3 - Work with event schemas and properties|Next Unit > Work with event schemas and properties]]

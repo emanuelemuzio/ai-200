@@ -109,3 +109,5 @@ def health_check(req: func.HttpRequest) -> func.HttpResponse:
 ```
 
 Access keys provide a basic access barrier but don't replace authentication for production AI endpoints. For applications that require caller identity verification, layer Azure API Management or App Service Authentication (Easy Auth) on top of access keys. API Management adds rate limiting, request validation, and OAuth 2.0 token verification, while Easy Auth integrates Microsoft Entra ID directly with the function app.
+
+## [[Unit 7 - Module Assessment|Next Unit > Module Assessment]]

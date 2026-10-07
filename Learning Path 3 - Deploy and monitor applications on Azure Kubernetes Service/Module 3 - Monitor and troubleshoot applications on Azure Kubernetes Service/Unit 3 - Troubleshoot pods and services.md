@@ -127,3 +127,5 @@ If a Service has no EndpointSlices, your AI API can't receive traffic even if po
 - **Combine portal and kubectl:** Use the portal for visual assessment and Live Logs, then switch to kubectl for detailed resource descriptions and events.
 - **Check configuration that affects AI behavior:** Verify environment variables, ConfigMaps, and Secrets that specify model endpoints, keys, or storage locations.
 - **Avoid ad hoc fixes inside containers:** Make permanent changes through source code and manifests so your AKS environment stays reproducible.
+
+## [[Unit 4 - Verify service connectivity and endpoints|Next Unit > Verify service connectivity and endpoints]]

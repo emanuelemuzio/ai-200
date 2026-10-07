@@ -97,3 +97,5 @@ Build times vary with hardware, but these rough estimates help with planning: IV
 Index quality degrades when data distribution changes significantly. Signs that reindexing might help include query latency that has increased without data growth explaining it, recall measurements showing degradation, or large portions of data that have been replaced or updated. Reindex using `REINDEX INDEX CONCURRENTLY idx_products_embedding;`. For IVFFlat indexes, reindexing updates the cluster centroids to match current data distribution. For HNSW indexes, it rebuilds the graph structure.
 
 Check index size and usage statistics to monitor index health. Query `pg_stat_user_indexes` to see index sizes with `SELECT indexrelname, pg_size_pretty(pg_relation_size(indexrelid)) AS size FROM pg_stat_user_indexes WHERE relname = 'products';`. Check if indexes are being used with `SELECT indexrelname, idx_scan, idx_tup_read FROM pg_stat_user_indexes WHERE relname = 'products';`. Low `idx_scan` counts suggest the index isn't being used. Verify that query operators match the index operator class.
+
+## [[Unit 4 - Optimize data layout|Next Unit > Optimize data layout]]

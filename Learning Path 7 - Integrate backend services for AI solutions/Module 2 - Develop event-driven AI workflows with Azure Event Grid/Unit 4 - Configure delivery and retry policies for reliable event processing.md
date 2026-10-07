@@ -128,3 +128,5 @@ Event Grid publishes delivery metrics through [Azure Monitor](https://learn.micr
 - **Dead-lettered events:** Events sent to the dead-letter destination after exhausting retries
 
 You can set alerts on these metrics to detect systemic issues in your pipeline. A sudden increase in dead-lettered events might indicate that a model service is down, a handler endpoint URL changed, or a deployment introduced a bug. A drop in matched events might mean that your event source stopped publishing or that a filter configuration changed unexpectedly. Monitoring these metrics alongside your application logs provides a complete picture of event flow health across your AI solution.
+
+## [[Unit 5 - Publish custom events from AI applications|Next Unit > Publish custom events from AI applications]]

@@ -61,3 +61,5 @@ When configuring Azure Database for PostgreSQL for your application, consider th
 - **Choosing a compute tier:** Select based on your workload's CPU and memory requirements. Start with Burstable for development, testing, and proof-of-concept work where cost optimization matters more than consistent performance. Use General Purpose for production workloads with steady, predictable resource requirements. Choose Memory Optimized when your application benefits from large in-memory caches or performs complex analytical queries. You can monitor CPU and memory utilization after deployment and adjust the tier if needed.
     
 - **Evaluating extensions:** Review available extensions early in your application design. Determine whether your application needs vector similarity search (pgvector), full-text search, or geospatial capabilities (PostGIS). Verify that required extensions are available on Azure Database for PostgreSQL before committing to a design. Plan for extension upgrades as part of your database maintenance strategy.
+
+## [[Unit 3 - Connect to PostgreSQL|Next Unit > Connect to PostgreSQL]]

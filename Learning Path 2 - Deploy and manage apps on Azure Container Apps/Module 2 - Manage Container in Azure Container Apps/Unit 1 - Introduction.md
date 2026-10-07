@@ -13,3 +13,5 @@ After completing this module, you’ll be able to:
 - Monitor logs and troubleshoot common revision and runtime issues.
 - Configure liveness and readiness probes and troubleshoot probe failures.
 - Optimize container resources and scaling settings to balance cost and performance.
+
+## [[Unit 2 - Update images and manage revisions safely|Next Unit > Update images and manage revisions safely]]

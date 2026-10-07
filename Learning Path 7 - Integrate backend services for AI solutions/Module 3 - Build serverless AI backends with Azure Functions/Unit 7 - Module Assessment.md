@@ -54,3 +54,5 @@ C. Key Vault Secrets User on the Service Bus namespace
 
 > [!answer]- Reveal answer
 > A: The managed identity needs the **Azure Service Bus Data Receiver** role to receive messages from the Service Bus namespace.
+
+## [[Unit 8 - Summary|Next Unit > Summary]]

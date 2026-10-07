@@ -8,3 +8,5 @@ After completing this module, you'll be able to:
 - Select appropriate client libraries and apply development best practices for Redis implementations
 - Implement data operations including storage, retrieval, expiration, and cache invalidation patterns
 - Build a Python application that performs data operations with Azure Managed Redis
+
+## [[Unit 2 - Explore Azure Managed Redis|Next Unit > Explore Azure Managed Redis]]

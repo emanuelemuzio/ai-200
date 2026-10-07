@@ -52,3 +52,5 @@ properties:
 When probes fail, combine revision status and logs. Revision status tells you whether the platform considers the revision healthy, and logs tell you whether the application started successfully and which endpoint it exposed. You should also confirm that the probe endpoints don't depend on external systems that might be unavailable during an incident.
 
 If an AI service loads a model at startup, tune `initialDelaySeconds` and `failureThreshold` to give the process enough time to reach a ready state. If you see liveness failures shortly after startup, liveness is likely too aggressive or the process is failing fast due to misconfiguration.
+
+## [[Unit 6 - Optimize container resources and scaling|Next Unit > Optimize container resources and scaling]]

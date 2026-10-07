@@ -195,3 +195,5 @@ for ef_runtime in [50, 100, 200]:
 
     print(f"EF_RUNTIME={ef_runtime}: {latency:.2f}ms")
 ```
+
+## [[Unit 4 - Optimize Redis data structures for vector storage|Next Unit > Optimize Redis data structures for vector storage]]

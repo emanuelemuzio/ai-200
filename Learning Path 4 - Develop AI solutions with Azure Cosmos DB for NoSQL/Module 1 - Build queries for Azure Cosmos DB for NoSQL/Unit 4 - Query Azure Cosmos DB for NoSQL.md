@@ -6,26 +6,20 @@ The query language uses familiar SQL syntax extended for JSON document structure
 
 A basic query that retrieves all items returns the complete JSON structure for each document. Use an alias (commonly `c` for container) after the `FROM` clause to reference item properties throughout the query. The asterisk (`*`) in the `SELECT` clause returns all properties.
 
-SQL
-
-```
+```SQL
 SELECT * FROM products p
 ```
 
 Projecting specific properties reduces response size and can lower RU consumption by returning only the data your application needs. List the properties you want in the `SELECT` clause, using the alias to reference nested paths. Projection is valuable for AI applications that need only a subset of fields for inference.
 
-SQL
-
-```
+```SQL
 SELECT p.id, p.name, p.price, p.categoryId
 FROM products p
 ```
 
 The query iterator handles executing queries and processing results. You can iterate through results directly or use pagination for large result sets. Each iteration fetches items from Azure Cosmos DB and might make multiple round trips for queries that return many results.
 
-Python
-
-```
+```Python
 # Code fragment - focus on basic query execution
 query = "SELECT p.id, p.name, p.price FROM products p"
 
@@ -41,27 +35,21 @@ The `WHERE` clause filters items based on conditions involving their properties.
 
 Comparison operators work with numbers, strings, booleans, and null values. String comparisons are case-sensitive by default. You can combine multiple conditions with `AND` and `OR` to create complex filters.
 
-SQL
-
-```
+```SQL
 SELECT * FROM products p
 WHERE p.categoryId = "electronics" AND p.price < 500
 ```
 
 String functions enable pattern matching and text manipulation within filters. `CONTAINS` checks if a string contains a substring, `STARTSWITH` and `ENDSWITH` check prefixes and suffixes, and `UPPER`/`LOWER` enable case-insensitive comparisons.
 
-SQL
-
-```
+```SQL
 SELECT * FROM products p
 WHERE CONTAINS(p.name, "Speaker") AND p.price BETWEEN 50 AND 200
 ```
 
 The `IN` operator checks if a value matches any item in a list, useful for filtering by multiple categories or statuses. Negating with `NOT IN` excludes specific values.
 
-SQL
-
-```
+```SQL
 SELECT * FROM products p
 WHERE p.categoryId IN ("electronics", "appliances", "computers")
 ```
@@ -72,9 +60,7 @@ Parameterized queries separate the query structure from the values, preventing i
 
 Always use parameters for values that come from user input or external sources. Beyond security benefits, parameterized queries allow Azure Cosmos DB to cache and reuse query plans, improving performance for repeated queries with different values.
 
-Python
-
-```
+```Python
 # Code fragment - focus on parameterized query for security
 query = """
     SELECT * FROM products p
@@ -99,9 +85,7 @@ Query performance depends significantly on whether the query targets a single pa
 
 When you include the partition key in your query, Azure Cosmos DB routes the request directly to the correct partition. This routing eliminates the overhead of querying multiple partitions and aggregating results. For AI applications with partition-aligned data, always design queries to include the partition key when possible.
 
-Python
-
-```
+```Python
 # Code fragment - focus on single-partition routing
 query = """
     SELECT * FROM products p
@@ -131,9 +115,7 @@ Cross-partition queries become necessary when you need to query across all data 
 
 The `ORDER BY` clause sorts results by one or more properties. You can specify ascending (`ASC`, the default) or descending (`DESC`) order. Sorting adds overhead to query execution, particularly for cross-partition queries that must merge sorted results from multiple partitions.
 
-SQL
-
-```
+```SQL
 SELECT * FROM products p
 WHERE p.categoryId = "electronics"
 ORDER BY p.price DESC
@@ -141,9 +123,7 @@ ORDER BY p.price DESC
 
 For large result sets, implement pagination to retrieve results in manageable chunks. The SDK's query iterator handles pagination automatically through continuation tokens. Set `max_item_count` to control the page size, balancing between fewer round trips (larger pages) and lower memory consumption (smaller pages).
 
-Python
-
-```
+```Python
 # Code fragment - focus on pagination handling
 query = "SELECT * FROM products p WHERE p.categoryId = @category ORDER BY p.price"
 
@@ -171,9 +151,7 @@ Projections transform query results into custom JSON structures. Beyond selectin
 
 Create custom result shapes by defining the structure in the `SELECT` clause. This approach reduces post-processing in your application code and can reduce data transfer when the transformed shape is smaller than the original documents.
 
-Python
-
-```
+```Python
 # Code fragment - focus on projection and shaping
 query = """
     SELECT VALUE {
@@ -200,9 +178,7 @@ for item in items:
 
 The `VALUE` keyword extracts values without the surrounding object structure. Use it to return arrays of scalar values or to unwrap nested results.
 
-SQL
-
-```
+```SQL
 -- Returns: ["Smart Speaker", "Wireless Headphones", "Laptop"]
 SELECT VALUE p.name
 FROM products p
@@ -213,9 +189,7 @@ WHERE p.categoryId = "electronics"
 
 Aggregate functions compute summary statistics across matching items. Azure Cosmos DB supports `COUNT`, `SUM`, `AVG`, `MIN`, and `MAX`. Aggregates scan all matching items, so they can be expensive on large datasets. Use filters to limit the scope of aggregation when possible.
 
-SQL
-
-```
+```SQL
 SELECT VALUE COUNT(1)
 FROM products p
 WHERE p.categoryId = "electronics"
@@ -223,9 +197,7 @@ WHERE p.categoryId = "electronics"
 
 Combine multiple aggregates in a single query to gather statistics efficiently. Each aggregate function operates independently across the filtered result set.
 
-Python
-
-```
+```Python
 # Code fragment - focus on aggregate queries
 query = """
     SELECT
@@ -251,18 +223,14 @@ print(f"Products: {stats['totalProducts']}, Avg Price: ${stats['averagePrice']:.
 
 Azure Cosmos DB documents often contain arrays representing one-to-many relationships, such as product tags, user roles, or feature lists. The `ARRAY_CONTAINS` function filters items based on array membership, checking if an array property contains a specific value.
 
-SQL
-
-```
+```SQL
 SELECT * FROM products p
 WHERE ARRAY_CONTAINS(p.features, "wifi")
 ```
 
 For more complex array queries, use `JOIN` with the `IN` operator to flatten arrays and query individual elements. The join creates a cross product between the item and its array elements, allowing you to filter based on array contents.
 
-SQL
-
-```
+```SQL
 SELECT p.name, f AS feature
 FROM products p
 JOIN f IN p.features
@@ -273,9 +241,7 @@ WHERE f IN ("wifi", "bluetooth")
 
 Every query returns RU consumption in the response headers. Monitor these values to understand which queries consume the most resources and identify optimization opportunities. High RU queries might benefit from adding indexes, restricting filters, or redesigning data models.
 
-Python
-
-```
+```Python
 # Code fragment - focus on monitoring query costs
 query = "SELECT * FROM products p WHERE p.categoryId = @category"
 
@@ -307,3 +273,5 @@ Query cost optimization strategies include:
 - **Use partition keys:** Route queries to single partitions when possible
 - **Limit results:** Use `TOP` to restrict result count when you don't need all matches
 - **Optimize indexes:** Ensure your indexing policy supports your query patterns
+
+## [[Unit 5 - Module Assessment|Next Unit > Module Assessment]]

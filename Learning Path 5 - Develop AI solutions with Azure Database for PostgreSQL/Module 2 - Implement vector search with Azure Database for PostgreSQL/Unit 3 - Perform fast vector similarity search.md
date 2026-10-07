@@ -123,3 +123,5 @@ If you see "Seq Scan" instead of "Index Scan," check that:
 2. The index exists and is valid
 3. The table has enough rows (PostgreSQL might choose a sequential scan for small tables)
 4. The LIMIT clause is present (indexes are most effective with ORDER BY and LIMIT)
+
+## [[Unit 4 - Manage index lifecycle and embedding updates|Next Unit > Manage index lifecycle and embedding updates]]

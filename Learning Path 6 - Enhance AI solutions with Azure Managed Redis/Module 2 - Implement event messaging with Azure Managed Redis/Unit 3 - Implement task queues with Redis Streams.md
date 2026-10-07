@@ -23,9 +23,7 @@ From a developer perspective, Streams are append-only task queues where you add 
 
 Each task you add to a Stream gets an auto-generated ID and can contain any fields your application needs. Think of it like adding a JSON object to a queue:
 
-Python
-
-```
+```Python
 # Adding an AI processing task
 stream_id = redis.xadd('ai:inference:requests', {
     'user_id': '12345',
@@ -42,9 +40,7 @@ The ID ensures tasks are processed in order and lets you track which tasks are c
 
 When you deploy multiple instances of your AI worker service, consumer groups ensure each task goes to only one worker. You create a group once, then each worker instance reads from the same group:
 
-Python
-
-```
+```Python
 # In your worker deployment/startup code
 try:
     redis.xgroup_create('ai:inference:requests', 'workers', id='0', mkstream=True)
@@ -69,9 +65,7 @@ Redis Streams are ideal for specific development scenarios where reliability and
 
 - **API endpoints that queue AI inference requests:** Instead of blocking your API while waiting for model inference, add the request to a Stream and return a job ID immediately. Background workers process requests and update results.
     
-    Python
-    
-    ```
+    ```Python
     # In your FastAPI/Flask route handler
     @app.post("/api/analyze")
     async def analyze_document(doc: UploadFile):
@@ -100,9 +94,7 @@ This section provides practical code examples showing how to implement common St
 
 Use `XADD` to add tasks to a Stream from your API handlers or application code. Each task gets a unique ID and can contain any fields your application needs.
 
-Python
-
-```
+```Python
 # Your API handler code
 def queue_inference_request(user_prompt, model_name):
     task_id = redis.xadd('ai:inference:queue', {
@@ -118,9 +110,7 @@ def queue_inference_request(user_prompt, model_name):
 
 Worker services use `XREADGROUP` to fetch tasks from a Stream and `XACK` to mark them complete. Consumer groups ensure tasks are distributed across multiple worker instances without duplication.
 
-Python
-
-```
+```Python
 # Worker service processing loop
 def process_ai_tasks():
     # One-time setup: create consumer group
@@ -158,9 +148,7 @@ def process_ai_tasks():
 
 Use `XPENDING` to find tasks that have been processing too long and `XCLAIM` to reassign them. This handles cases where workers crash mid-processing.
 
-Python
-
-```
+```Python
 # Check for tasks that have been pending too long (stuck/crashed)
 def retry_stuck_tasks():
     pending = redis.xpending('ai:inference:queue', 'workers', '-', '+', 10)
@@ -179,9 +167,7 @@ def retry_stuck_tasks():
 
 Use `XINFO` commands to get metrics about your Stream queues, including total tasks, pending tasks, and active consumers. This data is useful for monitoring dashboards and alerting.
 
-Python
-
-```
+```Python
 # Get Stream metrics for your application dashboard
 def get_queue_stats():
     info = redis_client.xinfo_stream('ai:documents:queue')
@@ -216,3 +202,5 @@ While Streams provide powerful reliability features, they come with trade-offs y
 - **More code complexity:** You need to handle consumer groups, acknowledgments, and pending task checks. This is extra code compared to simple pub/sub subscribe callbacks, but you get reliability in return.
     
 - **Tasks don't auto-expire:** Completed tasks stay in the Stream until trimmed. Plan your cleanup strategy upfront to avoid memory growth.
+
+## [[Unit 4 - Choose between broadcast and coordinated distribution|Next Unit > Choose between broadcast and coordinated distribution]]

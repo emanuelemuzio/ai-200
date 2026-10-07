@@ -120,3 +120,5 @@ LIMIT 10;
 To speed up keyword matching, create a GIN index on the full-text search vector. For frequently searched columns, storing the tsvector in a generated column avoids recomputing it for every query.
 
 Hybrid search adds complexity and computation. Use it when users search for specific terms that must match exactly, when your corpus includes technical jargon where synonyms don't capture the right meaning, or when you want to boost results that match both semantically and lexically. For pure semantic search where meaning matters more than specific words, vector-only search is simpler and often sufficient.
+
+## [[Unit 6 - Implement retrieval patterns for RAG pipelines|Next Unit > Implement retrieval patterns for RAG pipelines]]

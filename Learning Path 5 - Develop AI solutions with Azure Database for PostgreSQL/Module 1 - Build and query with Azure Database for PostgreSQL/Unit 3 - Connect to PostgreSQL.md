@@ -106,3 +106,5 @@ postgresql://myuser:mypassword@myserver.postgres.database.azure.com/mydb?sslmode
 # Connection through PgBouncer (note port 6432)
 postgresql://myuser:mypassword@myserver.postgres.database.azure.com:6432/mydb?sslmode=require
 ```
+
+## [[Unit 4 - Create and manage schemas|Next Unit > Create and manage schemas]]

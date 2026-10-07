@@ -43,3 +43,5 @@ C. Key expired 1 second ago
 
 > [!answer]- Reveal answer
 > A: A TTL value of -1 means the key exists in Redis but has no expiration time set, so it persists indefinitely.
+
+## [[Unit 6 - Summary|Next Unit > Summary]]

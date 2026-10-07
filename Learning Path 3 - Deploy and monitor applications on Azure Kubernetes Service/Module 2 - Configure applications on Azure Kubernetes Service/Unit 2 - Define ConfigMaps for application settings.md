@@ -110,3 +110,5 @@ kubectl describe deployment web-api
 # Check if Pod received configuration as environment variables
 kubectl exec <pod-name> -- printenv | grep FEATURE
 ```
+
+## [[Unit 3 - Implement secrets for sensitive data|Next Unit > Implement secrets for sensitive data]]

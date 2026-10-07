@@ -117,3 +117,5 @@ Out-of-order responses require an explicit policy. You might reject an event for
 A timeout is a business outcome, not necessarily a technical failure. An insurance workflow might mark the claim for manual follow-up, escalate to another queue, or reject the generated summary. The orchestrator should choose one terminal path and schedule any required external updates through activities.
 
 Long approval windows also affect operational design. Use custom orchestration status or an external application record to show that the workflow is waiting for review. Monitor the age and count of pending approvals so support teams can distinguish normal durable suspension from a stalled integration. Don't repeatedly poll from inside the orchestrator, because an external event provides a more efficient resume signal.
+
+## [[Unit 5 - Design reliable workflow steps|Next Unit > Design reliable workflow steps]]

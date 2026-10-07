@@ -29,9 +29,7 @@ Azure Cosmos DB provides two indexing modes that control when and how indexes ar
 
 For AI applications, consistent indexing mode is typically the right choice because queries need to find recently ingested documents and embeddings. The none mode applies only to specialized scenarios where you never query by secondary properties.
 
-Note
-
-Azure Cosmos DB previously supported a lazy indexing mode that updated indexes at lower priority. This mode is deprecated and new containers can't use it. Existing containers with lazy indexing should migrate to consistent mode.
+>**Note**: Azure Cosmos DB previously supported a lazy indexing mode that updated indexes at lower priority. This mode is deprecated and new containers can't use it. Existing containers with lazy indexing should migrate to consistent mode.
 
 ## Understand index storage costs
 
@@ -46,9 +44,7 @@ Index size contributes to the total storage consumed by a container. Several fac
 
 For AI applications that store embeddings, the embedding arrays can contain hundreds or thousands of numeric values. Including these arrays in range indexes dramatically increases storage costs without providing query benefits. Vector searches use vector indexes instead. Excluding embedding paths from range indexes reduces storage costs substantially.
 
-Important
-
-The partition key (unless it is also `/id`) is not indexed automatically and should be explicitly included in your indexing policy. Queries that filter on the partition key benefit from range indexes within each partition. If you exclude the partition key from indexing, queries filtering on it perform full scans, resulting in higher RU consumption.
+>**Important**: The partition key (unless it is also `/id`) is not indexed automatically and should be explicitly included in your indexing policy. Queries that filter on the partition key benefit from range indexes within each partition. If you exclude the partition key from indexing, queries filtering on it perform full scans, resulting in higher RU consumption.
 
 ## Include and exclude property paths
 
@@ -63,9 +59,7 @@ When include and exclude paths conflict, the more specific path takes precedence
 
 The following example shows the default indexing policy that indexes all properties:
 
-JSON
-
-```
+```JSON
 {
   "indexingMode": "consistent",
   "automatic": true,
@@ -82,9 +76,7 @@ The policy includes all paths with `/*` and excludes only the `_etag` system pro
 
 The following example shows a selective indexing policy that indexes only the properties used in queries:
 
-JSON
-
-```
+```JSON
 {
   "indexingMode": "consistent",
   "automatic": true,

@@ -96,3 +96,5 @@ From the output, you locate the external address and send test requests from a c
 - **Test before exposing:** Use port-forwarding and internal testing to validate endpoints before publishing them to users.
 - **Combine portal and kubectl:** Use the portal for visual overview of Service configuration and kubectl for detailed endpoint inspection and port-forwarding.
 - **Combine checks with monitoring:** Pair connectivity tests with logs and metrics so you can see the impact of configuration changes on AI workloads.
+
+## [[Unit 5 - Module Assessment|Next Unit > Module Assessment]]

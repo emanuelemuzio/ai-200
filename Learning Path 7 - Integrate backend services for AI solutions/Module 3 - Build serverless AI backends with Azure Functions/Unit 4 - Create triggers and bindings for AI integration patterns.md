@@ -170,3 +170,5 @@ def analyze_document(msg: func.ServiceBusMessage) -> None:
 ```
 
 Using `DefaultAzureCredential` for authentication allows the same code to work both locally (using developer credentials from Azure CLI or Visual Studio Code) and in production (using the function app's managed identity). This credential chain is covered in detail in a later unit on identity and access configuration.
+
+## [[Unit 5 - Manage secrets and configuration in Functions|Next Unit > Manage secrets and configuration in Functions]]

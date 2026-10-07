@@ -107,3 +107,5 @@ with client.get_subscription_receiver(
 ```
 
 The `ServiceBusClient` uses context managers (`with` statements) to ensure connections are properly closed. You can also manage the client lifecycle manually by calling `client.close()`, but context managers are the recommended approach because they guarantee cleanup even when exceptions occur.
+
+## [[Unit 4 - Structure messages for AI workloads|Next Unit > Structure messages for AI workloads]]

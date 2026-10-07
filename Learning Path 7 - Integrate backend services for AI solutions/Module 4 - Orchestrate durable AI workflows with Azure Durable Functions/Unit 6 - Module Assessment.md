@@ -53,3 +53,5 @@ C. Retry the entire orchestration instance without recording which forward opera
 
 > [!answer]- Reveal answer
 > B: Schedule an idempotent compensation activity for completed side effects, then rethrow the original failure. This provides compensation while preserving the failure state.
+
+## [[Unit 7 - Summary|Next Unit > Summary]]

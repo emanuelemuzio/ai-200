@@ -13,9 +13,7 @@ The function accepts the following parameters:
 
 A basic call to `VectorDistance` in a query looks like this:
 
-SQL
-
-```
+```SQL
 VectorDistance(c.embedding, [0.1, -0.2, 0.3, ...])
 ```
 
@@ -27,9 +25,7 @@ A vector search query retrieves documents ordered by their similarity to a query
 
 The following query finds the 10 most similar documents to a query vector and returns their titles and similarity scores:
 
-SQL
-
-```
+```SQL
 SELECT TOP 10
     c.id,
     c.title,
@@ -47,9 +43,7 @@ Before executing a vector search, you must convert the user's search text into a
 
 The following Python code shows the complete workflow from user query to vector search results:
 
-Python
-
-```
+```Python
 from openai import AzureOpenAI
 
 # User's search query
@@ -97,9 +91,7 @@ Passing the query vector as a parameter (using `@queryVector`) rather than embed
 
 The parameters array in the Python SDK accepts name-value pairs that map to the `@` parameters in the query:
 
-Python
-
-```
+```Python
 parameters = [
     {"name": "@queryVector", "value": query_embedding}
 ]
@@ -127,9 +119,7 @@ For AI applications, setting a similarity threshold helps filter out low-quality
 
 The following query returns only documents with similarity scores above 0.7 (highly similar):
 
-SQL
-
-```
+```SQL
 SELECT TOP 10
     c.id,
     c.title,
@@ -155,9 +145,7 @@ By default, vector queries use the configured vector index (such as DiskANN) for
 
 When you need 100 percent accurate results, you can force brute-force search by passing `true` as the third parameter to `VectorDistance`:
 
-SQL
-
-```
+```SQL
 SELECT TOP 5
     c.title,
     VectorDistance(c.embedding, @queryVector, true) AS SimilarityScore
@@ -186,9 +174,7 @@ Vector search performance depends on several factors that you can optimize throu
 
 **Project only needed fields:** Select only the fields you need rather than using `SELECT *`. This reduces the data transferred and improves response time.
 
-Python
-
-```
+```Python
 # Project only essential fields
 query = """
     SELECT TOP 10

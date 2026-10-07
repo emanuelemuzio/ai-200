@@ -54,3 +54,6 @@ C. Run `az containerapp replica list`
 
 > [!answer]- Reveal answer
 > A: Container logs provide immediate signals such as startup errors, missing environment variables, or authentication failures.
+
+
+## [[Unit 8 - Summary|Next Unit > Summary]]

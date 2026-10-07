@@ -25,9 +25,7 @@ The SDK returns query metrics through response headers when you enable metric co
 
 The following Python example shows how to retrieve and examine query metrics:
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient
 
 client = CosmosClient(endpoint, credential)
@@ -67,9 +65,7 @@ Properties that your application reads but never filters or sorts don't need ind
 
 Consider a document with the following structure:
 
-JSON
-
-```
+```JSON
 {
   "id": "doc-123",
   "title": "Quarterly Report Q4 2024",
@@ -85,9 +81,7 @@ JSON
 
 If your application queries by `documentType`, `category`, and `uploadDate`, but only displays `content` and `summary` in results, the indexing policy should include only the queried properties:
 
-JSON
-
-```
+```JSON
 {
   "indexingMode": "consistent",
   "includedPaths": [
@@ -113,17 +107,13 @@ While partition keys route queries to specific partitions, queries that filter o
 
 If your partition key is `/tenantId` and queries filter by tenant:
 
-SQL
-
-```
+```SQL
 SELECT * FROM c WHERE c.tenantId = 'tenant-123' AND c.status = 'active'
 ```
 
 You can include the partition key path in your indexing policy:
 
-JSON
-
-```
+```JSON
 {
   "includedPaths": [
     { "path": "/tenantId/?" },
@@ -152,9 +142,7 @@ Each composite index adds write overhead because Azure Cosmos DB maintains the i
 
 The following policy includes composite indexes for common AI application patterns:
 
-JSON
-
-```
+```JSON
 {
   "indexingMode": "consistent",
   "includedPaths": [
@@ -213,9 +201,7 @@ When you modify an indexing policy, Azure Cosmos DB performs an asynchronous tra
 
 Monitor transformation progress to understand when new indexes become effective:
 
-Python
-
-```
+```Python
 # Check indexing progress through container properties
 container_properties = container.read()
 indexing_policy = container_properties.get("indexingPolicy", {})
@@ -227,9 +213,7 @@ indexing_policy = container_properties.get("indexingPolicy", {})
 
 For large containers with millions of items, index transformations can take hours. You can plan index changes during low-traffic periods and allow sufficient time for transformations before expecting improved query performance.
 
-Tip
-
-When replacing one index configuration with another, add the new index first and wait for transformation to complete. Then remove the old index. This approach ensures queries always have appropriate index support.
+> **Tip**: When replacing one index configuration with another, add the new index first and wait for transformation to complete. Then remove the old index. This approach ensures queries always have appropriate index support.
 
 ## Test RU consumption with realistic data
 

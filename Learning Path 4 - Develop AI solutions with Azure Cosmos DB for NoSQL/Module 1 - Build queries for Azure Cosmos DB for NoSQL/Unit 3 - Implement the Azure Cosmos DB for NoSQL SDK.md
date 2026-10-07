@@ -8,9 +8,7 @@ Azure Cosmos DB offers SDKs for .NET, Python, JavaScript, Java, and Go. Each SDK
 
 Creating a client requires your account endpoint and authentication credentials. The endpoint follows the pattern `https://<account-name>.documents.azure.com:443/`. You can find this value in the Azure portal under your Cosmos DB account's overview page or keys section. The SDK uses this endpoint to route all requests to your specific account.
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient
 
 # Code fragment - focus on client initialization
@@ -30,9 +28,7 @@ Microsoft Entra ID authentication uses identity-based access control through rol
 
 The `DefaultAzureCredential` class from the Azure Identity library simplifies Entra ID authentication by automatically selecting the appropriate credential based on the environment. During local development, it uses your Azure CLI login or Visual Studio credentials. In deployed environments, it uses managed identity. This single code path works across development and production without changes.
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient
 from azure.identity import DefaultAzureCredential
 
@@ -53,9 +49,7 @@ For AI applications with high request volumes, connection reuse becomes critical
 
 In web frameworks, register the `CosmosClient` as a singleton or application-scoped service. In Python applications using frameworks like FastAPI or Flask, create the client during application startup and reuse it for all requests. Store references to frequently accessed database and container clients to avoid repeated lookups.
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient
 from azure.identity import DefaultAzureCredential
 
@@ -81,9 +75,7 @@ After creating a `CosmosClient`, you access databases and containers through cli
 
 Database and container clients provide methods for resource management and data operations. Database clients can create, list, and delete containers. Container clients support item operations like create, read, update, delete, and query. The separation of concerns allows you to structure your code around specific resources rather than passing around the root client.
 
-Python
-
-```
+```Python
 # Code fragment - focus on navigating resource hierarchy
 database = client.get_database_client("productcatalog")
 products = database.get_container_client("products")
@@ -101,9 +93,7 @@ Before storing items, you need databases and containers to organize your data. T
 
 The `create_database()` method creates a new database in your Cosmos DB account. This method fails with an exception if a database with the same ID already exists. Use this method when you expect the database to be new and want to catch accidental duplicates during provisioning.
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient
 from azure.identity import DefaultAzureCredential
 
@@ -117,9 +107,7 @@ database = client.create_database(id="productcatalog")
 
 The `create_database_if_not_exists()` method provides a safer approach for most scenarios. It creates the database if it doesn't exist and returns the existing database if it does. This idempotent behavior simplifies application startup code where you want to ensure resources exist without failing on subsequent runs.
 
-Python
-
-```
+```Python
 # Code fragment - focus on idempotent database creation
 database = client.create_database_if_not_exists(id="productcatalog")
 print(f"Database ready: {database.id}")
@@ -127,9 +115,7 @@ print(f"Database ready: {database.id}")
 
 Creating containers requires specifying a partition key, which determines how data distributes across physical partitions. The partition key path references a JSON property that exists in your items. Choose a partition key that provides even data distribution and aligns with your query patterns. For AI applications storing user-specific data, user ID or tenant ID often serves as an effective partition key.
 
-Python
-
-```
+```Python
 from azure.cosmos import PartitionKey
 
 # Code fragment - focus on container creation with partition key
@@ -142,9 +128,7 @@ container = database.create_container(
 
 The `offer_throughput` parameter sets dedicated throughput in Request Units per second (RU/s) for the container. You can omit this parameter if the database uses shared throughput across containers. For production AI workloads with variable demand, consider using autoscale throughput instead.
 
-Python
-
-```
+```Python
 # Code fragment - focus on autoscale throughput
 from azure.cosmos import ThroughputProperties
 
@@ -157,9 +141,7 @@ container = database.create_container_if_not_exists(
 
 The `create_container_if_not_exists()` method combines creation and lookup, making it ideal for application initialization. This method returns the existing container if it already exists, allowing your startup code to run repeatedly without errors.
 
-Python
-
-```
+```Python
 # Code fragment - focus on idempotent container creation
 products_container = database.create_container_if_not_exists(
     id="products",
@@ -180,9 +162,7 @@ The SDK provides several methods for writing items to containers. Understanding 
 
 The `create_item()` method inserts a new item into the container. It fails with a conflict error (HTTP 409) if an item with the same `id` and partition key already exists. Use this method when you expect the item to be new and want to catch accidental duplicates.
 
-Python
-
-```
+```Python
 # Code fragment - focus on create operation
 from azure.cosmos import exceptions
 
@@ -203,9 +183,7 @@ except exceptions.CosmosResourceExistsError:
 
 The `upsert_item()` method inserts a new item or replaces an existing item with the same `id` and partition key. This method simplifies update logic when you don't care whether the item existed previously. AI applications commonly use upsert when caching model outputs or synchronizing data from external sources.
 
-Python
-
-```
+```Python
 # Code fragment - focus on upsert operation
 product = {
     "id": "product-12345",
@@ -221,9 +199,7 @@ print(f"Request charge: {container.client_connection.last_response_headers['x-ms
 
 The `replace_item()` method updates an existing item. Unlike upsert, replace requires the item to exist and fails if it doesn't. Replace also supports optimistic concurrency through the `etag` parameter. When you provide an etag, the operation succeeds only if the item's current etag matches, preventing lost updates from concurrent modifications.
 
-Python
-
-```
+```Python
 # Code fragment - focus on optimistic concurrency
 from azure.cosmos import exceptions
 
@@ -249,9 +225,7 @@ Reading items from Azure Cosmos DB involves choosing between point reads and que
 
 Point reads using `read_item()` provide the most efficient way to retrieve a specific document. The operation routes directly to the correct partition and returns the item without query parsing or execution. For a 1-KB item, a point read typically costs approximately 1 RU—the minimum cost for any operation.
 
-Python
-
-```
+```Python
 # Code fragment - focus on point read efficiency
 item = container.read_item(
     item="product-12345",
@@ -268,9 +242,7 @@ If a point read fails because the item doesn't exist, the SDK raises `CosmosReso
 
 The `delete_item()` method removes an item from the container. Like point reads, deletes require both the item `id` and partition key to route the operation correctly. Deleted items don't consume storage, but the delete operation itself consumes RUs.
 
-Python
-
-```
+```Python
 # Code fragment - focus on delete operation
 from azure.cosmos import exceptions
 
@@ -290,9 +262,7 @@ Every SDK operation returns metadata alongside the operation result. This metada
 
 Access response headers by examining the response headers from the last SDK operation. The `x-ms-request-charge` header contains the RU cost for the operation. Track this value across operations to understand which patterns consume the most resources.
 
-Python
-
-```
+```Python
 # Code fragment - focus on response metadata
 container.upsert_item(body=product)
 
@@ -306,3 +276,5 @@ print(f"Activity ID: {activity_id}")  # Useful for support requests
 ```
 
 The activity ID uniquely identifies each request and proves invaluable when working with Azure support to diagnose issues. Log activity IDs alongside errors or unusually high RU charges to enable troubleshooting.
+
+## [[Unit 4 - Query Azure Cosmos DB for NoSQL|Next Unit > Query Azure Cosmos DB for NoSQL]]

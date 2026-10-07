@@ -6,9 +6,7 @@ Range indexes support the most common filter operations in AI applications. Quer
 
 Consider a document search application that stores metadata about uploaded files. Users filter documents by type (`pdf`, `docx`, `image`) and upload date. The following query uses range indexes on both properties:
 
-SQL
-
-```
+```SQL
 SELECT * FROM c
 WHERE c.documentType = 'pdf'
   AND c.uploadDate > '2024-01-01'
@@ -24,18 +22,14 @@ Queries that sort results by multiple properties require composite indexes. The 
 
 The following query sorts documents by relevance score (descending) and then by upload date (descending):
 
-SQL
-
-```
+```SQL
 SELECT * FROM c
 ORDER BY c.relevanceScore DESC, c.uploadDate DESC
 ```
 
 Without a composite index matching this exact pattern, the query fails with an error indicating that a composite index is required. The following indexing policy adds the required composite index:
 
-JSON
-
-```
+```JSON
 {
   "compositeIndexes": [
     [
@@ -54,9 +48,7 @@ Many AI retrieval patterns filter on one property and sort by another. For examp
 
 Consider this query that filters by document type and sorts by upload date:
 
-SQL
-
-```
+```SQL
 SELECT * FROM c
 WHERE c.documentType = 'pdf'
 ORDER BY c.uploadDate DESC
@@ -64,9 +56,7 @@ ORDER BY c.uploadDate DESC
 
 This query uses a range index for the filter and requires the results to be sorted. By rewriting the query to include the filter property in `ORDER BY`, you enable use of a composite index:
 
-SQL
-
-```
+```SQL
 SELECT * FROM c
 WHERE c.documentType = 'pdf'
 ORDER BY c.documentType, c.uploadDate DESC
@@ -74,9 +64,7 @@ ORDER BY c.documentType, c.uploadDate DESC
 
 The rewritten query uses a composite index on `(documentType ASC, uploadDate DESC)`. This optimization significantly reduces RU consumption for queries that filter on one property and sort by another. The following indexing policy supports common filter and sort combinations:
 
-JSON
-
-```
+```JSON
 {
   "compositeIndexes": [
     [
@@ -99,9 +87,7 @@ Queries that filter on multiple properties can benefit from composite indexes. W
 
 The following query filters on three properties:
 
-SQL
-
-```
+```SQL
 SELECT * FROM c
 WHERE c.category = 'reports'
   AND c.department = 'finance'
@@ -110,9 +96,7 @@ WHERE c.category = 'reports'
 
 The equality filters (`category` and `department`) should appear first in the composite index, followed by the range filter (`createdDate`). The following composite index optimizes this query:
 
-JSON
-
-```
+```JSON
 {
   "compositeIndexes": [
     [
@@ -137,9 +121,7 @@ AI applications often store structured data within arrays, such as document chun
 
 Consider a document that stores text chunks with position information:
 
-JSON
-
-```
+```JSON
 {
   "id": "doc-123",
   "title": "Annual Report 2024",
@@ -166,9 +148,7 @@ WHERE chunk.position >= 0
 
 A tuple index on the `chunks` array improves this query's efficiency by indexing the property combinations within each array element. The following path expression defines a tuple index:
 
-JSON
-
-```
+```JSON
 {
   "includedPaths": [
     { "path": "/*" },

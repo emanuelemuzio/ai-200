@@ -20,9 +20,7 @@ Avoid partition keys with low cardinality or skewed distributions. A partition k
 
 The following example shows how to create a container with a partition key configured for product data:
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient, PartitionKey
 
 # Code fragment - focus on container creation with partition key
@@ -78,3 +76,5 @@ Several factors influence RU consumption:
 - **Cross-partition queries:** Queries that span multiple partitions cost more than single-partition queries
 
 Monitor RU consumption by examining response headers from SDK operations. The `x-ms-request-charge` header contains the RU cost for each operation. Aggregate these metrics to understand your application's throughput patterns and identify expensive operations that might benefit from optimization. Azure Monitor and Cosmos DB insights provide dashboards for tracking RU consumption over time.
+
+## [[Unit 3 - Implement the Azure Cosmos DB for NoSQL SDK|Next Unit > Implement the Azure Cosmos DB for NoSQL SDK]]

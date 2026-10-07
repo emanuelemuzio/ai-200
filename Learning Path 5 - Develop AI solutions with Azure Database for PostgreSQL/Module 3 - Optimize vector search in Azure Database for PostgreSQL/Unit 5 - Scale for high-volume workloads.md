@@ -85,3 +85,5 @@ Azure offers significant discounts (up to 65%) for one-year or three-year reserv
 Storage costs accumulate for large vector datasets. Remove unused indexes (each HNSW index adds ~50% to vector storage). Archive old vectors that are rarely queried. Use appropriate precision (float4 vs float8) for your accuracy needs.
 
 Non-production environments don't need production-scale resources. Use Burstable tier for development. Scale down staging when not in active testing. Use smaller datasets in non-production (representative samples, not full copies).
+
+## [[Unit 6 - Connection optimization|Next Unit > Connection optimization]]

@@ -195,3 +195,5 @@ query = Query("*=>[KNN 10 @embedding $query_vec EF_RUNTIME 200 AS score]")
 ```
 
 Higher values improve accuracy but slow queries. Start with 50, increase to 100-200 if needed.
+
+## [[Unit 3 - Choose vector types and indexing strategies|Next Unit > Choose vector types and indexing strategies]]

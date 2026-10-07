@@ -173,3 +173,5 @@ For multitenant applications or product catalogs with natural categories, list o
 Create indexes on the parent table to automatically create matching indexes on all partitions using `CREATE INDEX ON products USING hnsw (embedding vector_cosine_ops);`. Each partition has its own index, which can be built or rebuilt independently. This is valuable for large datasets where rebuilding a single global index would take hours.
 
 Partitioning adds complexity. Queries that span many partitions might be slower than on a single table. Cross-partition unique constraints require the partition key in the constraint. Application logic might need awareness of partition boundaries. Evaluate whether your query patterns align with potential partition keys before implementing partitioning.
+
+## [[Unit 5 - Scale for high-volume workloads|Next Unit > Scale for high-volume workloads]]

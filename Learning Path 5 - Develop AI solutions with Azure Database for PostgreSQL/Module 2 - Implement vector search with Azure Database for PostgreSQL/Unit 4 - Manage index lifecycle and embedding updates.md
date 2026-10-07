@@ -202,3 +202,5 @@ ALTER TABLE documents SET (
 ```
 
 These settings trigger autovacuum when 5% of rows are modified, rather than the default 20%.
+
+## [[Unit 5 - Run vector similarity search for semantic retrieval|Next Unit > Run vector similarity search for semantic retrieval]]

@@ -73,3 +73,5 @@ Safe rollouts combine good artifact identity with clear revision controls. Clean
 - **Verify revision health before shifting traffic:** Use revision status, probe signals, and logs to confirm readiness.
 - **Deactivate before investigating:** Deactivation preserves evidence during troubleshooting and reduces risk.
 - **Define a retention strategy:** Container Apps automatically purges inactive revisions when you exceed 100. You can adjust this threshold with the `--max-inactive-revisions` parameter.
+
+## [[Unit 3 - Manage the container app lifecycle|Next Unit > Manage the container app lifecycle]]

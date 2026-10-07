@@ -8,3 +8,5 @@ After completing this module, you'll be able to:
 - Choose appropriate vector types, distance metrics, and indexing algorithms based on dataset size and accuracy requirements
 - Select optimal Redis data structures (Hash vs JSON) for storing vectors with metadata
 - Build Python applications that index and query high-dimensional embeddings with Azure Managed Redis
+
+## [[Unit 2 - Index and query vector data|Next Unit > Index and query vector data]]

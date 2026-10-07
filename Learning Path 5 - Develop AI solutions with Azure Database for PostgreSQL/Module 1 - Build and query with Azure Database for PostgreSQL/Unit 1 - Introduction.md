@@ -13,3 +13,5 @@ After completing this module, you'll be able to:
 - Create and manage database schemas including tables, indexes, and constraints
 - Write efficient SQL queries for common data operations
 - Integrate Azure Database for PostgreSQL into applications using Python
+
+## [[Unit 2 - Explore Azure Database for PostgreSQL|Next Unit > Explore Azure Database for PostgreSQL]]

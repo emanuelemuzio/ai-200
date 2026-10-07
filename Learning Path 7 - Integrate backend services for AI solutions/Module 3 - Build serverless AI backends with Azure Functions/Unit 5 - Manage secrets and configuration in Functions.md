@@ -91,3 +91,5 @@ func settings encrypt
 ```
 
 For day-to-day development, maintain separate configuration values that point to local resources. Set `AzureWebJobsStorage` to `UseDevelopmentStorage=true` for Azurite, configure Cosmos DB connection strings to target the local emulator endpoint, and use local Redis or PostgreSQL instances. When the app is deployed, these values are replaced by production application settings, Key Vault references, or identity-based connections. This separation ensures that local development never accidentally touches production data or services.
+
+## [[Unit 6 - Configure identity and access for Functions|Next Unit > Configure identity and access for Functions]]

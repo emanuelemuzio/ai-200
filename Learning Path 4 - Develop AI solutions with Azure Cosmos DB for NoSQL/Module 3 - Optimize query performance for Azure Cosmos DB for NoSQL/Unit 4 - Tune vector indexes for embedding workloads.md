@@ -8,9 +8,7 @@ Before you can add a vector index, you must define a vector policy for the conta
 
 The following example shows how vector indexes fit within a complete indexing policy:
 
-JSON
-
-```
+```JSON
 {
   "indexingMode": "consistent",
   "automatic": true,
@@ -112,9 +110,7 @@ Both quantizedFlat and diskANN indexes accept optional parameters that let you t
 
 Most applications perform well with default parameters. Consider tuning only if you observe accuracy issues in production or need to optimize for specific latency targets. The following example shows a vector index with custom parameters:
 
-JSON
-
-```
+```JSON
 {
   "vectorIndexes": [
     {
@@ -133,9 +129,7 @@ Embedding arrays consume significant storage when included in range indexes with
 
 When using the selective indexing strategy (excluding `/*` by default), simply don't include the embedding path in `includedPaths`. When using the default indexing strategy (including `/*`), explicitly add the embedding path to `excludedPaths`:
 
-JSON
-
-```
+```JSON
 {
   "excludedPaths": [
     { "path": "/\"_etag\"/?" },
@@ -154,9 +148,7 @@ This coordination enables pre-filtering that reduces the vector search space. Wh
 
 The following indexing policy supports combined metadata and vector search:
 
-JSON
-
-```
+```JSON
 {
   "indexingMode": "consistent",
   "includedPaths": [

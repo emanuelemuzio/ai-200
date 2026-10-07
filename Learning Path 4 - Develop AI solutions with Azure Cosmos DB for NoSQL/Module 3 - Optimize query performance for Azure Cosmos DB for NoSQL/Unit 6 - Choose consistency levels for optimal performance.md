@@ -87,9 +87,7 @@ Session tokens are partition-bound, meaning each token tracks position within a 
 
 The following example shows configuring session consistency at the client level:
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient, ConsistencyLevel
 
 client = CosmosClient(
@@ -149,9 +147,7 @@ The Python SDK sets the consistency level at the client level when constructing 
 
 You can use stronger consistency for critical operations:
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient, ConsistencyLevel
 
 # Client with strong consistency for critical reads
@@ -171,9 +167,7 @@ results = strong_container.query_items(
 
 You can use weaker consistency for background operations:
 
-Python
-
-```
+```Python
 # Client with eventual consistency for analytics
 eventual_client = CosmosClient(
     url=endpoint,

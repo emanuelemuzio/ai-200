@@ -13,3 +13,5 @@ After completing this module, you'll be able to:
 - Design data layouts that optimize vector storage and metadata filtering performance
 - Scale Azure Database for PostgreSQL to handle high-volume vector workloads
 - Implement connection pooling and session management strategies for AI applications
+
+## [[Unit 2 - Tune PostgreSQL for pgvector|Next Unit > Tune PostgreSQL for pgvector]]

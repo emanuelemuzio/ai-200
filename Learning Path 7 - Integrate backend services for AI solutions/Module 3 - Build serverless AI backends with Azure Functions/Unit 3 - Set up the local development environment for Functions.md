@@ -89,3 +89,5 @@ In Visual Studio Code, you can right-click your function app in the Azure Resour
 The equivalent CLI commands are `func azure functionapp fetch-app-settings <app-name>` to download settings and `func azure functionapp publish <app-name>` to deploy code along with local settings. You can encrypt the local settings file with `func settings encrypt` to protect any secrets stored on your development machine. The encrypted file can only be decrypted by Core Tools on the same machine.
 
 Be mindful of which settings you push to Azure, because overwriting production settings with local development values can break your deployed application. A common practice is to manage production settings through Azure CLI (`az functionapp config appsettings set`) or infrastructure-as-code templates, and reserve `local.settings.json` for development-only values.
+
+## [[Unit 4 - Create triggers and bindings for AI integration patterns|Next Unit > Create triggers and bindings for AI integration patterns]]

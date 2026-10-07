@@ -54,3 +54,5 @@ C. Implement application-level caching with Azure Cache for Redis
 
 > [!answer]- Reveal answer
 > A: Application-level caching with Azure Cache for Redis can reduce database vector queries and latency significantly, making it the best first step for achieving sub-50 ms response times.   
+
+## [[Unit 8 - Summary|Next Unit > Summary]]

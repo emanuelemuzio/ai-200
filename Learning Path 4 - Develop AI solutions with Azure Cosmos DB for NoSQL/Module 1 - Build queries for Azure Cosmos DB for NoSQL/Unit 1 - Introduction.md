@@ -8,3 +8,5 @@ After completing this module, you'll be able to:
 - Implement SDK operations to connect to Azure Cosmos DB and perform CRUD operations on items
 - Select between point reads and queries based on performance requirements and access patterns
 - Build queries using SQL syntax to filter, project, and retrieve data from containers
+
+## [[Unit 2 - Explore Azure Cosmos DB for NoSQL|Next Unit > Explore Azure Cosmos DB for NoSQL]]

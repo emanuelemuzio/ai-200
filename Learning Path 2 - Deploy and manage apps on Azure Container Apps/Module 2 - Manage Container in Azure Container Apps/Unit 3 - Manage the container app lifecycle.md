@@ -55,3 +55,5 @@ az containerapp revision list \
   --query "[].{name:name,active:properties.active,health:properties.healthState}" \
   -o table
 ```
+
+## [[Unit 4 - Monitor logs and troubleshoot issues|Next Unit > Monitor logs and troubleshoot issues]]

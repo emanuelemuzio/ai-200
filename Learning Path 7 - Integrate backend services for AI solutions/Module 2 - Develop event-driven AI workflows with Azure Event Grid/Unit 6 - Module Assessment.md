@@ -54,3 +54,5 @@ C. Store the access key in the function app's application settings
 
 > [!answer]- Reveal answer
 > A: Microsoft Entra ID with a managed identity assigned to the Function App is the recommended production approach because it avoids managing static access keys.
+
+## [[Unit 7 - Summary|Next Unit > Summary]]

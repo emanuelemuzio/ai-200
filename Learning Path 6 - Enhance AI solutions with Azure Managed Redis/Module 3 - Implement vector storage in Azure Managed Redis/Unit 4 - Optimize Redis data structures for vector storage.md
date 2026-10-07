@@ -201,3 +201,5 @@ Use this guide to choose your data structure:
 - Flexibility is more important than raw performance
 
 For most vector search applications with simple metadata, Hash provides the best balance of performance and simplicity. Use JSON when your data complexity requires it.
+
+## [[Unit 5 - Module Assessment|Next Unit > Module Assessment]]

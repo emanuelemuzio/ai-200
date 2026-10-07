@@ -47,3 +47,5 @@ The Standard tier supports queues, topics, and subscriptions with shared broker 
 The Premium tier provides dedicated resources, which means your messaging workload doesn't share compute with other tenants. It supports messages up to 100 MB when using the AMQP protocol (1 MB for HTTP), offers predictable latency, and includes features such as virtual network integration and private endpoints. AI workloads that send large payloads (such as base64-encoded images or serialized embedding vectors) or require predictable submillisecond broker latency benefit from the Premium tier. The Premium tier also supports availability zones for higher reliability.
 
 The Premium tier's larger message size limit (100 MB via AMQP versus 256 KB in Standard) can simplify architectures for AI scenarios that handle medium-sized payloads like document text or small images, allowing you to send payloads directly rather than implementing the claim-check pattern described in a later unit.
+
+## [[Unit 3 - Choose between queues and topics with subscriptions|Next Unit > Choose between queues and topics with subscriptions]]

@@ -13,3 +13,5 @@ After completing this module, you'll be able to:
 - Create and manage vector indexes to optimize search performance
 - Implement embedding update and refresh strategies for evolving datasets
 - Build retrieval patterns that integrate PostgreSQL vector search with RAG pipelines
+
+## [[Unit 2 - Store and query embeddings with pgvector|Next Unit > Store and query embeddings with pgvector]]

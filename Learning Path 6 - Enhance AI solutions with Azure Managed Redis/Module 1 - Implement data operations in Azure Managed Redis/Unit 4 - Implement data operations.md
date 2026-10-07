@@ -18,13 +18,9 @@ Azure Cache for Redis and Azure Managed Redis both use the same libraries for ap
 - Ports for Azure Managed Redis and Enterprise caches: 10000
 - Ports for Azure Cache for Redis instances: 6380
 
-Note
+>**Note**: The clustering policy chosen for an Azure Managed Redis instance impacts the connection method. The following examples work with Enterprise clustering and non-clustered configurations. If you're working with an instance using OSS clustering policy, you need to use `redis.cluster.RedisCluster` instead of `redis.Redis` for your connection.
 
-The clustering policy chosen for an Azure Managed Redis instance impacts the connection method. The following examples work with Enterprise clustering and non-clustered configurations. If you're working with an instance using OSS clustering policy, you need to use `redis.cluster.RedisCluster` instead of `redis.Redis` for your connection.
-
-Python
-
-```
+```Python
 import redis
 
 # Create a Redis client
@@ -39,9 +35,7 @@ r = redis.Redis(
 
 For production environments, consider using Microsoft Entra ID authentication with the `redis-entraid` package for enhanced security.
 
-Python
-
-```
+```Python
 import redis
 from azure.identity import DefaultAzureCredential
 from redis_entraid.cred_provider import create_from_default_azure_credential
@@ -61,9 +55,7 @@ r = redis.Redis(
 )
 ```
 
-Note
-
-All of the remaining code examples in this unit assume a Redis connection is in place. For example, in `r.set('user:1001:name', 'Alice Smith')` the "r" represents the connection.
+>**Note**: All of the remaining code examples in this unit assume a Redis connection is in place. For example, in `r.set('user:1001:name', 'Alice Smith')` the "r" represents the connection.
 
 ## Basic data operations
 
@@ -73,9 +65,7 @@ Redis provides simple yet powerful commands for storing, retrieving, and managin
 
 The most fundamental operations in Redis are storing and retrieving string values using `SET` and `GET` commands.
 
-Python
-
-```
+```Python
 # Store a value
 result = r.set('user:1001:name', 'Alice Smith')
 print(f"SET operation successful: {result}")  # Returns True
@@ -87,9 +77,7 @@ print(f"Retrieved name: {name}")  # Output: Alice Smith
 
 Hashes store multiple field-value pairs within a single key, making them ideal for structured data like user profiles or cached model results.
 
-Python
-
-```
+```Python
 # Store multiple fields in a hash
 r.hset('user:1001', mapping={
     'name': 'Alice Smith',
@@ -110,9 +98,7 @@ print(f"User data: {user_data}")  # Returns dict with all fields
 
 When you need to work with multiple string keys simultaneously, use `MSET` and `MGET` for better performance.
 
-Python
-
-```
+```Python
 # Set multiple keys at once
 r.mset({
     'user:1001:name': 'Alice Smith',
@@ -127,9 +113,7 @@ print(f"User data: {values}")  # Returns list of values
 
 For Hash operations, multiple key operations would involve working with multiple Hash keys (not multiple fields within one Hash).
 
-Python
-
-```
+```Python
 # Using pipeline for multiple hash operations (efficient)
 pipe = r.pipeline()
 pipe.hgetall('user:1001')
@@ -149,9 +133,7 @@ names = pipe.execute()
 
 Before attempting to retrieve or update data, verify whether a key exists. The `EXISTS` command works with all Redis data types because it checks for the presence of a key, not the type of data it contains.
 
-Python
-
-```
+```Python
 # Check if a key exists
 if r.exists('user:1001:name'):
     print("Key exists")
@@ -165,9 +147,7 @@ print(f"Number of existing keys: {count}")  # Returns 2
 
 Remove keys from the cache when data is no longer needed or becomes stale. The `DELETE` command works with all Redis data types, removing the entire key and its associated data.
 
-Python
-
-```
+```Python
 # Delete a single key
 result = r.delete('user:1001:name')
 print(f"Keys deleted: {result}")  # Returns count of deleted keys
@@ -185,9 +165,7 @@ Setting expiration times on keys is crucial for automatic cache invalidation and
 
 Use `SETEX` to set a string value and expiration time in a single atomic operation. For other data types like Hashes or Lists, set the data first, then use `EXPIRE` to add expiration.
 
-Python
-
-```
+```Python
 # Set a key with 60-second expiration
 r.setex('session:abc123', 60, 'user_data')
 
@@ -199,9 +177,7 @@ r.psetex('temp:data', 5000, 'temporary_value')  # Expires in 5000ms
 
 Apply expiration to keys that already exist in the cache. These commands (`EXPIRE`, `PEXPIRE`, `EXPIREAT`) work with all Redis data types.
 
-Python
-
-```
+```Python
 # Set a key without expiration
 r.set('user:1002:preferences', 'dark_mode')
 
@@ -221,9 +197,7 @@ r.expireat('user:1002:preferences', expire_at)
 
 Monitor the time-to-live (TTL) of keys to understand when they expire. These commands (`TTL`, `PTTL`, `PERSIST`) work with all Redis data types since they query or modify key-level expiration settings.
 
-Python
-
-```
+```Python
 # Get TTL in seconds
 ttl = r.ttl('user:1002:preferences')
 if ttl == -1:
@@ -249,9 +223,7 @@ Effective cache invalidation ensures your application serves fresh data while ma
 
 The simplest approach uses TTL to automatically expire cached data after a set period.
 
-Python
-
-```
+```Python
 def cache_database_query(query_key, query_function, ttl=300):
     """
     Cache database query results with automatic expiration.
@@ -285,9 +257,7 @@ product_data = cache_database_query('product:12345', get_product_details, ttl=60
 
 When data changes, explicitly remove or update the cached version to maintain consistency.
 
-Python
-
-```
+```Python
 def update_user_profile(user_id, new_data):
     """
     Update user profile and invalidate related cache entries.
@@ -313,9 +283,7 @@ def save_to_database(user_id, data):
 
 Implement the cache-aside (lazy loading) pattern with automatic expiration for optimal cache usage.
 
-Python
-
-```
+```Python
 def get_user_data(user_id, ttl=3600):
     """
     Retrieve user data using cache-aside pattern.
@@ -349,9 +317,7 @@ def fetch_from_database(user_id):
 
 Delete multiple related keys using pattern matching with the `SCAN` command (not `KEYS`, which blocks the server).
 
-Python
-
-```
+```Python
 def invalidate_user_cache(user_id):
     """
     Invalidate all cache entries for a specific user.
@@ -387,3 +353,5 @@ Following these practices ensures your Redis implementation is robust, performan
     - Static reference data: 24+ hours
 
 Consider your application's requirements for data freshness versus cache hit rates when determining TTL values.
+
+## [[Unit 5 - Module Assessment|Next Unit > Module Assessment]]

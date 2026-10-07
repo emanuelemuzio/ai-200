@@ -10,9 +10,7 @@ When you subscribe multiple services to the same Redis pub/sub channel, every su
 
 Redis delivers each published message to all active subscribers of that channel. If you have five AI services subscribed to `ai:models:updated`, and you publish one message to that channel, all five services receive the same message at the same time.
 
-Python
-
-```
+```Python
 # Publisher service
 redis_client.publish('ai:cache:invalidate', 'embeddings-v2')
 
@@ -31,9 +29,7 @@ Use pub/sub when you need all your services to react to the same event:
 
 - **Cache invalidation across multiple API instances:** When your AI model is updated, all API instances need to clear their model cache simultaneously. Publishing to a channel ensures every instance receives the invalidation signal.
     
-    Python
-    
-    ```
+    ```Python
     # Model update service
     def update_model(model_id, new_version):
         save_model_to_storage(model_id, new_version)
@@ -419,3 +415,5 @@ async def event_listener_service():
             # Each service processes events independently
             handle_event(message['data'])
 ```
+
+## [[Unit 5 - Module Assessment|Next Unit > Module Assessment]]

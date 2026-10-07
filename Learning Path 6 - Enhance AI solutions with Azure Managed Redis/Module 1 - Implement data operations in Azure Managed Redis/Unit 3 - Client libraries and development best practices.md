@@ -67,3 +67,5 @@ Monitor these key metrics and scale when they consistently exceed 75%:
 - **Choose the right tier**: Select from Memory Optimized, Balanced, Compute Optimized, or Flash Optimized based on performance testing
 - **Enable high availability**: Use high availability mode for production workloads; only disable for development/test environments
 - **Implement data protection**: Enable data persistence for quick recovery or use import/export for periodic backups to your storage account
+
+## [[Unit 4 - Implement data operations|Next Unit > Implement data operations]]

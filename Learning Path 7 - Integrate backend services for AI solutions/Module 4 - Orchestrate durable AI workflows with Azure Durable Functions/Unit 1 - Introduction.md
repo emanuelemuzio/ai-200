@@ -9,3 +9,5 @@ After completing this module, you'll be able to:
 - Implement fan-out/fan-in processing for independent documents or media items.
 - Build human approval flows with external events and durable timers.
 - Apply retries, timeouts, idempotency, and compensation to failed workflow steps.
+
+## [[Unit 2 - Separate orchestration logic from activity work|Next Unit > Separate orchestration logic from activity work]]

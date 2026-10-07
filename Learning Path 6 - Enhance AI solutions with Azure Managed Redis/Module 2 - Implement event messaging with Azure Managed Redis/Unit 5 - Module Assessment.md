@@ -54,3 +54,5 @@ C. Use pub/sub channels with one channel per worker
 
 > [!answer]- Reveal answer
 > A: Consumer groups in Streams automatically distribute pending tasks among workers. Each task is assigned to one worker until acknowledged, preventing duplicate processing.
+
+## [[Unit 6 - Summary|Next Unit > Summary]]

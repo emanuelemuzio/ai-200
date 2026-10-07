@@ -186,3 +186,5 @@ with ServiceBusClient(
 ```
 
 For long operations that consistently exceed even the extended renewal period, consider a two-phase processing approach. In the first phase, the processor receives the message, records the request in a tracking store, and completes the message quickly. In the second phase, a separate process picks up work from the tracking store and performs the long-running inference. This approach avoids lock management entirely for the long-running portion and uses the queue solely for reliable initial delivery.
+
+## [[Unit 6 - Module Assessment|Next Unit > Module Assessment]]

@@ -8,3 +8,5 @@ After completing this module, you'll be able to:
 - Design events using the CloudEvents schema for AI operations, define custom event types, and configure event subscriptions with filters that route events based on type, subject, or data attributes.
 - Configure delivery and retry policies to handle transient failures in AI pipelines, set dead-letter destinations for undeliverable events, and monitor delivery outcomes.
 - Publish custom events from AI applications to signal completed inferences, model updates, or pipeline stage transitions using the Event Grid SDK and REST API.
+
+## [[Unit 2 - Understand Azure Event Grid concepts and event-driven patterns for AI solutions|Next Unit > Understand Azure Event Grid concepts and event-driven patterns for AI solutions]]

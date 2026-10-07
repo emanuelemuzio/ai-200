@@ -42,4 +42,6 @@ One tier stores data both in-memory and on-disk:
 
 - **Flash Optimized (preview)** Enables Redis clusters to automatically move less frequently accessed data from memory (RAM) to NVMe storage. This reduces performance, but allows for cost-effective scaling of caches with large datasets.
 
-For a detailed feature comparison of the tiers, visit [About Azure Managed Redis](https://learn.microsoft.com/en-us/azure/redis/overview#choosing-the-right-tier)
+
+
+## [[Unit 3 - Client libraries and development best practices|Next Unit > Client libraries and development best practices]]

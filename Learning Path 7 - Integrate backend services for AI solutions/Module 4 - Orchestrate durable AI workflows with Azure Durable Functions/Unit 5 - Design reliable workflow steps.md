@@ -133,3 +133,5 @@ Every workflow branch should reach an explicit status such as `Completed`, `Reje
 Include the orchestration instance ID, operation ID, document ID, activity name, and attempt information in telemetry. Application Insights distributed tracing can correlate orchestrator and activity executions, while replay-safe logging prevents duplicate orchestrator messages from obscuring actual attempts. Never log document contents, prompts, model credentials, or approval tokens.
 
 Use custom orchestration status for a compact progress indicator when clients need it. Store detailed per-document results in an external data service and return references from the workflow. This design keeps orchestration history manageable and gives operations teams enough context to investigate a terminal failure.
+
+## [[Unit 6 - Module Assessment|Next Unit > Module Assessment]]

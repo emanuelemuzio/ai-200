@@ -9,3 +9,5 @@ Imagine you deploy an AI inference API that serves models at scale. The service 
 - Implement Secrets for sensitive values and consume them securely in Pods
 - Attach persistent storage using PersistentVolume and PersistentVolumeClaim for stateful AI workloads
 - Deploy and verify configuration and storage on AKS using `kubectl`
+
+## [[Unit 2 - Define ConfigMaps for application settings|Next Unit > Define ConfigMaps for application settings]]

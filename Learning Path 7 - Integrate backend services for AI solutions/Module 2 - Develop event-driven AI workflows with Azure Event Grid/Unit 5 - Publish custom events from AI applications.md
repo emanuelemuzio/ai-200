@@ -200,3 +200,5 @@ Publish when a model is retrained, validated, or promoted to production. Include
 Publish at each stage boundary in a multi-step pipeline. Include the pipeline run ID, stage name, stage status, and input and output references. A monitoring service subscribes to these events to build a real-time view of pipeline progress and detect bottlenecks. An orchestration service uses them to trigger the next stage when the previous one completes.
 
 Each of these patterns follows the same core principle: the event describes what happened and provides enough context for subscribers to act. The event producer doesn't need to know who subscribes or what they do with the information. This decoupling is what makes event-driven AI architectures extensible. Adding a new consumer is a matter of creating a new event subscription, not modifying the producer.
+
+## [[Unit 6 - Module Assessment|Next Unit > Module Assessment]]

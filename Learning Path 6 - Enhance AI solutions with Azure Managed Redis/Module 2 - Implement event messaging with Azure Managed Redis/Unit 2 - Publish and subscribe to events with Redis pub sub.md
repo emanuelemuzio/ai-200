@@ -85,9 +85,7 @@ This section provides code examples showing how to implement pub/sub in your AI 
 
 Use `PUBLISH` to send messages to channels. Publishers are typically part of your API handlers or services that detect events worth broadcasting.
 
-Python
-
-```
+```Python
 # Publish a cache invalidation event
 def notify_model_updated(model_name, version):
     message = f"{model_name}:{version}"
@@ -102,9 +100,7 @@ def notify_embeddings_refreshed(collection_id):
 
 Use `SUBSCRIBE` to listen to specific channels. Subscribers run in background services or worker processes that react to events.
 
-Python
-
-```
+```Python
 # Subscribe to specific channels
 pubsub = redis_client.pubsub()
 pubsub.subscribe('ai:models:updated', 'ai:embeddings:refresh')
@@ -127,9 +123,7 @@ for message in pubsub.listen():
 
 Use `PSUBSCRIBE` to subscribe to multiple channels with pattern matching. This is useful when you want to listen to all channels in a category.
 
-Python
-
-```
+```Python
 # Subscribe to all AI-related channels
 pubsub = redis_client.pubsub()
 pubsub.psubscribe('ai:*')
@@ -149,9 +143,7 @@ for message in pubsub.listen():
 
 Combine pub/sub with WebSocket connections to push real-time AI updates to browser clients.
 
-Python
-
-```
+```Python
 from fastapi import FastAPI, WebSocket
 import redis.asyncio as redis
 import asyncio
@@ -184,3 +176,5 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
     await websocket.accept()
     await redis_listener(websocket)
 ```
+
+## [[Unit 3 - Implement task queues with Redis Streams|Next Unit > Implement task queues with Redis Streams]]

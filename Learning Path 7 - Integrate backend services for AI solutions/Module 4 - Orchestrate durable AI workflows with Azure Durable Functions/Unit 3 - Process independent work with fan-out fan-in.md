@@ -104,3 +104,5 @@ One orchestrator performs the fan-in step on one worker at a time. A single flat
 For example, a parent orchestration can divide a large claim archive by policy or month. Each child orchestration fans out its own document activities and returns counts plus result locations. The parent then aggregates those summaries instead of every individual document result. This approach reduces the amount of state handled by one orchestration and gives each partition an independent status.
 
 Sub-orchestrations add coordination and history records, so they aren't necessary for small batches. Start with a direct fan-out/fan-in pattern, measure execution and replay behavior, and introduce partitioning when batch size or aggregation cost justifies the added structure. For storage-provider and concurrency settings, see [Performance and scale in Durable Functions](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-perf-and-scale).
+
+## [[Unit 4 - Coordinate human approval with external events|Next Unit > Coordinate human approval with external events]]

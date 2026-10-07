@@ -178,3 +178,5 @@ CREATE TABLE sparse_documents (
 > **Note**: HNSW indexes on `sparsevec` columns support up to 1,000 non-zero elements. If your sparse vectors exceed this limit, consider dimensionality reduction or alternative indexing strategies.
 
 For most AI applications using dense embeddings from models like OpenAI or sentence transformers, use the standard `vector` type. Consider `halfvec` only after benchmarking confirms that half-precision provides acceptable search quality for your specific use case.
+
+## [[Unit 3 - Perform fast vector similarity search|Next Unit > Perform fast vector similarity search]]

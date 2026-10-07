@@ -145,3 +145,5 @@ az eventgrid topic create \
 ```
 
 When creating an event subscription, the `event-delivery-schema` parameter controls the format delivered to the handler. Event Grid can convert between Event Grid schema and CloudEvents schema during delivery. If your topic uses the Event Grid schema but your handler expects CloudEvents, you can set the output schema accordingly. However, CloudEvents-to-Event Grid conversion isn't supported because CloudEvents supports extension attributes that the Event Grid schema can't represent. For new implementations using CloudEvents throughout, you can omit this parameter and the events deliver in the same format they were published.
+
+## [[Unit 4 - Configure delivery and retry policies for reliable event processing|Next Unit > Configure delivery and retry policies for reliable event processing]]

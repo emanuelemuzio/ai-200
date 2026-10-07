@@ -149,3 +149,5 @@ Apply these practices to production workflows:
 - **Retry with evidence:** Repeat only bounded, idempotent operations after evaluating the observed state.
 - **Clean up intentionally:** Delete completed sessions when immediate data removal or capacity recovery matters.
 - **Log safely:** Record timing, status, and trace IDs without recording tokens, sensitive code, or raw documents.
+
+## [[Unit 6 - Module Assessment|Next Unit > Module Assessment]]

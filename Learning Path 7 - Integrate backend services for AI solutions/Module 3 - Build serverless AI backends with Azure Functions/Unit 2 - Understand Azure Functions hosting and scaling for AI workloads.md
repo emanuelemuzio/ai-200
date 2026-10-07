@@ -64,3 +64,5 @@ def accept_document(req: func.HttpRequest, queue_msg: func.Out[str]) -> func.Htt
 ```
 
 This pattern also decouples ingestion throughput from processing throughput. The HTTP endpoint can accept hundreds of requests per second, while the Service Bus-triggered processor scales independently based on queue depth. Each component scales to its own optimal instance count without affecting the other.
+
+## [[Unit 3 - Set up the local development environment for Functions|Next Unit > Set up the local development environment for Functions]]

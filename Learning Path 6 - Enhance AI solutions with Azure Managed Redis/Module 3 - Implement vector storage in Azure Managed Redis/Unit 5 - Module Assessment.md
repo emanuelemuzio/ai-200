@@ -54,3 +54,5 @@ C. The distance metric used for similarity calculations
 
 > [!answer]- Reveal answer
 > A: Higher EF_RUNTIME values improve accuracy by exploring more of the graph, but slow down queries. Lower values are faster but less accurate.
+
+## [[Unit 6 - Summary|Next Unit > Summary]]

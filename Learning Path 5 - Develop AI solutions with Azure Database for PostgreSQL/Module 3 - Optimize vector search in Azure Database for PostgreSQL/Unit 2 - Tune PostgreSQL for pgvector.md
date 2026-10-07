@@ -88,3 +88,5 @@ Effective tuning follows a systematic approach rather than random parameter chan
 - **Test with production-like data:** Query performance varies dramatically with data size and distribution. Tuning on small test datasets often produces settings that fail at scale.
 - **Monitor for regressions:** Parameters that improve vector search might negatively affect other workloads. Monitor overall system health after changes.
 - **Document your settings:** Record what you changed, why, and what effect it had. This documentation is invaluable when troubleshooting future issues.
+
+## [[Unit 3 - Choose and configure vector indexes|Next Unit > Choose and configure vector indexes]]

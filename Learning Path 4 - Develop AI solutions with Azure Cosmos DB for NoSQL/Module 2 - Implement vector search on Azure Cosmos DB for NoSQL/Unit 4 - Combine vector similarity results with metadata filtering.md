@@ -6,9 +6,7 @@ You can combine vector similarity search with standard filter predicates in the 
 
 The following query combines vector search with filters on category and date:
 
-Python
-
-```
+```Python
 query = """
     SELECT TOP 10
         c.id,
@@ -51,41 +49,31 @@ Different AI applications benefit from different filtering strategies. Consider 
 
 **Filter by document type:** Restrict searches to specific content types like FAQs, troubleshooting guides, or release notes.
 
-SQL
-
-```
+```SQL
 WHERE c.documentType = 'troubleshooting-guide'
 ```
 
 **Filter by date range:** Find recent content or content within a specific time window.
 
-SQL
-
-```
+```SQL
 WHERE c.createdDate >= '2024-01-01' AND c.createdDate < '2025-01-01'
 ```
 
 **Filter by product or version:** Narrow results to specific products the customer uses.
 
-SQL
-
-```
+```SQL
 WHERE c.productId IN ('router-x100', 'router-x200')
 ```
 
 **Filter by access permissions:** Ensure users only see content they're authorized to access.
 
-SQL
-
-```
+```SQL
 WHERE ARRAY_CONTAINS(c.accessGroups, @userGroup)
 ```
 
 **Filter by status:** Exclude draft, archived, or deprecated content.
 
-SQL
-
-```
+```SQL
 WHERE c.status = 'published'
 ```
 
@@ -97,9 +85,7 @@ When your query's `WHERE` clause includes the partition key, Azure Cosmos DB rou
 
 For the support knowledge base using `/category` as the partition key, queries filtered by category automatically benefit from partition targeting:
 
-Python
-
-```
+```Python
 query = """
     SELECT TOP 10
         c.id,
@@ -131,9 +117,7 @@ RRF merges rankings from multiple scoring functions into a unified result set. D
 
 Before using hybrid search, configure your container with both a vector policy and a full-text policy. The full-text policy specifies which text properties support keyword search:
 
-JSON
-
-```
+```JSON
 {
     "defaultLanguage": "en-US",
     "fullTextPaths": [
@@ -147,9 +131,7 @@ JSON
 
 The indexing policy must include both vector and full-text indexes:
 
-JSON
-
-```
+```JSON
 {
     "vectorIndexes": [
         {"path": "/embedding", "type": "diskANN"}
@@ -162,9 +144,7 @@ JSON
 
 With these policies configured, hybrid queries use the `ORDER BY RANK RRF` clause:
 
-SQL
-
-```
+```SQL
 SELECT TOP 10 *
 FROM c
 ORDER BY RANK RRF(
@@ -181,9 +161,7 @@ You can adjust how much influence each scoring component has on final rankings b
 
 The following query weights vector search twice as heavily as full-text search:
 
-SQL
-
-```
+```SQL
 SELECT TOP 10 *
 FROM c
 ORDER BY RANK RRF(
@@ -205,9 +183,7 @@ You can experiment with different weight combinations using representative queri
 
 Some applications store multiple embeddings per document—for example, separate embeddings for title and content, or embeddings from different models. You can combine similarity scores from multiple `VectorDistance` calls using `RRF` to find documents that match across different embedding spaces.
 
-SQL
-
-```
+```SQL
 SELECT TOP 10 *
 FROM c
 ORDER BY RANK RRF(

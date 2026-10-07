@@ -32,3 +32,5 @@ Optimization is iterative. You use logs and metrics to identify bottlenecks, the
 - **Align concurrency with CPU:** If your API uses high concurrency, validate that the per-replica CPU can support it without latency spikes.
 - **Use minimum replicas intentionally:** Minimum replicas reduce cold starts, but they also increase baseline cost.
 - **Reassess after model changes:** Model versions can change startup time, memory usage, and request latency.
+
+## [[Unit 7 - Module Assessment|Next Unit > Module Assessment]]

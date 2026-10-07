@@ -34,3 +34,5 @@ During an incident, use a workflow that narrows scope quickly:
 2. Stream logs while you reproduce the issue or while the failing revision starts.
 3. Compare configuration between a working revision and a failing revision.
 4. Apply a targeted fix and validate the next revision becomes ready.
+
+## [[Unit 5 - Configure health probes and troubleshoot failures|Next Unit > Configure health probes and troubleshoot failures]]

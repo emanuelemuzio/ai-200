@@ -77,3 +77,5 @@ Handling secrets securely on Azure Kubernetes Service (AKS) requires careful pla
 - **Integrate with Azure Key Vault for production:** Use the Key Vault CSI driver for automated rotation, detailed audit trails, and secrets that stay in a dedicated vault. The CSI driver syncs rotated secrets automatically without manual Kubernetes updates.
 - **Centralize secret mappings with App Configuration:** Use App Configuration with Key Vault references when you want to manage which secrets each application uses from a central location while keeping actual values in Key Vault.
 - **Enable encryption at rest:** Configure etcd encryption when you create your cluster for an extra layer of protection. Combine with Key Vault integration for comprehensive security including rotation and audit capabilities.
+
+## [[Unit 3 - Attach persistent storage to an app|Next Unit > Attach persistent storage to an app]]

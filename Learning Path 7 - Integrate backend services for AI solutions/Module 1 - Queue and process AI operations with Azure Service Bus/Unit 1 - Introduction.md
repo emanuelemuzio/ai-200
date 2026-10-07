@@ -8,3 +8,5 @@ After completing this module, you'll be able to:
 - Choose between Service Bus queues and topics with subscriptions based on whether an AI workflow requires single-consumer processing or fan-out to multiple consumers.
 - Structure Service Bus messages for AI workloads, including serializing prompts and model parameters, handling large payloads with the claim-check pattern, and including correlation IDs for end-to-end request tracking.
 - Process messages reliably using peek-lock receive mode, handle poison messages through dead-letter queues, and monitor the dead-letter queue for failed inferences.
+
+## [[Unit 2 - Explore Azure Service Bus concepts and messaging in AI architectures|Next Unit > Explore Azure Service Bus concepts and messaging in AI architectures]]

@@ -215,3 +215,5 @@ kubectl describe svc inference-api-service
 - Verify Pod labels match the Service selector: compare `kubectl get pods --show-labels` with the Service's selector
 - Update either the Pod labels or Service selector so they match
 - Ensure the Deployment's Pod template has the correct label matching the Service selector
+
+## [[Unit 5 - Module Assessment|Next Unit > Module Assessment]]

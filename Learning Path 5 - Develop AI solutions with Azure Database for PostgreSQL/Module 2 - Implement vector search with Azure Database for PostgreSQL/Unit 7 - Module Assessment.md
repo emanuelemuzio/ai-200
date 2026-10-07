@@ -54,3 +54,5 @@ C. Always returning vector search results first
 
 > [!answer]- Reveal answer
 > A: Reciprocal Rank Fusion (RRF) combines the rankings from vector and full-text search, balancing their contributions without requiring directly comparable score scales.
+
+## [[Unit 8 - Summary|Next Unit > Summary]]

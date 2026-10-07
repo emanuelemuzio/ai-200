@@ -40,9 +40,7 @@ Azure Functions provides the simplest integration with the change feed. The Cosm
 
 The following Python function regenerates embeddings when documents change in the knowledge base container:
 
-Python
-
-```
+```Python
 import azure.functions as func
 from openai import AzureOpenAI
 from azure.cosmos import CosmosClient
@@ -120,9 +118,7 @@ Regenerating embeddings for every document change is expensive because embedding
 
 The following approach compares document versions to determine whether embedding refresh is needed:
 
-Python
-
-```
+```Python
 def should_refresh_embedding(current_doc, previous_doc=None):
     """
     Determine if document changes require new embeddings.
@@ -149,9 +145,7 @@ def should_refresh_embedding(current_doc, previous_doc=None):
 
 In production, you might store a hash of the content used to generate the embedding, enabling efficient comparison without retrieving previous versions:
 
-Python
-
-```
+```Python
 import hashlib
 
 def compute_content_hash(doc):
@@ -175,9 +169,7 @@ Applications with frequent document updates need strategies to manage embedding 
 
 **Batch API calls:** Group multiple texts into a single embedding API call where the API supports batching. Azure OpenAI accepts arrays of input texts, generating embeddings for all in one request with lower per-item overhead.
 
-Python
-
-```
+```Python
 # Batch multiple texts in a single API call
 texts_to_embed = [doc.get("content", "") for doc in batch_documents]
 
@@ -200,9 +192,7 @@ for i, doc in enumerate(batch_documents):
 
 When Azure Functions isn't suitable (for example, in batch processing scenarios or when you need more control), you can use the pull model to read changes directly using the SDK. The Python SDK supports reading the change feed through the `query_items_change_feed` method.
 
-Python
-
-```
+```Python
 from azure.cosmos import CosmosClient
 
 cosmos_client = CosmosClient(endpoint, credential)
@@ -245,9 +235,7 @@ For embedding refresh, idempotency is straightforward: regenerating an embedding
 - **Concurrent updates:** While processing a change, the same document might be updated again. Use optimistic concurrency with ETags if strict consistency is required.
 - **API failures:** If embedding generation fails, the change might be retried. Implement appropriate retry logic and consider dead-letter queues for repeatedly failing documents.
 
-Python
-
-```
+```Python
 from azure.cosmos.exceptions import CosmosResourceNotFoundError
 
 def process_document_change(doc, container, openai_client):

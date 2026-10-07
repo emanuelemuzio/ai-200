@@ -8,3 +8,5 @@ After completing this module, you'll be able to:
 - Implement Redis Streams for reliable task queues with automatic retry and failure recovery
 - Choose between pub/sub and Streams based on whether you need broadcast or coordinated work distribution
 - Build Python applications that use pub/sub for notifications and Streams for processing pipelines
+
+## [[Unit 2 - Publish and subscribe to events with Redis pub sub|Next Unit > Publish and subscribe to events with Redis pub sub]]

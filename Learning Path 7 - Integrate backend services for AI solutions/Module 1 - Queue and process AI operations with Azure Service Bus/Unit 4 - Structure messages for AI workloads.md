@@ -175,3 +175,5 @@ with client.get_queue_sender("inference-requests") as sender:
 ```
 
 The `add_message()` method raises a `MessageSizeExceededError` when the message would exceed the batch's size limit. The previous pattern handles this by sending the full batch and starting a new one. This approach ensures that all messages are sent even when the full list doesn't fit in a single batch. For AI workloads that generate many small inference requests in a short period, such as a document processing pipeline that splits a large document into page-level requests, batching significantly reduces send latency.
+
+## [[Unit 5 - Process messages reliably|Next Unit > Process messages reliably]]
