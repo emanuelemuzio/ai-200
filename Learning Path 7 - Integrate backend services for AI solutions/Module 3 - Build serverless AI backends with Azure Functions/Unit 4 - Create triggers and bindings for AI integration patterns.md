@@ -14,9 +14,7 @@ HTTP triggers turn a function into a REST API endpoint that responds to HTTP req
 
 In the Python v2 programming model, you define HTTP triggers using the `@app.route()` decorator. The decorator specifies the route path, accepted HTTP methods, and authorization level. The function receives an `HttpRequest` object containing headers, query parameters, and the request body, and returns an `HttpResponse` with the result.
 
-Python
-
-```
+```Python
 # Code fragment - focus on HTTP trigger for an inference endpoint
 import azure.functions as func
 import json
@@ -50,9 +48,7 @@ A common AI pattern pairs an HTTP endpoint with a Service Bus trigger. The HTTP 
 
 In the Python v2 model, you define Service Bus queue triggers using the `@app.service_bus_queue_trigger()` decorator. The decorator specifies the queue name and the connection setting that resolves to the Service Bus namespace connection string or identity-based connection.
 
-Python
-
-```
+```Python
 # Code fragment - focus on Service Bus queue trigger for processing work items
 @app.service_bus_queue_trigger(arg_name="msg", queue_name="document-jobs", connection="ServiceBusConnection")
 def process_document(msg: func.ServiceBusMessage) -> None:
@@ -69,9 +65,7 @@ def process_document(msg: func.ServiceBusMessage) -> None:
 
 You can configure concurrency behavior for Service Bus triggers in `host.json`. The `maxConcurrentCalls` property controls how many messages each instance processes simultaneously, and `maxAutoLockRenewalDuration` sets how long the runtime renews the message lock while processing continues. For AI workloads that perform resource-intensive processing per message, setting `maxConcurrentCalls` to `1` ensures each message gets the full instance resources. The `maxAutoLockRenewalDuration` should be set high enough to cover your longest expected processing time, so the lock doesn't expire while an AI service call is still in progress.
 
-JSON
-
-```
+```JSON
 {
     "version": "2.0",
     "extensions": {
@@ -91,9 +85,7 @@ Output bindings write data to external services without requiring explicit SDK c
 
 Common output binding targets for AI workloads include Azure Blob Storage for storing processed documents and binary artifacts, Azure Cosmos DB for writing structured inference results, and Azure Service Bus for fanning out work to downstream processors. The following example shows a Service Bus-triggered function that uses a Blob Storage output binding to save processed text:
 
-Python
-
-```
+```Python
 # Code fragment - focus on output binding for storing results
 @app.service_bus_queue_trigger(arg_name="msg", queue_name="document-jobs", connection="ServiceBusConnection")
 @app.blob_output(arg_name="output_blob", path="results/{rand-guid}.json", connection="AzureWebJobsStorage")
@@ -113,9 +105,7 @@ When a function needs to return an HTTP response and write to an output binding 
 
 Cosmos DB output bindings write JSON documents directly to a container. You can specify the database name, container name, and connection setting in the decorator. The runtime serializes your output object and inserts or upserts it into the target container.
 
-Python
-
-```
+```Python
 # Code fragment - focus on Cosmos DB output binding
 @app.service_bus_queue_trigger(arg_name="msg", queue_name="classification-results", connection="ServiceBusConnection")
 @app.cosmos_db_output(
@@ -141,9 +131,7 @@ The triggers and bindings model doesn't cover every Azure service. For services 
 
 When creating SDK clients, initialize the client object outside the function handler so it persists across invocations on the same instance. Client initialization typically involves establishing connections, loading configuration, and caching authentication tokens. By placing this initialization at the module level, you avoid repeating this overhead on every function invocation.
 
-Python
-
-```
+```Python
 # Code fragment - focus on SDK client initialization and reuse
 from azure.identity import DefaultAzureCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient

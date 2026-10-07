@@ -6,9 +6,7 @@ Application settings are key-value pairs that you configure in the Azure portal,
 
 In Python, you access application settings using `os.environ` for required settings or `os.getenv` for settings with fallback defaults. This pattern keeps your function code environment-agnostic, since the same code reads configuration from `local.settings.json` during development and from Azure-managed application settings in production.
 
-Python
-
-```
+```Python
 # Code fragment - focus on reading application settings
 import os
 
@@ -50,9 +48,7 @@ Azure App Configuration provides a centralized store for non-secret configuratio
 
 You connect to App Configuration using the App Configuration provider library for your language. In Python, the `azure-appconfiguration-provider` library loads configuration values during function startup and makes them available throughout the function's lifetime. The provider supports label-based filtering, which lets you load different configuration sets for different environments (development, staging, production) from the same App Configuration store.
 
-Python
-
-```
+```Python
 # Code fragment - focus on loading configuration from App Configuration
 from azure.appconfiguration.provider import load
 from azure.identity import DefaultAzureCredential
@@ -76,17 +72,13 @@ Local development requires reproducing the same configuration structure that run
 
 You can pull current application settings from a deployed function app into your local configuration using the Azure Functions Core Tools command. This command downloads all settings and writes them to `local.settings.json`, which is useful when you need to quickly replicate a production or staging environment's configuration locally.
 
-Bash
-
-```
+```Bash
 func azure functionapp fetch-app-settings <function-app-name>
 ```
 
 Because `local.settings.json` might contain connection strings or API keys after fetching settings, you can encrypt the file with Core Tools to protect secrets at rest on your development machine. The encrypted file is still readable by the local Functions runtime, but the values aren't visible in plaintext in your editor or file system.
 
-Bash
-
-```
+```Bash
 func settings encrypt
 ```
 

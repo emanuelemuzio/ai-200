@@ -29,9 +29,7 @@ Avoid the following operations in orchestrator functions:
 
 The following fragment uses orchestration-safe time to calculate a review deadline. During replay, `context.current_utc_datetime` returns the same value, so the orchestrator schedules the same timer every time it rebuilds state.
 
-Python
-
-```
+```Python
 # Code fragment - focus on deterministic orchestration time
 from datetime import timedelta
 import azure.durable_functions as df
@@ -55,9 +53,7 @@ The separation matters for AI workloads because model responses are nondetermini
 
 The following Python v2 programming-model fragments show the boundary. The orchestrator schedules an activity with a compact blob reference. The activity then reads the document and calls the configured model client.
 
-Python
-
-```
+```Python
 # Code fragment - focus on orchestration and activity boundaries
 import azure.durable_functions as df
 
@@ -104,9 +100,7 @@ Use replay-safe logging support where the language SDK provides it, or check `co
 
 The following fragment suppresses a custom orchestrator message during replay. It doesn't suppress errors from activities or replace end-to-end tracing.
 
-Python
-
-```
+```Python
 # Code fragment - focus on replay-aware orchestrator logging
 import logging
 

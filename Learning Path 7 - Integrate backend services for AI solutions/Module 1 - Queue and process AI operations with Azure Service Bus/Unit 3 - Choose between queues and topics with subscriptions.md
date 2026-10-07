@@ -22,9 +22,7 @@ Three filter types are available. Boolean filters accept all messages (`TrueFilt
 
 For AI workloads, you can tag messages with application properties such as `model_name`, `priority`, or `document_type`, and each subscription receives only messages that match its filter. A high-priority subscription can filter on `priority = 'high'` to route urgent inference requests to a dedicated processor with reserved GPU capacity. A subscription for a specific model version can filter on `model_name = 'gpt-4o'` to process only requests targeting that model.
 
-Python
-
-```
+```Python
 # Code fragment - focus on creating a subscription rule with the management client
 from azure.servicebus.management import ServiceBusAdministrationClient, SqlRuleFilter
 
@@ -41,9 +39,7 @@ admin_client.create_rule(
 )
 ```
 
-Note
-
-Code examples in this module are patterns to adapt to your specific requirements. They illustrate the SDK's API surface and aren't intended for direct copy-paste into production applications.
+> **Note**: Code examples in this module are patterns to adapt to your specific requirements. They illustrate the SDK's API surface and aren't intended for direct copy-paste into production applications.
 
 ## Decide between queues and topics
 
@@ -65,9 +61,7 @@ You can use a **topic with subscriptions** when:
 
 The Python `azure-servicebus` SDK uses the same `ServiceBusClient` class for both queues and topics. The difference is in how you create senders and receivers. You can call `get_queue_sender()` to send to a queue or `get_topic_sender()` to publish to a topic. On the receiving side, you can call `get_queue_receiver()` for queue consumers or `get_subscription_receiver()` for subscription consumers. This consistent API makes it straightforward to switch between patterns or use both patterns in the same application.
 
-Python
-
-```
+```Python
 # Code fragment - focus on sending to a queue versus a topic
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 from azure.identity import DefaultAzureCredential
@@ -93,9 +87,7 @@ with ServiceBusClient(
 
 On the receiving side, a subscription receiver connects to a specific subscription on a topic. Each subscription maintains its own copy of the messages, so consuming from one subscription doesn't affect the message availability in other subscriptions.
 
-Python
-
-```
+```Python
 # Code fragment - focus on receiving from a subscription
 with client.get_subscription_receiver(
     topic_name="inference-results",

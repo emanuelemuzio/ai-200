@@ -12,9 +12,7 @@ The most common serialization format for AI workload messages is JSON, because i
 
 Setting the `content_type` property to `application/json` signals clients and processors about the encoding format. The processor deserializes the body on receipt using standard JSON parsing and passes the extracted parameters to the model inference call.
 
-Python
-
-```
+```Python
 # Code fragment - focus on creating a message with a JSON payload
 import json
 import uuid
@@ -41,9 +39,6 @@ message = ServiceBusMessage(
 )
 ```
 
-Note
-
-Code examples in this module are patterns to adapt to your specific requirements. They illustrate the SDK's API surface and aren't intended for direct copy-paste into production applications.
 
 The `message_id` uniquely identifies the message within Service Bus. If you enable duplicate detection on the queue, Service Bus uses this ID to discard duplicate submissions within the detection window. Always generate a unique `message_id` per message to avoid accidental deduplication of distinct requests.
 
@@ -55,9 +50,7 @@ When troubleshooting a failed inference, you can search logs, dead-letter queues
 
 If your system uses distributed tracing with OpenTelemetry, you can propagate the trace context as application properties. This approach connects the message processing span to the originating request span in your tracing backend, providing a unified view of the request's journey across synchronous and asynchronous boundaries.
 
-Python
-
-```
+```Python
 # Code fragment - focus on propagating trace context in application properties
 from opentelemetry import trace
 
@@ -80,9 +73,7 @@ Service Bus Standard tier supports messages up to 256 KB, and Premium tier suppo
 
 With the claim-check pattern, the producer uploads the large payload to Azure Blob Storage (or another durable store) and sends a Service Bus message that contains only the blob URI as a reference. The message body stays small, typically just a JSON object with the storage location and metadata. The processor retrieves the full payload from storage using the URI, processes it, and optionally deletes the blob after successful processing.
 
-Python
-
-```
+```Python
 # Code fragment - focus on the claim-check pattern for large payloads
 import json
 from azure.storage.blob import BlobServiceClient
@@ -119,9 +110,7 @@ The claim-check pattern offers several benefits beyond working within message si
 
 The `time_to_live` property defines how long a message remains in the queue before expiring. For time-sensitive AI requests, such as real-time classification where a stale result doesn't have value, you can set a shorter TTL so that the message disappears if the processor doesn't reach it in time. Expired messages can be routed to the dead-letter queue when dead-lettering on message expiration is enabled on the queue, providing visibility into messages that weren't processed in time.
 
-Python
-
-```
+```Python
 # Code fragment - focus on setting time-to-live
 from datetime import timedelta
 from azure.servicebus import ServiceBusMessage
@@ -145,9 +134,7 @@ For batch processing with relaxed latency requirements, set a longer TTL or omit
 
 When you need to send multiple inference requests at once, use `ServiceBusMessageBatch` to group messages into a single send operation. Batching reduces the number of network round trips between your application and the Service Bus broker, which improves throughput when you're sending a large volume of messages. The SDK manages the batch size automatically, ensuring that the total batch doesn't exceed the maximum message size for your tier.
 
-Python
-
-```
+```Python
 # Code fragment - focus on batch message sending
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 from azure.servicebus.exceptions import MessageSizeExceededError

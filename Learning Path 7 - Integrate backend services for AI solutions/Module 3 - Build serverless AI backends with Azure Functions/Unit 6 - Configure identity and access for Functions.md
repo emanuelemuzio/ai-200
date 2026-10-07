@@ -26,9 +26,7 @@ The following examples show how identity-based configuration works for common bi
 ServiceBusConnection__fullyQualifiedNamespace = mynamespace.servicebus.windows.net
 ```
 
-Python
-
-```
+```Python
 # Code fragment - focus on Service Bus trigger with identity-based connection
 @app.service_bus_queue_trigger(
     arg_name="msg",
@@ -56,9 +54,7 @@ For Azure services without dedicated binding support, such as Azure AI Document 
 
 Initialize both the credential object and the service client outside the function handler at the module level. This placement ensures the objects persist across invocations on the same instance, avoiding the overhead of repeated credential resolution and connection establishment. Module-level initialization is safe because Azure Functions reuses the same process for multiple invocations until the instance is recycled.
 
-Python
-
-```
+```Python
 # Code fragment - focus on module-level client initialization
 import os
 from azure.identity import DefaultAzureCredential
@@ -94,9 +90,7 @@ Azure Functions defines four types of keys, each with a different scope:
 
 You set the authorization level per HTTP trigger using the `auth_level` parameter in the `@app.route()` decorator. The `anonymous` level requires no key, which is appropriate for health check endpoints or functions behind an API gateway that handles authentication separately. The `function` level requires a function-specific key or a host key, and is the recommended baseline for production endpoints. The `admin` level requires the master key and should be reserved for administrative operations.
 
-Python
-
-```
+```Python
 # Code fragment - focus on authorization levels
 @app.route(route="classify", methods=["POST"], auth_level=func.AuthLevel.FUNCTION)
 def classify_document(req: func.HttpRequest) -> func.HttpResponse:

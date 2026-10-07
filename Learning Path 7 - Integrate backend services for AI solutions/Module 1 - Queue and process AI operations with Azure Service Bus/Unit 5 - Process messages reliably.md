@@ -36,9 +36,7 @@ The `defer_message()` method keeps the message in the queue but removes it from 
 
 The following example shows the peek-lock receive pattern with complete and dead-letter settlements in an AI processing loop.
 
-Python
-
-```
+```Python
 # Code fragment - focus on peek-lock receive with settlement
 import json
 from azure.servicebus import ServiceBusClient, ServiceBusReceiveMode
@@ -77,10 +75,6 @@ with ServiceBusClient(
                 receiver.abandon_message(msg)
 ```
 
-Note
-
-Code examples in this module are patterns to adapt to your specific requirements. They illustrate the SDK's API surface and aren't intended for direct copy-paste into production applications.
-
 ## Handle poison messages with max delivery count
 
 Service Bus tracks how many times it delivers each message. When the delivery count exceeds the queue's `max_delivery_count` (the default is 10), Service Bus automatically moves the message to the dead-letter queue with the reason `MaxDeliveryCountExceeded`. This mechanism prevents a consistently failing message from blocking the queue indefinitely. Without max delivery count, a message that always causes an error would cycle through delivery and abandonment in an infinite loop, consuming processing resources without making progress.
@@ -95,9 +89,7 @@ Each dead-lettered message carries `dead_letter_reason` and `dead_letter_error_d
 
 Monitoring the DLQ is critical for AI applications because it reveals patterns of failure. A sudden increase in dead-lettered messages might indicate that a model deployment isn't working, that the processor doesn't handle a new input format, or that an upstream service is sending malformed requests. You can set Azure Monitor alerts on the dead-letter message count metric to detect these issues early.
 
-Python
-
-```
+```Python
 # Code fragment - focus on receiving and inspecting dead-letter messages
 from azure.servicebus import ServiceBusClient, ServiceBusSubQueue
 from azure.identity import DefaultAzureCredential
@@ -129,9 +121,7 @@ You access the DLQ using the `sub_queue=ServiceBusSubQueue.DEAD_LETTER` paramete
 
 After fixing the root cause of failures, such as updating the model, correcting input validation, or expanding payload handling, you can resubmit dead-lettered messages to the original queue. The reprocessing pattern involves reading each message from the DLQ, creating a new message with the same body and properties, sending the new message to the original queue, and completing the dead-letter message to remove it from the DLQ.
 
-Python
-
-```
+```Python
 # Code fragment - focus on resubmitting dead-lettered messages
 with client.get_queue_receiver(
     queue_name="inference-requests",
@@ -159,9 +149,7 @@ Some AI operations, such as processing a long document or running a complex mode
 
 For operations that might exceed the lock duration, you have two options. You can extend the lock by calling `receiver.renew_message_lock()` periodically during processing. Alternatively, you can use the `AutoLockRenewer` class, which automatically renews the lock in the background until the specified maximum renewal duration elapses. The `AutoLockRenewer` is the simpler option for long-running AI operations because it handles the renewal timing without requiring manual calls in your processing loop.
 
-Python
-
-```
+```Python
 # Code fragment - focus on automatic lock renewal for long-running processing
 from azure.servicebus import ServiceBusClient, AutoLockRenewer
 from azure.identity import DefaultAzureCredential

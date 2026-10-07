@@ -4,9 +4,7 @@ The previous units covered how Event Grid routes events from sources to handlers
 
 A custom topic provides a user-defined endpoint where your application posts events. Before your AI application can publish events, you need to create the topic and configure it to accept the schema your events use. Set the input schema to `cloudeventschemav1_0` when creating the topic so events follow the standardized CloudEvents format.
 
-Azure CLI
-
-```
+```bash
 az eventgrid topic create \
     --name ai-pipeline-events \
     --resource-group ai-platform-rg \
@@ -16,9 +14,7 @@ az eventgrid topic create \
 
 After creating the topic, you need credentials to publish events. You can retrieve the topic endpoint and access key using the Azure CLI:
 
-Azure CLI
-
-```
+```bash
 az eventgrid topic show \
     --name ai-pipeline-events \
     --resource-group ai-platform-rg \
@@ -40,9 +36,7 @@ Each custom event describes a meaningful state change in your AI system. A well-
 
 The following structure shows a CloudEvents event for an inference completion. The `type` field categorizes the operation, the `source` identifies the originating service, and the `subject` provides a filterable path. The `data` payload includes metadata about the operation and a reference to where the subscriber can find the detailed results:
 
-JSON
-
-```
+```JSON
 {
     "specversion": "1.0",
     "type": "com.contoso.ai.InferenceCompleted",
@@ -78,9 +72,7 @@ When designing the data payload, keep the following principles in mind:
 
 The `EventGridPublisherClient` from the `azure-eventgrid` library handles event serialization, authentication, and retries. You can authenticate with an access key using `AzureKeyCredential` or with Microsoft Entra ID using `DefaultAzureCredential`. The following example shows how to create a client and publish a CloudEvent to a custom topic:
 
-Python
-
-```
+```Python
 # Code fragment - focus on creating and sending a CloudEvent
 from azure.core.credentials import AzureKeyCredential
 from azure.core.messaging import CloudEvent
@@ -110,9 +102,7 @@ client.send(event)
 
 For production deployments, use `DefaultAzureCredential` to authenticate with a managed identity instead of access keys:
 
-Python
-
-```
+```Python
 # Code fragment - focus on managed identity authentication
 from azure.identity import DefaultAzureCredential
 from azure.core.messaging import CloudEvent
@@ -126,9 +116,7 @@ client = EventGridPublisherClient(endpoint, credential)
 
 You can publish events in batches for improved performance. When you publish a list of events, the SDK sends them in a single HTTP request. This approach reduces network overhead for AI applications that emit multiple events during a processing run, such as publishing stage-transition events for each step in a pipeline:
 
-Python
-
-```
+```Python
 # Code fragment - focus on batch publishing
 events = [
     CloudEvent(
@@ -156,9 +144,7 @@ You can also publish events by sending an HTTP POST request directly to the cust
 
 For a custom topic configured with the CloudEvents input schema, send a single CloudEvent as a JSON object with the `content-type` header set to `application/cloudevents+json; charset=utf-8`. Authenticate using the `aeg-sas-key` header:
 
-Bash
-
-```
+```Bash
 curl -X POST \
     -H "Content-Type: application/cloudevents+json; charset=utf-8" \
     -H "aeg-sas-key: $EVENTGRID_TOPIC_KEY" \

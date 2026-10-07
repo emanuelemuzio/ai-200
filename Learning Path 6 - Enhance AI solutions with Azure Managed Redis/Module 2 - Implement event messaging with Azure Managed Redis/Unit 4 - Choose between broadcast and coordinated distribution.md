@@ -71,9 +71,7 @@ When you need to coordinate multiple subscribers to avoid duplicate processing a
 
 Consumer groups partition the Stream among group members. When multiple workers read from the same consumer group, Redis automatically assigns different messages to different workers. Each message is delivered to only one consumer in the group.
 
-Python
-
-```
+```Python
 # Setup: Create a consumer group once
 redis_client.xgroup_create('ai:inference:queue', 'workers', '0', mkstream=True)
 
@@ -96,9 +94,7 @@ This work distribution happens automatically—you don't write load balancing lo
 
 The typical pattern is to create the consumer group once during application initialization, then have each worker instance read from the same group:
 
-Python
-
-```
+```Python
 # Application startup code (runs once per deployment, not per instance)
 def setup_worker_infrastructure():
     try:
@@ -140,9 +136,7 @@ Each worker gets different tasks automatically, enabling horizontal scaling.
 
 When reading from a consumer group, the `>` symbol tells Redis to give you new messages not yet delivered to any consumer:
 
-Python
-
-```
+```Python
 # Read only NEW messages not yet delivered to any consumer
 redis_client.xreadgroup('workers', 'worker-1',
                        {'ai:queue': '>'}, count=10)
@@ -152,9 +146,7 @@ This is what enables work distribution. When worker-1 reads with `>`, it gets me
 
 You can also specify an ID to read from a specific position, which is useful for handling pending messages:
 
-Python
-
-```
+```Python
 # Read messages pending for this specific consumer
 redis_client.xreadgroup('workers', 'worker-1',
                        {'ai:queue': '0'}, count=10)
@@ -164,9 +156,7 @@ redis_client.xreadgroup('workers', 'worker-1',
 
 One of the key advantages of consumer groups is that you can add or remove workers without code changes. When you scale your worker deployment from two instances to five instances, the new workers automatically participate in work distribution:
 
-Python
-
-```
+```Python
 # This same code runs on 2 workers or 20 workers
 # Redis automatically distributes work based on how many workers are reading
 
@@ -191,9 +181,7 @@ Consumer groups provide built-in mechanisms for handling worker failures. When a
 
 Use `XPENDING` to find tasks in progress too long (likely due to worker crashes) and `XCLAIM` to reassign them:
 
-Python
-
-```
+```Python
 # In a separate monitoring/health-check service or worker
 def reassign_abandoned_tasks():
     # Check for tasks pending more than 5 minutes
@@ -231,9 +219,7 @@ This pattern ensures tasks don't get lost when workers crash.
 
 Each worker can check for its own pending tasks on startup, enabling automatic recovery after restarts:
 
-Python
-
-```
+```Python
 def worker_startup_recovery():
     worker_id = get_worker_id()
 
@@ -285,9 +271,7 @@ This section provides practical examples showing how to implement both broadcast
 
 When you need all API instances to react to the same event (like clearing caches), use pub/sub:
 
-Python
-
-```
+```Python
 # Service that updates AI models
 def deploy_new_model(model_name, version):
     upload_model_to_storage(model_name, version)
@@ -318,9 +302,7 @@ async def cache_invalidation_listener():
 
 When you need to distribute AI processing tasks across multiple workers without duplication, use Streams with consumer groups:
 
-Python
-
-```
+```Python
 # API endpoint that queues inference requests
 @app.post("/api/inference")
 async def queue_inference(request: InferenceRequest):
@@ -377,9 +359,7 @@ def inference_worker():
 
 Some AI architectures need both approaches. Use pub/sub to broadcast notifications and Streams to queue actual work:
 
-Python
-
-```
+```Python
 # When a large document arrives for processing
 @app.post("/api/process-document")
 async def process_document(doc: UploadFile):

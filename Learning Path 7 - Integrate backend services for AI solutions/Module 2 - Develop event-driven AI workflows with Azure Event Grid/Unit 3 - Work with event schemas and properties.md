@@ -14,9 +14,7 @@ A CloudEvents event contains required attributes that identify the event and opt
 
 The following example shows a CloudEvents JSON event for a completed inference operation in a content moderation pipeline:
 
-JSON
-
-```
+```JSON
 {
     "specversion": "1.0",
     "type": "com.contoso.ai.InferenceCompleted",
@@ -71,9 +69,7 @@ Event subscriptions can filter events by type to ensure that each handler receiv
 
 You can configure event type filtering when you create an event subscription. The `--included-event-types` parameter accepts a list of event types that the subscription delivers. Events with types not in the list are filtered out before delivery. The following example creates an event subscription that only receives inference completion events:
 
-Azure CLI
-
-```
+```bash
 az eventgrid event-subscription create \
     --name inference-handler-sub \
     --source-resource-id /subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.EventGrid/topics/ai-events \
@@ -94,9 +90,7 @@ Subject filtering uses two parameters on the event subscription:
 
 The following example creates a subscription that receives only events from the embeddings pipeline:
 
-Azure CLI
-
-```
+```bash
 az eventgrid event-subscription create \
     --name embeddings-sub \
     --source-resource-id /subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.EventGrid/topics/ai-events \
@@ -114,9 +108,7 @@ Advanced filters use operators such as `StringContains`, `NumberGreaterThan`, `S
 
 The following example creates a subscription that receives only events where the `data.status` field equals `"flagged"`. A moderation review service would use this filter to receive only content that needs human review:
 
-Azure CLI
-
-```
+```bash
 az eventgrid event-subscription create \
     --name flagged-content-sub \
     --source-resource-id /subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.EventGrid/topics/ai-events \
@@ -134,9 +126,7 @@ For AI events, advanced filters enable targeted routing scenarios such as:
 
 When creating a custom topic, the `input-schema` parameter controls which schema the topic accepts. Set this to `cloudeventschemav1_0` to accept events in CloudEvents format:
 
-Azure CLI
-
-```
+```bash
 az eventgrid topic create \
     --name ai-events \
     --resource-group ai-platform-rg \

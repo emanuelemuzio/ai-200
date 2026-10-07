@@ -10,9 +10,7 @@ A vector index is a specialized data structure that Redis builds to organize you
 
 The schema combines multiple field definitions that describe your data structure. The most critical component is `VectorField`, which tells Redis how to handle your embeddings: the field name identifies where vectors are stored in your Redis hashes, dimensions must match your embedding model's output exactly (typically 384-3072 depending on your model), the data type determines memory usage (FLOAT32 is standard), and the distance metric controls how similarity is calculated (COSINE works best for text embeddings). When you create the index, Redis begins monitoring keys with the specified prefix and automatically indexes any vectors you add:
 
-Python
-
-```
+```Python
 # Code fragment - focus on VectorField configuration
 from redis.commands.search.field import TextField, VectorField
 from redis.commands.search.indexDefinition import IndexDefinition, IndexType
@@ -52,9 +50,7 @@ Ingestion is the process of loading your embeddings into Redis so they become se
 
 Storing vectors alone isn't useful—you need metadata (like titles, content, categories) to make sense of search results. Redis Hash lets you store the vector and its metadata together in a single key using `hset` with a `mapping` dictionary. The embedding field contains your vector converted to bytes with `tobytes()`, while other fields hold human-readable information. This colocation means when Redis finds similar vectors, it can immediately return the context your application needs without additional lookups:
 
-Python
-
-```
+```Python
 # Code fragment - focus on vector storage with tobytes()
 import numpy as np
 
@@ -75,9 +71,7 @@ redis_client.hset(
 
 When loading thousands or millions of vectors, sending individual `hset` commands creates network overhead that limits throughput to a few hundred operations per second. Pipelines solve this by batching multiple commands together and sending them to Redis in one network round-trip, which can increase throughput 10-100x depending on network latency. All commands in the pipeline execute atomically on the server, and you receive all responses at once when you call `execute()`:
 
-Python
-
-```
+```Python
 # Code fragment - focus on bulk ingestion pattern
 # Assumes `documents` is a list of dicts with 'id', 'title', 'content', 'embedding'
 
@@ -108,9 +102,7 @@ Vector similarity search uses K-Nearest Neighbors (KNN) to find the vectors most
 
 A KNN query requires several components working together: the query vector (converted to bytes), the number of neighbors K to return, the vector field to search (`@embedding`), and dialect 2 (required for vector queries). The query string `*=>[KNN 5 @embedding $query_vec AS score]` breaks down as: `*` searches all documents, `=>` indicates vector search syntax, `KNN 5` requests five nearest neighbors, `@embedding` specifies which field contains vectors, and `$query_vec` is a parameter placeholder you fill with your query bytes. The `AS score` clause returns the distance as a field you can sort by:
 
-Python
-
-```
+```Python
 # Code fragment - focus on KNN query syntax
 from redis.commands.search.query import Query
 
@@ -135,9 +127,7 @@ The query syntax `*=>[KNN 5 @embedding $query_vec AS score]` searches all docume
 
 Hybrid search combines vector similarity with traditional metadata filters, letting you find semantically similar items within a specific category or subset. Hybrid search is powerful for real-world applications—imagine searching for "comfortable shoes" but only within "running shoes" category, or finding similar documents but only from the last month. The syntax places the filter expression (like `@category:{documentation}`) before the vector search operator `=>`, which tells Redis to first filter down to matching items, then find the K nearest neighbors only within that filtered set:
 
-Python
-
-```
+```Python
 # Code fragment - focus on hybrid query syntax
 hybrid_query = Query(
     "@category:{documentation}=>[KNN 3 @embedding $query_vec AS score]"
@@ -153,9 +143,7 @@ results = redis_client.ft("idx:documents").search(
 
 While KNN returns a fixed number of results (like top 5), range queries return all vectors within a distance threshold—useful when you want everything above a certain similarity level rather than an arbitrary count. For example, you might want all documents with COSINE distance under 0.2 from your query, which could return 3 results or 300 depending on your data. Use `VECTOR_RANGE` with a distance threshold to find all vectors within that boundary:
 
-Python
-
-```
+```Python
 # Code fragment - focus on VECTOR_RANGE syntax
 range_query = Query(
     "@embedding:[VECTOR_RANGE 0.2 $query_vec]=>{$YIELD_DISTANCE_AS: score}"
@@ -187,9 +175,7 @@ Distance metrics define how Redis calculates "similarity" between vectors—esse
 
 HNSW's speed comes from selectively exploring the graph structure rather than checking every vector, but it creates a tradeoff: exploring more of the graph improves accuracy while exploring less improves speed. The `EF_RUNTIME` parameter controls how many graph nodes Redis examines during search—higher values mean more thorough exploration and better accuracy, but slower queries. The default is typically 10, which prioritizes speed. You can adjust this per-query to balance speed and accuracy for different use cases:
 
-Python
-
-```
+```Python
 # Code fragment - focus on EF_RUNTIME parameter
 query = Query("*=>[KNN 10 @embedding $query_vec EF_RUNTIME 200 AS score]")
 ```

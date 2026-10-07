@@ -63,9 +63,7 @@ Keep in mind that the exponential backoff schedule interacts with your TTL setti
 
 When Event Grid exhausts all retry attempts or the event TTL expires, it can send the undelivered event to a [dead-letter destination](https://learn.microsoft.com/en-us/azure/event-grid/manage-event-delivery). Dead-lettering is disabled by default. To enable it, you specify an Azure Blob Storage container as the dead-letter endpoint when creating the event subscription. You must create the storage account and container before configuring dead-lettering.
 
-Azure CLI
-
-```
+```bash
 az eventgrid event-subscription create \
     --name moderation-sub \
     --source-resource-id /subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.EventGrid/topics/ai-events \
@@ -104,9 +102,7 @@ For AI systems that generate or consume events at high volume, such as processin
 - **Maximum events per batch:** An integer between one and 5,000. Event Grid won't exceed this number, but might deliver fewer events if less are available.
 - **Preferred batch size in kilobytes:** An integer between one and 1,024. Event Grid targets this batch size, but a single event larger than the preferred size still delivers in its own batch.
 
-Azure CLI
-
-```
+```bash
 az eventgrid event-subscription create \
     --name batch-processor-sub \
     --source-resource-id /subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.EventGrid/topics/ai-events \

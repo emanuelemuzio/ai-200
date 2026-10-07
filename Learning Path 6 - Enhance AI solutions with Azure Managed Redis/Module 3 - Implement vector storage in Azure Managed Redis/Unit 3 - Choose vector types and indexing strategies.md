@@ -10,9 +10,7 @@ The data type you choose (FLOAT32 or FLOAT64) determines both the memory footpri
 
 Vector data types represent a classic precision-versus-efficiency tradeoff. FLOAT32 (single-precision) provides about seven decimal digits of precision, which is more than sufficient for AI embeddings since the models themselves have inherent noise and approximation. FLOAT64 (double-precision) provides 15 decimal digits but doubles memory usage and slows down distance calculations due to larger data transfers. For nearly all AI applications, the extra precision of FLOAT64 provides no meaningful accuracy improvement because the embedding models don't produce values that precise. Use FLOAT32 for standard work—it balances precision with memory efficiency and works with all major embedding models:
 
-Python
-
-```
+```Python
 # Code fragment - focus on vector data type configuration
 VectorField(
     "embedding",
@@ -31,9 +29,7 @@ FLOAT32 uses 4 bytes per dimension (6KB for a 1536-dimensional vector), while FL
 
 Embedding models are neural networks trained to produce fixed-length vectors. Different models output different dimensions—common ranges are 384, 768, 1024, 1536, and 3072. Your Redis index DIM parameter must match your model's output exactly because the distance calculations depend on position-by-position comparisons across all dimensions. If there's a mismatch, Redis either rejects the data during ingestion, or queries fail with dimension errors. Always check your model's documentation to confirm the output dimension before creating your index:
 
-Python
-
-```
+```Python
 # Code fragment - focus on dimension matching
 embedding_models = {
     "small-model": 384,
@@ -77,9 +73,7 @@ For most AI applications involving text understanding, choose COSINE.
 
 Embedding models are trained with a specific distance metric in mind—the model learns to position similar concepts close together according to that metric's geometry. Using a different metric at query time means you're measuring similarity in a way the model wasn't optimized for, leading to poor results. For example, text embedding models are typically trained with COSINE similarity, so using L2 distance would give mathematically valid but semantically meaningless results. Always match your metric to your embedding type:
 
-Python
-
-```
+```Python
 # Code fragment - focus on distance metric selection
 
 # For text embeddings (most common)
@@ -105,9 +99,7 @@ The indexing algorithm determines how Redis organizes and searches through your 
 
 FLAT indexing uses brute-force search—when you query, Redis literally compares your query vector against every single stored vector using the distance metric, sorts all results, and returns the K nearest. This guarantees perfect accuracy because nothing is skipped, but query time grows linearly with dataset size: 10,000 vectors might take 10 ms, but 1 million vectors could take 1000ms. FLAT works well for development, prototyping, and production systems with small datasets. Use FLAT for small datasets (under 10,000 vectors), development and prototyping, or when you need perfect accuracy and can accept query latency under 100ms:
 
-Python
-
-```
+```Python
 # Code fragment - focus on FLAT index configuration
 VectorField(
     "embedding",
@@ -124,9 +116,7 @@ VectorField(
 
 HNSW (Hierarchical Navigable Small World) builds a multi-layer graph where each vector connects to nearby neighbors at different scales—like a highway system with interstate highways (top layer, long jumps), state highways (middle layers, medium jumps), and local streets (bottom layer, fine-grained navigation). When searching, Redis starts at the top layer and uses the graph connections to quickly navigate toward your query vector, progressively moving to lower layers for finer precision. This structure lets Redis examine only a small fraction of total vectors (maybe 1,000 out of 1 million) while still finding excellent matches. Use HNSW for large datasets (over 10,000 vectors), production systems needing fast queries (<10ms), or when 95-99% accuracy is acceptable. Most production AI systems use HNSW because the slight accuracy tradeoff is negligible compared to the massive performance gains:
 
-Python
-
-```
+```Python
 # Code fragment - focus on HNSW index configuration
 VectorField(
     "embedding",
@@ -147,9 +137,7 @@ The HNSW graph structure enables fast search by limiting how many vectors Redis 
 
 **EF_RUNTIME** (query-time tuning):
 
-Python
-
-```
+```Python
 # Code fragment - focus on runtime tuning
 query = Query(
     "*=>[KNN 10 @embedding $query_vec EF_RUNTIME 100 AS score]"
@@ -175,9 +163,7 @@ With multiple options for data type, distance metric, and indexing algorithm, th
 
 While guidelines provide starting points, your actual performance depends on your specific data characteristics—vector distribution, query patterns, and hardware all affect results. Testing different configurations with your real data helps you find the optimal balance between speed and accuracy for your application. For HNSW tuning specifically, measuring latency at different `EF_RUNTIME` values shows you exactly how much speed you trade for accuracy improvements:
 
-Python
-
-```
+```Python
 # Code fragment - focus on performance testing
 import time
 

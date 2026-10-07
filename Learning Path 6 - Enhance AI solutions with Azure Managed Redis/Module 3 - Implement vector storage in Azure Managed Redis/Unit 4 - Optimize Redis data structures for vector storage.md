@@ -10,9 +10,7 @@ Redis Hash is a data structure that stores information as field-value pairs with
 
 Store your vector as bytes in a hash field alongside other metadata:
 
-Python
-
-```
+```Python
 # Code fragment - focus on Hash storage
 import numpy as np
 
@@ -35,9 +33,7 @@ The vector is stored as a binary blob in the `embedding` field. This approach mi
 
 Define your index to search Hash keys with a vector field:
 
-Python
-
-```
+```Python
 # Code fragment - focus on Hash index
 from redis.commands.search.field import TextField, NumericField, VectorField
 from redis.commands.search.indexDefinition import IndexDefinition, IndexType
@@ -70,9 +66,7 @@ Redis JSON stores data as JSON documents, allowing you to organize information h
 
 When storing vectors in JSON, you convert your NumPy array to a Python list using `tolist()`, which creates a JSON-compatible numeric array. This array format allows Redis to parse and index the vector while keeping your document flexible enough to include nested objects and complex metadata structures:
 
-Python
-
-```
+```Python
 # Code fragment - focus on JSON storage
 import redis.commands.json as json_commands
 
@@ -97,9 +91,7 @@ The vector is stored as a JSON array `[0.1, 0.2, 0.3, ...]`. This format support
 
 Define your index to search JSON documents with a vector field. Use JSON when your data has nested structures, you need multiple vectors per document, your application already uses JSON format, or you need JSON query capabilities:
 
-Python
-
-```
+```Python
 # Code fragment - focus on JSON index
 from redis.commands.search.field import TextField, NumericField, VectorField
 from redis.commands.search.indexDefinition import IndexDefinition, IndexType
@@ -142,9 +134,7 @@ Choose based on your data complexity and performance requirements:
 
 Hash storage is faster and uses less memory because vectors are stored as compact binary blobs. JSON storage adds overhead for the array structure but offers more flexibility:
 
-Python
-
-```
+```Python
 # Code fragment - focus on storage comparison
 
 # Hash: 1536 floats × 4 bytes = 6,144 bytes for vector
@@ -160,9 +150,7 @@ For 1 million products with 1536-dimensional vectors, Hash saves significant mem
 
 You can change your data structure by re-ingesting data with a new index:
 
-Python
-
-```
+```Python
 # Code fragment - focus on migration approach
 
 # Read from Hash

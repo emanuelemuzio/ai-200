@@ -38,9 +38,7 @@ HTTP-triggered functions face a 230-second timeout imposed by the Azure Load Bal
 
 The recommended approach uses the async request-reply pattern. The HTTP-triggered function accepts the incoming request, validates the input, writes a message to a Service Bus queue, and immediately returns a `202 Accepted` response with a status endpoint URL. A separate Service Bus-triggered function picks up the message and performs the long-running processing without any HTTP timeout constraint, because Service Bus-triggered functions can run for an unbounded duration on the Flex Consumption and Premium plans.
 
-Python
-
-```
+```Python
 # Code fragment - focus on async request-reply pattern
 import azure.functions as func
 import json

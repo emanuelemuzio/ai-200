@@ -8,9 +8,7 @@ You can install Core Tools through several package managers depending on your op
 
 You can create a new Functions project in Visual Studio Code by running the **Azure Functions: Create Function...** command from the Command Palette. This command walks you through selecting a project folder, language runtime, and trigger template. It scaffolds the project structure, creates a starter function, and generates the `.vscode/launch.json`, `.vscode/tasks.json`, and `.vscode/extensions.json` files that enable integrated debugging and task running. Starting the local runtime with `func start` or by pressing F5 launches the Functions host and exposes HTTP endpoints at `http://localhost:7071` by default.
 
-Note
-
-You can also create projects from the command line with `func init` and `func new`. The command `func init my-ai-backend --python` scaffolds the project structure, and `func new --name classify --template "HTTP trigger"` adds a function. However, these commands don't generate the `.vscode` configuration files, so you need to create them manually or run **Azure Functions: Create Function...** afterward.
+> **Note**: You can also create projects from the command line with `func init` and `func new`. The command `func init my-ai-backend --python` scaffolds the project structure, and `func new --name classify --template "HTTP trigger"` adds a function. However, these commands don't generate the `.vscode` configuration files, so you need to create them manually or run **Azure Functions: Create Function...** afterward.
 
 ## Understand local project structure
 
@@ -36,9 +34,7 @@ For local development, you can route the runtime's storage dependency to the [Az
 
 The simplest way to run Azurite is through the [Azurite Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite), which starts the emulator automatically when you launch a debugging session. You can also install Azurite globally through npm with `npm install -g azurite` and start it from the command line with `azurite --silent`. The following configuration in `local.settings.json` connects the runtime to Azurite:
 
-JSON
-
-```
+```JSON
 {
     "IsEncrypted": false,
     "Values": {
@@ -70,9 +66,7 @@ You can configure launch settings in the `.vscode/launch.json` file to attach th
 
 For testing HTTP triggers, you can use `.http` files directly in Visual Studio Code with the REST Client extension, or tools like `curl` from the command line. The following example shows how to test an HTTP trigger locally:
 
-Bash
-
-```
+```Bash
 curl -X POST http://localhost:7071/api/classify \
     -H "Content-Type: application/json" \
     -d '{"document_url": "https://storage.example.com/docs/sample.pdf"}'
